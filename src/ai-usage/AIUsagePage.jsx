@@ -151,6 +151,65 @@ export const AIUsagePage = () => {
             </div>
           </section>
 
+          {/* Part 4: Minh chứng Prompt */}
+          <section className="bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.05)] rounded-[20px] p-8 md:p-12 hover:bg-[rgba(255,255,255,0.03)] transition-colors mt-8">
+            <div className="flex items-center gap-4 mb-8">
+              <span className="text-[#c9922a] block">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+              </span>
+              <h2 className="font-['Playfair_Display'] text-2xl tracking-wider" style={{ fontVariantNumeric: "lining-nums" }}>4. Minh Chứng Sử Dụng Prompt</h2>
+            </div>
+
+            <div className="space-y-12 font-['Inter']">
+              {/* Prompt 1 */}
+              <div>
+                <h3 className="text-[#ede6d6] font-medium text-lg tracking-wide mb-4 font-['Playfair_Display']">II. Cơ sở lý thuyết</h3>
+                <div className="bg-[rgba(0,0,0,0.3)] border border-[rgba(255,255,255,0.05)] rounded-lg p-4 mb-6">
+                  <span className="text-[#c9922a] text-xs font-semibold uppercase tracking-wider block mb-2">Prompt:</span>
+                  <p className="text-[#b8a996] text-sm leading-relaxed italic">
+                    "Hãy từ giáo trình MLN111.pdf đưa ra nội dung phân tích cho phần Cơ sở lý thuyết: Trình bày quan niệm của chủ nghĩa duy vật lịch sử về Nhà nước như một sản phẩm của những điều kiện kinh tế – xã hội nhất định, gắn với sự xuất hiện của giai cấp và mâu thuẫn giai cấp, đồng thời làm rõ xu hướng tiêu vong của Nhà nước trong những điều kiện lịch sử cụ thể."
+                  </p>
+                </div>
+                <div className="rounded-xl overflow-hidden border border-[rgba(255,255,255,0.1)] shadow-xl shadow-black/50">
+                  <img src="/images/prompt1.jpg" alt="Đoạn chat cơ sở lý thuyết" className="w-full object-cover" />
+                </div>
+              </div>
+
+              <div className="w-full h-[1px] bg-[rgba(255,255,255,0.05)]"></div>
+
+              {/* Prompt 2 */}
+              <div>
+                <h3 className="text-[#ede6d6] font-medium text-lg tracking-wide mb-4 font-['Playfair_Display']">III. Cơ sở vận dụng</h3>
+                <div className="bg-[rgba(0,0,0,0.3)] border border-[rgba(255,255,255,0.05)] rounded-lg p-4 mb-6">
+                  <span className="text-[#c9922a] text-xs font-semibold uppercase tracking-wider block mb-2">Prompt:</span>
+                  <p className="text-[#b8a996] text-sm leading-relaxed italic">
+                    "Nhập vai chuyên gia Triết học, hãy phân tích chủ đề 'Xã hội không Nhà nước: Utopia hay hiện thực?' tập trung cụ thể vào Cơ sở vận dụng tại mục III.1 Giáo trình MLN 2019 qua việc đối chiếu: Chính phủ số như một hạ tầng dịch vụ, các mô hình tự quản cộng đồng làm tiền đề hiện thực, và các rủi ro an ninh phi truyền thống làm giới hạn khiến Nhà nước chưa thể biến mất; hãy trình bày thành một tin nhắn liền mạch với ngôn ngữ so sánh gần gũi cho lớp đa ngành, có cài mã trích dẫn [ID] và tổng hợp danh mục Reference cuối bài."
+                  </p>
+                </div>
+                <div className="rounded-xl overflow-hidden border border-[rgba(255,255,255,0.1)] shadow-xl shadow-black/50">
+                  <img src="/images/prompt2.png" alt="Đoạn chat cơ sở vận dụng" className="w-full object-cover" />
+                </div>
+              </div>
+
+              <div className="w-full h-[1px] bg-[rgba(255,255,255,0.05)]"></div>
+
+              {/* Prompt 3 */}
+              <div>
+                <h3 className="text-[#ede6d6] font-medium text-lg tracking-wide mb-4 font-['Playfair_Display']">IV. Giải pháp/ Bài học</h3>
+                <div className="bg-[rgba(0,0,0,0.3)] border border-[rgba(255,255,255,0.05)] rounded-lg p-4 mb-6">
+                  <span className="text-[#c9922a] text-xs font-semibold uppercase tracking-wider block mb-2">Prompt:</span>
+                  <p className="text-[#b8a996] text-sm leading-relaxed italic">
+                    "Role: Chuyên gia Duy vật lịch sử & Khoa học chính trị. Task: Viết mục 'Giải pháp & Bài học thực tiễn' tiểu luận: 'Sự tiêu vong Nhà nước: Lý luận & Thực tiễn'.Cấu trúc (5 điểm a-e): Lý luận cốt lõi (Chương 3 Triết học MLN) vs. Bài học thực tiễn (Xã hội hiện đại). Key themes: Tính lịch sử Nhà nước; Dịch chuyển cưỡng chế -&gt; phục vụ; Tự quản cộng đồng; Đạo đức & Công dân toàn cầu. Format: Văn phong học thuật. Trích dẫn [X] trong bài. References: Giáo trình Bộ GD&ĐT, Lênin, và nguồn quốc tế (World Bank/UNESCO/Putnam/Rosenau). Language: Tiếng Việt."
+                  </p>
+                </div>
+                <div className="rounded-xl overflow-hidden border border-[rgba(255,255,255,0.1)] shadow-xl shadow-black/50">
+                  <img src="/images/prompt3.png" alt="Đoạn chat giải pháp bài học" className="w-full object-cover" />
+                </div>
+              </div>
+
+            </div>
+          </section>
+
         </div>
       </div>
     </div>

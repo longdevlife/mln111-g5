@@ -6,6 +6,7 @@ const NAV_LINKS = [
   { href: '#co-so-ly-thuyet', label: 'Cơ Sở Lý Thuyết' },
   { href: '#giai-phap', label: 'Giải Pháp' },
   { href: '#book', label: 'Triển Lãm 3D' },
+  { href: '#ai', label: 'AI Usage' },
 ];
 
 export default function Navbar({ activeTab, onTabChange }) {
