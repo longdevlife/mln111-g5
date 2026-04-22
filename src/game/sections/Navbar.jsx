@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 
 const NAV_LINKS = [
   { href: '#hero', label: 'Mở Đầu' },
-  { href: '#ton-tai', label: 'Học Thuyết' },
-  { href: '#kahoot', label: 'Kahoot' },
+  { href: '#dat-van-de', label: 'Đặt Vấn Đề' },
+  { href: '#co-so-ly-thuyet', label: 'Cơ Sở Lý Thuyết' },
+  { href: '#giai-phap', label: 'Giải Pháp' },
   { href: '#book', label: 'Triển Lãm 3D' },
-  { href: '#ai', label: 'AI Usage' },
 ];
 
 export default function Navbar({ activeTab, onTabChange }) {
@@ -30,7 +30,7 @@ export default function Navbar({ activeTab, onTabChange }) {
       });
     }, { root: null, rootMargin: '-20% 0px -60% 0px', threshold: 0 });
 
-    const sections = ['hero', 'ton-tai', 'kahoot']
+    const sections = ['hero', 'dat-van-de', 'co-so-ly-thuyet', 'giai-phap']
       .map(id => document.getElementById(id))
       .filter(el => el !== null);
       
@@ -58,10 +58,10 @@ export default function Navbar({ activeTab, onTabChange }) {
       return;
     }
 
-    // Handing clicks to Game Tab sections while currently on another Tab
-    if (activeTab !== 'game' && id !== 'book' && id !== 'ai') {
+    // Handing clicks to Theory Tab sections while currently on another Tab
+    if (activeTab !== 'theory' && id !== 'book' && id !== 'ai') {
       if (onTabChange) {
-        onTabChange('game');
+        onTabChange('theory');
       }
       // Give DOM time to render GamePage then scroll
       setTimeout(() => {
@@ -73,7 +73,7 @@ export default function Navbar({ activeTab, onTabChange }) {
       return;
     }
 
-    // Normal internal scroll within Game Tab
+    // Normal internal scroll within Theory Tab
     const target = document.getElementById(id);
     if (target) {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });

@@ -12,9 +12,9 @@ export default function LeninPresenter() {
   const [displayedText, setDisplayedText] = useState('');
 
   const speeches = {
-    'ton-tai': 'Hãy khám phá nền tảng vật chất của xã hội...',
-    'y-thuc': 'Ý thức phản ánh tồn tại — hãy xem cách nó vận hành...',
-    'bien-chung': 'Mối quan hệ biện chứng — chìa khóa hiểu xã hội!',
+    'dat-van-de': 'Nhà nước không vĩnh cửu. Nó sinh ra từ mâu thuẫn giai cấp!',
+    'co-so-ly-thuyet': 'Khi không còn giai cấp, nhà nước sẽ tự tiêu vong...',
+    'giai-phap': 'Một xã hội tự quản không cần bộ máy áp bức bạo lực!',
   };
 
   // Typewriter effect
@@ -42,7 +42,7 @@ export default function LeninPresenter() {
         const { ScrollTrigger } = await import('gsap/ScrollTrigger');
         gsap.registerPlugin(ScrollTrigger);
 
-        const sections = ['ton-tai', 'y-thuc', 'bien-chung'];
+        const sections = ['dat-van-de', 'co-so-ly-thuyet', 'giai-phap'];
 
         ctx = gsap.context(() => {
           sections.forEach((id) => {
@@ -62,10 +62,10 @@ export default function LeninPresenter() {
                 setIsVisible(true);
               },
               onLeave: () => {
-                if (id === 'bien-chung') setIsVisible(false);
+                if (id === 'giai-phap') setIsVisible(false);
               },
               onLeaveBack: () => {
-                if (id === 'ton-tai') setIsVisible(false);
+                if (id === 'dat-van-de') setIsVisible(false);
               },
             });
           });
@@ -105,7 +105,7 @@ export default function LeninPresenter() {
 
       {/* Container 2: Speech Bubble — floating ABOVE Lenin */}
       <div
-        className="hidden lg:block fixed right-10 bottom-[190px] z-50 pointer-events-none w-max"
+        className="hidden lg:block fixed right-[150px] bottom-[210px] z-50 pointer-events-none w-max"
         style={{
           transition: 'opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s',
           opacity: isVisible && activeSection ? 1 : 0,

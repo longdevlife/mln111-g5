@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { BookPage } from "./book/BookPage";
-import { GamePage } from "./game/GamePage";
+import { TheoryPage } from "./game/TheoryPage";
 import { AIUsagePage } from "./ai-usage/AIUsagePage";
 import Navbar from "./game/sections/Navbar";
 
 const TABS = [
   { id: "book", label: "Sách 3D" },
-  { id: "game", label: "Quiz Game" },
+  { id: "theory", label: "Lý Thuyết" },
   { id: "ai", label: "AI Usage" },
 ];
 
@@ -14,7 +14,7 @@ function getActiveTab() {
   const hash = window.location.hash.replace("#", "");
   const path = window.location.pathname.replace("/", "");
   const from = TABS.find(t => t.id === hash || t.id === path);
-  return from ? from.id : "game";
+  return from ? from.id : "theory";
 }
 
 function App() {
@@ -44,7 +44,7 @@ function App() {
       {/* Tab Content */}
       <div style={{ width: "100%", minHeight: "100vh" }}>
         {activeTab === "book" && <BookPage skipIntro={hasVisitedBook} />}
-        {activeTab === "game" && <GamePage />}
+        {activeTab === "theory" && <TheoryPage />}
         {activeTab === "ai" && <AIUsagePage />}
       </div>
     </div>

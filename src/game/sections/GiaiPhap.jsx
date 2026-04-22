@@ -1,36 +1,34 @@
-export default function BienChung() {
+export default function GiaiPhap() {
   const f1 = "'Playfair Display', serif";
   const f2 = "'Outfit', sans-serif";
 
   const features = [
-    { n: '01', t: 'Tính Lạc Hậu', s: 'Ý thức thường lạc hậu hơn tồn tại do sức mạnh thói quen và truyền thống.' },
-    { n: '02', t: 'Vượt Trước Tồn Tại', s: 'Tư tưởng có thể dự báo tương lai, chỉ đạo thực tiễn (Mác dự báo sự sụp đổ CNTB).' },
-    { n: '03', t: 'Tính Kế Thừa', s: 'Các quan điểm lý luận kế thừa tài liệu của thời đại trước. Không tri thức nào từ hư vô.' },
-    { n: '04', t: 'Tương Tác Nội Tại', s: 'Các hình thái ý thức tác động qua lại. Ví dụ: Tôn giáo chi phối triết học thời Trung Cổ.' },
-    { n: '05', t: 'Tác Động Trở Lại', s: 'Ý thức tiến bộ thúc đẩy xã hội phát triển, ý thức lạc hậu kìm hãm nó.' },
+    { n: '01', t: 'Hoàn thiện thể chế', s: 'Xây dựng nhà nước pháp quyền XHCN vững mạnh, mọi công dân bình đẳng trước pháp luật.' },
+    { n: '02', t: 'Mở rộng dân chủ', s: 'Kiên quyết chống quan liêu, tham nhũng; đảm bảo quyền làm chủ thực sự của người dân.' },
+    { n: '03', t: 'Chuyển đổi số', s: 'Áp dụng công nghệ vào quản trị quốc gia, tăng cường tính công khai và minh bạch.' },
   ];
 
   const stats = [
-    { num: '3', label: 'Yếu tố cơ bản của Tồn tại XH' },
-    { num: '2', label: 'Cấp độ của Ý thức XH' },
-    { num: '7', label: 'Hình thái Ý thức XH' },
-    { num: '5', label: 'Biểu hiện độc lập tương đối' },
+    { num: '3', label: 'Giải pháp cốt lõi' },
+    { num: '1', label: 'Mục tiêu tối thượng' },
+    { num: '4.0', label: 'Kỷ nguyên chuyển đổi số' },
+    { num: '91', label: 'Năm Liên Xô sụp đổ' },
   ];
 
   return (
-    <section id="bien-chung" className="relative w-full bg-[#EDE8E1] px-4 py-32 md:py-40 overflow-hidden">
+    <section id="giai-phap" className="relative w-full bg-[#EDE8E1] px-4 py-32 md:py-40 overflow-hidden">
       {/* Header */}
       <div className="w-full max-w-7xl mx-auto mb-24 md:mb-32">
         <div className="gsap-reveal flex items-center gap-3 mb-6">
           <div className="h-[1px] w-12 bg-[#3D3529]/15 gsap-line-draw" />
-          <span className="text-[10px] uppercase tracking-[0.25em] font-semibold text-[#7A6040]" style={{ fontFamily: f2 }}>Phần 3.4.3</span>
+          <span className="text-[10px] uppercase tracking-[0.25em] font-semibold text-[#7A6040]" style={{ fontFamily: f2 }}>Phần 4</span>
         </div>
         <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-[#3D3529] mb-8" style={{ fontFamily: f1 }}>
-          <span className="gsap-text-reveal block">Quan Hệ</span>
-          <span className="gsap-text-reveal block italic font-light text-[#7A6040]">Biện Chứng</span>
+          <span className="gsap-text-reveal block">Giải Pháp &</span>
+          <span className="gsap-text-reveal block italic font-light text-[#7A6040]">Bài Học</span>
         </h2>
         <p className="gsap-reveal text-lg text-[#7A6040] max-w-2xl leading-relaxed font-light" style={{ fontFamily: f2 }}>
-          Mối quan hệ biện chứng giữa Tồn tại xã hội và Ý thức xã hội – một sự quyết định mang tính nền tảng kết hợp với khả năng tác động qua lại.
+          Quản lý Nhà nước không chỉ là một nhiệm vụ hành chính mà là nghệ thuật duy trì sự phát triển bền vững của xã hội, rút ra từ những bài học lịch sử sâu sắc.
         </p>
       </div>
 
@@ -39,18 +37,18 @@ export default function BienChung() {
         {/* Card 1 — Large, slide from left */}
         <div className="gsap-slide-left md:col-span-2 card-tilt group">
           <div className="h-full p-8 md:p-12 bg-white/50 rounded-[20px] border border-[#3D3529]/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(61,53,41,0.08)]">
-            <h3 className="text-3xl font-bold text-[#3D3529] mb-6" style={{ fontFamily: f1 }}>Nền Tảng Quyết Định</h3>
+            <h3 className="text-3xl font-bold text-[#3D3529] mb-6" style={{ fontFamily: f1 }}>Thực tiễn Việt Nam</h3>
             <p className="text-[#7A6040] text-base md:text-lg leading-relaxed font-light mb-8" style={{ fontFamily: f2 }}>
-              Ý thức xã hội <strong>ra đời từ</strong> tồn tại xã hội và <strong>phản ánh</strong> nó. Tồn tại xã hội quyết định nội dung, tính chất, và xu hướng biến đổi của ý thức xã hội.
+              Việt Nam đang nỗ lực xây dựng <strong>Nhà nước pháp quyền XHCN</strong> của Nhân dân, do Nhân dân, vì Nhân dân. Đây là nền tảng để tiến tới một xã hội lý tưởng.
             </p>
             <div className="gsap-stagger-parent grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="gsap-stagger-child p-5 bg-[#EDE8E1] rounded-[16px]">
-                <h4 className="font-bold text-[#3D3529] mb-2" style={{ fontFamily: f1 }}>Phong Kiến</h4>
-                <p className="text-[#7A6040] text-sm font-light" style={{ fontFamily: f2 }}>Tư tưởng đẳng cấp, trung quân ái quốc, Nho giáo thống trị.</p>
+                <h4 className="font-bold text-[#3D3529] mb-2" style={{ fontFamily: f1 }}>Luật pháp</h4>
+                <p className="text-[#7A6040] text-sm font-light" style={{ fontFamily: f2 }}>Sửa đổi, bổ sung Hiến pháp, luật hóa các cam kết quốc tế.</p>
               </div>
               <div className="gsap-stagger-child p-5 bg-[#EDE8E1] rounded-[16px]">
-                <h4 className="font-bold text-[#3D3529] mb-2" style={{ fontFamily: f1 }}>Đổi Mới 1986</h4>
-                <p className="text-[#7A6040] text-sm font-light" style={{ fontFamily: f2 }}>Thay đổi tư duy kinh tế từ kế hoạch hóa sang thị trường.</p>
+                <h4 className="font-bold text-[#3D3529] mb-2" style={{ fontFamily: f1 }}>Phục vụ</h4>
+                <p className="text-[#7A6040] text-sm font-light" style={{ fontFamily: f2 }}>Cải cách hành chính, lấy sự hài lòng của người dân làm thước đo.</p>
               </div>
             </div>
           </div>
@@ -59,22 +57,22 @@ export default function BienChung() {
         {/* Card 2 — Small Dark, slide from right */}
         <div className="gsap-slide-right md:col-span-1 card-tilt group">
           <div className="h-full p-8 md:p-10 bg-[#3D3529] rounded-[20px] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(61,53,41,0.2)]">
-            <h3 className="text-2xl md:text-3xl font-bold text-[#EDE8E1] mb-6" style={{ fontFamily: f1 }}>Tính Độc Lập</h3>
+            <h3 className="text-2xl md:text-3xl font-bold text-[#EDE8E1] mb-6" style={{ fontFamily: f1 }}>Mục tiêu tối thượng</h3>
             <p className="text-[#EDE8E1]/70 text-base leading-relaxed font-light" style={{ fontFamily: f2 }}>
-              Ý thức xã hội không phụ thuộc máy móc vào tồn tại xã hội, mà có đời sống riêng và có khả năng tác động trở lại mạnh mẽ.
+              Dân giàu, nước mạnh, dân chủ, công bằng, văn minh – tạo tiền đề cho sự "tiêu vong" của chức năng trấn áp bạo lực trong tương lai.
             </p>
           </div>
         </div>
       </div>
 
-      {/* 5 Biểu hiện — Progressive stagger */}
+      {/* 3 Biểu hiện — Progressive stagger */}
       <div className="w-full max-w-7xl mx-auto mb-32">
         <div className="gsap-reveal flex items-center justify-center gap-4 mb-16">
           <div className="h-[1px] w-12 bg-[#3D3529]/15 gsap-line-draw" />
-          <span className="text-sm tracking-[0.25em] text-[#7A6040]/60 uppercase font-semibold" style={{ fontFamily: f2 }}>05 Biểu Hiện Cốt Lõi</span>
+          <span className="text-sm tracking-[0.25em] text-[#7A6040]/60 uppercase font-semibold" style={{ fontFamily: f2 }}>03 Giải Pháp Trọng Tâm</span>
           <div className="h-[1px] w-12 bg-[#3D3529]/15 gsap-line-draw" />
         </div>
-        <div className="gsap-stagger-parent grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="gsap-stagger-parent grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {features.map((item) => (
             <div key={item.n} className="gsap-stagger-child card-tilt group">
               <div className="h-full p-8 border-t border-[#3D3529]/10 transition-colors duration-500 group-hover:border-[#C5A028]">
@@ -90,15 +88,15 @@ export default function BienChung() {
       {/* Bottom Summary — Scale-in */}
       <div className="w-full max-w-7xl mx-auto">
         <div className="gsap-scale-in bg-white/50 rounded-[20px] border border-[#3D3529]/5 p-10 md:p-16">
-          <h3 className="gsap-reveal text-center text-sm font-semibold tracking-[0.2em] uppercase text-[#7A6040]/50 mb-16" style={{ fontFamily: f2 }}>Tổng Kết Chuỗi Tiết Học</h3>
+          <h3 className="gsap-reveal text-center text-sm font-semibold tracking-[0.2em] uppercase text-[#7A6040]/50 mb-16" style={{ fontFamily: f2 }}>Bài Học Lịch Sử</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
             <div className="gsap-slide-left flex flex-col justify-center">
-              <h4 className="text-3xl font-bold text-[#3D3529] mb-6" style={{ fontFamily: f1 }}>Ý Nghĩa Lý Luận & Thực Tiễn</h4>
+              <h4 className="text-3xl font-bold text-[#3D3529] mb-6" style={{ fontFamily: f1 }}>Sự Sụp Đổ Của Liên Xô</h4>
               <p className="text-[#7A6040] text-base leading-relaxed font-light mb-8" style={{ fontFamily: f2 }}>
-                Phép biện chứng chỉ ra: vật chất quyết định, nhưng ý thức tác động ngược lại. Khắc phục Chủ nghĩa duy vật tầm thường và Chủ nghĩa duy tâm.
+                Sự sụp đổ của mô hình Xô Viết không phải là sự phá sản của chủ nghĩa Mác-Lênin, mà là do sự giáo điều, quan liêu, và xa rời quần chúng của bộ máy lãnh đạo.
               </p>
               <div className="space-y-4">
-                {['Đổi mới tư duy kinh tế tại Việt Nam.', 'Phát huy bản sắc văn hóa dân tộc.', 'Đấu tranh chống tư tưởng lạc hậu.'].map(text => (
+                {['Không được giáo điều, rập khuôn.', 'Lấy sự ủng hộ của nhân dân làm gốc.', 'Phải liên tục đổi mới để thích ứng.'].map(text => (
                   <div key={text} className="gsap-reveal flex items-start gap-3 text-[#7A6040] font-light" style={{ fontFamily: f2 }}>
                     <div className="w-1.5 h-1.5 rounded-full bg-[#C5A028] mt-2 shrink-0" />
                     <span>{text}</span>
