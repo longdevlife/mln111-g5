@@ -6,31 +6,43 @@ export const pageAtom = atom(0);
 export const viewModeAtom = atom("showcase"); // "showcase" | "reading"
 
 export const pages = [
-  { front: "Coverpage_open", back: "Open 1" },
-  { front: "Open 2", back: "46_Page_1" },
-  { front: "46_Page_2", back: "47_Page_1" },
-  { front: "47_Page_2", back: "48_Page_1" },
-  { front: "48_Page_2", back: "Close 1" },
-  { front: "Close 2", back: "Coverpage_close" },
+  { front: "Cover page - Open", back: "2_Page_1" },
+  { front: "2_Page 2", back: "3_page_1" },
+  { front: "3_page_2", back: "4_page_1" },
+  { front: "4_page_2", back: "5_page_1" },
+  { front: "5_page_2", back: "6_page_1" },
+  { front: "6_page_2", back: "7_page_1" },
+  { front: "7_page_2", back: "8_page_1" },
+  { front: "8_page_2", back: "9_page_1" },
+  { front: "9_page_2", back: "10_page_1" },
+  { front: "10_page_2", back: "cover end" },
 ];
 
 const pageLabels = [
   "Bìa",
-  "Nền tảng",
-  "Tồn tại XH",
-  "Ý thức XH",
-  "Biện chứng",
-  "Tổng kết",
+  "Trang 2",
+  "Trang 3",
+  "Trang 4",
+  "Trang 5",
+  "Trang 6",
+  "Trang 7",
+  "Trang 8",
+  "Trang 9",
+  "Trang 10",
   "Bìa sau",
 ];
 
 const pageTitles = [
   null,
-  "Nền tảng — Chủ nghĩa duy vật lịch sử",
-  "Thực tại — Khái niệm Tồn tại xã hội",
-  "Hệ tư tưởng — Kết cấu Ý thức xã hội",
-  "Quy luật — Tính độc lập tương đối",
-  "Tổng kết — Triết học Mác - Lênin",
+  "Trang 2",
+  "Trang 3",
+  "Trang 4",
+  "Trang 5",
+  "Trang 6",
+  "Trang 7",
+  "Trang 8",
+  "Trang 9",
+  "Trang 10",
   null,
 ];
 

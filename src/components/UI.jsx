@@ -5,40 +5,29 @@ import { useEffect, useState } from "react";
 // Each "page" object = 1 physical sheet with front and back
 export const pageAtom = atom(0);
 export const pages = [
-  {
-    front: "book-cover",
-    back: "page1-intro",
-  },
-  {
-    front: "page2-theory1",
-    back: "page3-theory2",
-  },
-  {
-    front: "page4-scenario1",
-    back: "page5-result1",
-  },
-  {
-    front: "page6-scenario2",
-    back: "page7-result2",
-  },
-  {
-    front: "page8-scenario3",
-    back: "page9-result3",
-  },
-  {
-    front: "page10-conclusion",
-    back: "book-back",
-  },
+  { front: "Cover page - Open", back: "2_Page_1" },
+  { front: "2_Page 2", back: "3_page_1" },
+  { front: "3_page_2", back: "4_page_1" },
+  { front: "4_page_2", back: "5_page_1" },
+  { front: "5_page_2", back: "6_page_1" },
+  { front: "6_page_2", back: "7_page_1" },
+  { front: "7_page_2", back: "8_page_1" },
+  { front: "8_page_2", back: "9_page_1" },
+  { front: "9_page_2", back: "10_page_1" },
+  { front: "10_page_2", back: "cover end" },
 ];
 
 const pageLabels = [
   "Bìa",
-  "Lý thuyết",
-  "Công nhân",
-  "Sinh viên",
-  "Doanh nhân",
-  "Tổng kết",
-  "Bìa sau",
+  "Trang 2",
+  "Trang 3",
+  "Trang 4",
+  "Trang 5",
+  "Trang 6",
+  "Trang 7",
+  "Trang 8",
+  "Trang 9",
+  "Trang 10",
 ];
 
 export const UI = () => {
