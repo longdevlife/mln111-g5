@@ -46,10 +46,10 @@ export const AIUsagePage = () => {
         
         {/* Header */}
         <div className="text-center mb-20 animate-in fade-in slide-in-from-top-4">
-          <span className="section-label text-[#c9922a] mb-4 tracking-[0.2em] block uppercase font-['Outfit'] text-xs font-semibold">Phụ Lục Đặc Biệt</span>
+          <span className="section-label text-[#c9922a] mb-4 tracking-[0.2em] block uppercase font-['Inter'] text-xs font-semibold">Phụ Lục Đặc Biệt</span>
           <h1 className="font-['Playfair_Display'] text-4xl md:text-5xl font-medium tracking-wide mb-6">Báo Cáo Ứng Dụng AI</h1>
           <div className="w-24 h-[1px] bg-[#c9922a] mx-auto opacity-40"></div>
-          <p className="mt-6 text-[#a39481] font-['Outfit'] font-light max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-6 text-[#a39481] font-['Inter'] font-light max-w-2xl mx-auto leading-relaxed">
             Minh bạch. Liêm chính học thuật. Trách nhiệm tuyệt đối. Báo cáo này định rõ ranh giới giữa sự hỗ trợ của Trí tuệ Nhân tạo và dấu ấn tri thức của con người trong toàn bộ vòng đời phát triển dự án.
           </p>
         </div>
@@ -66,9 +66,9 @@ export const AIUsagePage = () => {
               <h2 className="font-['Playfair_Display'] text-2xl tracking-wider" style={{ fontVariantNumeric: "lining-nums" }}>1. Cam Kết Liêm Chính & Trách Nhiệm</h2>
             </div>
             <div className="mb-8 pl-11">
-              <span className="text-[#a39481] text-xs font-['Outfit'] italic tracking-wide">(Đáp ứng mục 4.2 & 4.4)</span>
+              <span className="text-[#a39481] text-xs font-['Inter'] italic tracking-wide">(Đáp ứng mục 4.2 & 4.4)</span>
             </div>
-            <div className="space-y-6 font-['Outfit'] font-light text-[#b8a996] leading-relaxed">
+            <div className="space-y-6 font-['Inter'] font-light text-[#b8a996] leading-relaxed">
               <div className="flex flex-col gap-2">
                 <h3 className="text-[#ede6d6] font-medium tracking-widest text-[11px] uppercase opacity-80">Cam kết cốt lõi</h3>
                 <p>Nhóm khẳng định AI chỉ đóng vai trò là trợ lý hỗ trợ xử lý dữ liệu thô. <strong className="text-[#c9922a] font-normal">Không để AI làm thay hoàn toàn.</strong> Sinh viên là người trực tiếp xây dựng logic, thiết kế kiến trúc và quyết định nội dung của sản phẩm cuối cùng.</p>
@@ -95,9 +95,9 @@ export const AIUsagePage = () => {
               <h2 className="font-['Playfair_Display'] text-2xl tracking-wider" style={{ fontVariantNumeric: "lining-nums" }}>2. Ứng Dụng Sáng Tạo</h2>
             </div>
             <div className="mb-8 pl-11">
-              <span className="text-[#a39481] text-xs font-['Outfit'] italic tracking-wide">(Đáp ứng mục 4.3)</span>
+              <span className="text-[#a39481] text-xs font-['Inter'] italic tracking-wide">(Đáp ứng mục 4.3)</span>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 font-['Outfit'] font-light text-[#b8a996] leading-relaxed">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 font-['Inter'] font-light text-[#b8a996] leading-relaxed">
               <div>
                 <h3 className="text-[#ede6d6] font-medium tracking-widest text-[11px] uppercase opacity-80 mb-3 border-b border-[rgba(255,255,255,0.1)] pb-2 block">Tóm tắt & Kịch bản</h3>
                 <p className="text-sm">Dùng AI rút gọn giáo trình đồ sộ thành key-points. Nhóm dựa vào dàn ý đó để <strong>tự viết kịch bản tương tác</strong> và biên soạn bộ câu hỏi trắc nghiệm (quiz).</p>
@@ -117,7 +117,7 @@ export const AIUsagePage = () => {
           <section className="pt-8">
             <div className="flex flex-col items-center gap-1 mb-10 text-center">
               <h2 className="font-['Playfair_Display'] text-3xl tracking-wider" style={{ fontVariantNumeric: "lining-nums" }}>3. Bảng Phân Định Công Cụ AI</h2>
-              <span className="text-[#a39481] text-xs font-['Outfit'] italic tracking-wide mt-2">(Đáp ứng mục 4.1)</span>
+              <span className="text-[#a39481] text-xs font-['Inter'] italic tracking-wide mt-2">(Đáp ứng mục 4.1)</span>
             </div>
 
             <div className="space-y-6">
@@ -132,7 +132,7 @@ export const AIUsagePage = () => {
                       <h3 className="font-['Playfair_Display'] text-xl text-[#ede6d6] tracking-wide">{tool.name}</h3>
                     </div>
                     {/* Details */}
-                    <div className="md:w-3/4 flex flex-col sm:flex-row gap-6 font-['Outfit'] font-light">
+                    <div className="md:w-3/4 flex flex-col sm:flex-row gap-6 font-['Inter'] font-light">
                       <div className="sm:w-1/2 bg-[rgba(0,0,0,0.2)] rounded-[12px] p-5 border border-[rgba(255,255,255,0.02)]">
                         <span className="text-[#7a6040] text-[10px] uppercase tracking-widest font-medium block mb-3">Vai trò của AI (Input thô)</span>
                         <p className="text-[#a39481] text-sm leading-relaxed">{tool.purpose}</p>

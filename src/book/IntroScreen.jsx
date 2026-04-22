@@ -23,7 +23,7 @@ export const IntroScreen = ({ onEnter }) => {
       <div className="relative z-10 flex flex-col items-center text-center max-w-2xl px-6">
         <p
           className="text-[#C5272D] font-semibold tracking-[0.2em] uppercase text-xs mb-6 opacity-0 animate-[fadeIn_1s_ease_0.5s_forwards]"
-          style={{ fontFamily: "'Outfit', sans-serif" }}
+          style={{ fontFamily: "'Inter', sans-serif" }}
         >
           Học phần: Triết học Mác – Lênin
         </p>
@@ -32,24 +32,24 @@ export const IntroScreen = ({ onEnter }) => {
           className="text-5xl md:text-7xl font-bold mb-4 text-[#1A1A1A] opacity-0 animate-[slideInFromTop_1s_ease_0.8s_forwards]"
           style={{ fontFamily: "'Playfair Display', serif", lineHeight: 1.2 }}
         >
-          Tồn tại Xã hội <br />
-          <span className="italic font-light opacity-80" style={{ fontFamily: "'EB Garamond', serif" }}>&</span>{" "}
-          Ý thức
+          Xã Hội Không <br />
+          <span className="italic font-light opacity-80" style={{ fontFamily: "'EB Garamond', serif" }}>Còn</span>{" "}
+          Nhà Nước?
         </h1>
 
         <div className="w-12 h-[1px] bg-[#C5272D]/40 my-8 mx-auto opacity-0 animate-[fadeIn_1s_ease_1.2s_forwards]" />
 
         <p
           className="text-[#8B8680] text-sm md:text-base max-w-md mx-auto leading-relaxed mb-12 opacity-0 animate-[fadeIn_1s_ease_1.5s_forwards]"
-          style={{ fontFamily: "'Outfit', sans-serif" }}
+          style={{ fontFamily: "'Inter', sans-serif" }}
         >
-          Khám phá mô hình 3D tương tác mô tả mối quan hệ biện chứng giữa điều kiện vật chất và đời sống tinh thần của con người.
+          Khám phá góc nhìn triết học về sự tiêu vong của Nhà nước: đây chỉ là ảo tưởng Utopia hay một khả năng hiện thực tất yếu của lịch sử?
         </p>
 
         <button
           onClick={handleEnter}
           className="group relative overflow-hidden rounded-full bg-[#1A1A1A] text-[#FAFAF8] px-10 py-4 font-medium text-sm tracking-[0.1em] uppercase transition-transform hover:scale-105 active:scale-95 opacity-0 animate-[fadeIn_1s_ease_1.8s_forwards]"
-          style={{ fontFamily: "'Outfit', sans-serif", boxShadow: '0 8px 32px rgba(0,0,0,0.15)' }}
+          style={{ fontFamily: "'Inter', sans-serif", boxShadow: '0 8px 32px rgba(0,0,0,0.15)' }}
         >
           <span className="relative z-10 flex items-center gap-3">
             Bắt đầu khám phá
@@ -63,7 +63,7 @@ export const IntroScreen = ({ onEnter }) => {
       </div>
 
       <div className="absolute bottom-10 text-center opacity-0 animate-[fadeIn_1s_ease_2.2s_forwards]">
-        <p className="text-[10px] uppercase tracking-widest text-[#8B8680]/60" style={{ fontFamily: "'Outfit', sans-serif" }}>
+        <p className="text-[10px] uppercase tracking-widest text-[#8B8680]/60" style={{ fontFamily: "'Inter', sans-serif" }}>
           Sử dụng tai nghe & chuột để có trải nghiệm tốt nhất
         </p>
       </div>

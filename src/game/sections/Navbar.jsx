@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 const NAV_LINKS = [
   { href: '#hero', label: 'Mở Đầu' },
   { href: '#ton-tai', label: 'Học Thuyết' },
-  { href: '#quiz', label: 'Khảo Nghiệm' },
+  { href: '#kahoot', label: 'Kahoot' },
   { href: '#book', label: 'Triển Lãm 3D' },
   { href: '#ai', label: 'AI Usage' },
 ];
@@ -30,7 +30,7 @@ export default function Navbar({ activeTab, onTabChange }) {
       });
     }, { root: null, rootMargin: '-20% 0px -60% 0px', threshold: 0 });
 
-    const sections = ['hero', 'ton-tai', 'quiz']
+    const sections = ['hero', 'ton-tai', 'kahoot']
       .map(id => document.getElementById(id))
       .filter(el => el !== null);
       

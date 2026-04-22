@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Outfit:wght@300;400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -86,7 +86,7 @@ h1, h2, h3 {
 }
 
 .book-nav-btn {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 11px;
   letter-spacing: 0.06em;
@@ -144,7 +144,7 @@ h1, h2, h3 {
   border-radius: 9999px;
   padding: 10px 20px;
   cursor: pointer;
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 11px;
   letter-spacing: 0.06em;
@@ -174,7 +174,7 @@ h1, h2, h3 {
 
 /* ── Page title eyebrow ── */
 .page-eyebrow {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 10px;
   letter-spacing: 0.15em;
@@ -262,7 +262,7 @@ h1, h2, h3 {
 .gold { color: var(--gold); }
 .section-label {
   display: inline-block;
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -283,7 +283,7 @@ h1, h2, h3 {
 }
 .navbar-theory {
   position: relative;
-  background: rgba(10, 5, 2, 0.4);
+  background: rgba(237, 232, 225, 0.7);
   backdrop-filter: blur(24px);
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 2rem;
@@ -291,13 +291,13 @@ h1, h2, h3 {
   max-width: 900px;
   width: 90%;
   border-radius: 9999px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  border: 1px solid rgba(61, 53, 41, 0.08);
+  box-shadow: 0 12px 32px rgba(61,53,41,0.08);
 }
 .navbar-brand {
   display: flex; align-items: center; gap: 0.8rem;
   font-family: 'Playfair Display', serif;
-  color: #fff;
+  color: #3D3529;
   font-size: 1.1rem;
   font-weight: 500;
   letter-spacing: 0.05em;
@@ -305,21 +305,22 @@ h1, h2, h3 {
 }
 .navbar-brand .brand-icon {
   width: 34px; height: 34px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(197, 160, 40, 0.1);
+  border: 1px solid rgba(197, 160, 40, 0.2);
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   font-size: 1rem;
+  color: #C5A028;
 }
 .navbar-nav {
   display: flex; align-items: center; gap: 1.5rem;
   list-style: none;
 }
 .navbar-nav a {
-  color: rgba(255,255,255,0.6);
+  color: rgba(61, 53, 41, 0.5);
   text-decoration: none;
   font-size: 0.75rem;
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   font-family: 'Outfit', sans-serif;
@@ -327,7 +328,7 @@ h1, h2, h3 {
   transition: color 0.4s cubic-bezier(0.32, 0.72, 0, 1);
 }
 .navbar-nav a:hover, .navbar-nav a.active {
-  color: #fff;
+  color: #C5A028;
 }
 .navbar-progress {
   display: none; /* Removed as it requires passive global scroll listeners */
@@ -419,7 +420,7 @@ h1, h2, h3 {
   color: rgba(255,255,255,0.6);
   padding: 0.4rem 1.2rem;
   border-radius: 9999px;
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 0.65rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -454,7 +455,7 @@ h1, h2, h3 {
 
 /* Subtitle */
 .hero-v2-subtitle {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 1.1rem;
   color: #C5272D;
   font-weight: 500;
@@ -465,7 +466,7 @@ h1, h2, h3 {
 
 /* Description */
 .hero-v2-desc {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 1rem;
   color: rgba(255,255,255,0.5);
   line-height: 1.9;
@@ -488,7 +489,7 @@ h1, h2, h3 {
   gap: 0.8rem;
   padding: 0.6rem 0.6rem 0.6rem 1.8rem;
   border-radius: 9999px;
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 0.85rem;
   font-weight: 500;
   text-decoration: none;
@@ -552,7 +553,7 @@ h1, h2, h3 {
   color: rgba(255,255,255,0.4);
   padding: 0.5rem 1.2rem;
   border-radius: 9999px;
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 0.75rem;
   letter-spacing: 0.05em;
   text-decoration: none;
@@ -2438,5 +2439,105 @@ h1, h2, h3 {
 }
 .ger-end-history-item.wrong {
   border-left: 3px solid rgba(248,113,113,0.3);
+}
+
+/* ══════════════════════════════════════════════
+   GSAP & MICRO-INTERACTIONS
+   ══════════════════════════════════════════════ */
+
+/* ── Card Tilt on Hover (Pure CSS) ── */
+.card-tilt {
+  perspective: 800px;
+  transform-style: preserve-3d;
+}
+
+.card-tilt > div {
+  transition: transform 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+  will-change: transform;
+}
+
+.card-tilt:hover > div {
+  transform: rotateX(2deg) rotateY(-2deg) translateY(-4px);
+}
+
+/* ── Magnetic Button Hover ── */
+.magnetic-btn {
+  position: relative;
+  overflow: visible;
+  transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1),
+              box-shadow 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.magnetic-btn::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: inherit;
+  opacity: 0;
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), 
+    rgba(197,160,40,0.08) 0%, transparent 70%);
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.magnetic-btn:hover::before {
+  opacity: 1;
+}
+
+.magnetic-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 32px -8px rgba(61,53,41,0.15);
+}
+
+.magnetic-btn:active {
+  transform: scale(0.98);
+}
+
+/* ── GSAP Element Defaults ── */
+/* Elements animated by GSAP start invisible to prevent flash */
+.gsap-reveal,
+.gsap-text-reveal,
+.gsap-stagger-child,
+.gsap-scale-in,
+.gsap-slide-left,
+.gsap-slide-right {
+  will-change: transform, opacity;
+}
+
+/* Fallback: if GSAP adds .visible class via IntersectionObserver fallback */
+.gsap-reveal.visible,
+.gsap-stagger-child.visible,
+.gsap-scale-in.visible,
+.gsap-slide-left.visible,
+.gsap-slide-right.visible {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* ── Line Draw Animation ── */
+.gsap-line-draw {
+  will-change: transform;
+  transform-origin: left center;
+}
+
+/* ── Quote Highlight Background Sweep ── */
+.gsap-quote-highlight {
+  background-size: 0% 100%;
+  transition: background-size 1.2s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.gsap-quote-highlight.visible {
+  background-size: 100% 100%;
+}
+
+/* ── Smooth counter text rendering ── */
+.gsap-counter {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
+/* ── Lenin Presenter Styles ── */
+@media (max-width: 1023px) {
+  .lenin-presenter { display: none !important; }
 }
 
