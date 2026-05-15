@@ -1,4 +1,3 @@
-import Navbar from './sections/Navbar';
 import Hero from './sections/Hero';
 import DatVanDe from './sections/DatVanDe';
 import CoSoLyThuyet from './sections/CoSoLyThuyet';
