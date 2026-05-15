@@ -19,7 +19,10 @@ export function MuseumPage() {
         background: "#090604",
       }}
     >
-      <MuseumScene selectedArtwork={selectedArtwork} onSelectArtwork={setSelectedArtwork} />
+      <MuseumScene
+        selectedArtwork={selectedArtwork}
+        onSelectArtwork={setSelectedArtwork}
+      />
 
       <div
         style={{
@@ -43,14 +46,35 @@ export function MuseumPage() {
           pointerEvents: "none",
         }}
       >
-        <div style={{ color: "#c5a028", fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase" }}>
+        <div
+          style={{
+            color: "#c5a028",
+            fontSize: 11,
+            letterSpacing: "0.22em",
+            textTransform: "uppercase",
+          }}
+        >
           Bảo tàng thử nghiệm
         </div>
-        <h1 style={{ margin: "10px 0 14px", fontFamily: "'Playfair Display', serif", fontSize: "clamp(42px, 7vw, 78px)", lineHeight: 0.95 }}>
+        <h1
+          style={{
+            margin: "10px 0 14px",
+            fontFamily: "'Playfair Display', serif",
+            fontSize: "clamp(42px, 7vw, 78px)",
+            lineHeight: 0.95,
+          }}
+        >
           Gallery Marxist
         </h1>
-        <p style={{ margin: 0, color: "rgba(255,248,237,0.68)", lineHeight: 1.8 }}>
-          Khung 3D placeholder cho tab Bảo Tàng. Tranh thật và visual polish sẽ được Antigravity nâng cấp tiếp.
+        <p
+          style={{
+            margin: 0,
+            color: "rgba(255,248,237,0.68)",
+            lineHeight: 1.8,
+          }}
+        >
+          Khung 3D placeholder cho tab Bảo Tàng. Tranh thật và visual polish sẽ
+          được các bạn gửi cho anh nhé.
         </p>
       </section>
 
@@ -70,18 +94,42 @@ export function MuseumPage() {
           pointerEvents: "none",
         }}
       >
-        <span style={{ border: "1px solid rgba(255,255,255,0.12)", borderRadius: 999, padding: "8px 12px", background: "rgba(0,0,0,0.28)" }}>
+        <span
+          style={{
+            border: "1px solid rgba(255,255,255,0.12)",
+            borderRadius: 999,
+            padding: "8px 12px",
+            background: "rgba(0,0,0,0.28)",
+          }}
+        >
           W/A/S/D di chuyển
         </span>
-        <span style={{ border: "1px solid rgba(255,255,255,0.12)", borderRadius: 999, padding: "8px 12px", background: "rgba(0,0,0,0.28)" }}>
+        <span
+          style={{
+            border: "1px solid rgba(255,255,255,0.12)",
+            borderRadius: 999,
+            padding: "8px 12px",
+            background: "rgba(0,0,0,0.28)",
+          }}
+        >
           Mũi tên xoay
         </span>
-        <span style={{ border: "1px solid rgba(255,255,255,0.12)", borderRadius: 999, padding: "8px 12px", background: "rgba(0,0,0,0.28)" }}>
+        <span
+          style={{
+            border: "1px solid rgba(255,255,255,0.12)",
+            borderRadius: 999,
+            padding: "8px 12px",
+            background: "rgba(0,0,0,0.28)",
+          }}
+        >
           Click tranh
         </span>
       </div>
 
-      <MuseumGuide selectedArtwork={selectedArtwork} onSelectArtwork={setSelectedArtwork} />
+      <MuseumGuide
+        selectedArtwork={selectedArtwork}
+        onSelectArtwork={setSelectedArtwork}
+      />
     </main>
   );
 }
