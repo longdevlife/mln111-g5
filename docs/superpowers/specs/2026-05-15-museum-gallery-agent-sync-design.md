@@ -4,6 +4,8 @@ Date: 2026-05-15
 Status: Approved for planning
 Audience: Codex, Antigravity, and any agent continuing this project
 
+Implementation status: no museum R3F code has been applied yet.
+
 ## Context
 
 The project is a Vite + React 18 + React Three Fiber website for an MLN111 Marxist Philosophy presentation. Existing main tabs are `book`, `theory`, and `ai`. `AGENTS.md` already lists a planned `museum` tab, but no implementation exists yet.
@@ -30,6 +32,12 @@ Adapt it to this project:
 - Add lightweight R3F components such as `MuseumScene`, `MuseumRoom`, and `MuseumArtwork`
 - Store artwork metadata in a local data file, likely `src/museum/museumData.js`
 - Use a 2D guide/presenter overlay for narration instead of a fully 3D guide character
+
+## Ownership
+
+Antigravity should own the UI and visual implementation of the museum tab. This includes the gallery layout, styling, guide/presenter visuals, responsive behavior, and interaction polish.
+
+Codex should treat this document as a handoff and should not implement museum UI unless the user explicitly redirects ownership. Codex may still support architecture, R3F integration, data design, and review.
 
 ## Recommended UX
 

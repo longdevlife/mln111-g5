@@ -18,6 +18,8 @@ The user approved adding a new `Bảo Tàng` / `museum` tab.
 
 Chosen direction: **hybrid 3D gallery** inspired by `homemadegarbage/r3f-gallery-template`.
 
+Implementation status: **not started**. No R3F museum code has been added yet.
+
 Why this direction:
 
 - Faster than a full 3D walking museum
@@ -54,6 +56,18 @@ Target first version:
 - Let the user select an artwork.
 - Display a guide/presenter overlay explaining the selected artwork.
 - Keep artwork metadata in a small local data file.
+
+## Ownership / Collaboration
+
+Antigravity owns the museum UI and visual execution:
+
+- Layout composition
+- Visual styling
+- Presenter/guide look and feel
+- Interaction polish
+- Responsive behavior
+
+Codex should avoid implementing museum UI unless the user explicitly asks. Codex may help with architecture, R3F integration notes, data shape, or code review.
 
 Likely files to create:
 
