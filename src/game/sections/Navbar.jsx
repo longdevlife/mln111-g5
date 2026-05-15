@@ -6,6 +6,7 @@ const NAV_LINKS = [
   { href: '#co-so-ly-thuyet', label: 'Cơ Sở Lý Thuyết' },
   { href: '#giai-phap', label: 'Giải Pháp' },
   { href: '#book', label: 'Triển Lãm 3D' },
+  { href: '#museum', label: 'Bảo Tàng' },
   { href: '#ai', label: 'AI Usage' },
 ];
 
@@ -16,6 +17,10 @@ export default function Navbar({ activeTab, onTabChange }) {
     // Only observe scroll if we are on the game tab
     if (activeTab === 'book') {
       setActive('#book');
+      return;
+    }
+    if (activeTab === 'museum') {
+      setActive('#museum');
       return;
     }
     if (activeTab === 'ai') {
@@ -51,6 +56,14 @@ export default function Navbar({ activeTab, onTabChange }) {
       return;
     }
 
+    // Switch to Museum Tab
+    if (id === 'museum') {
+      if (activeTab !== 'museum' && onTabChange) {
+        onTabChange('museum');
+      }
+      return;
+    }
+
     // Switch to AI Usage Tab
     if (id === 'ai') {
       if (activeTab !== 'ai' && onTabChange) {
@@ -60,7 +73,7 @@ export default function Navbar({ activeTab, onTabChange }) {
     }
 
     // Handing clicks to Theory Tab sections while currently on another Tab
-    if (activeTab !== 'theory' && id !== 'book' && id !== 'ai') {
+    if (activeTab !== 'theory' && id !== 'book' && id !== 'museum' && id !== 'ai') {
       if (onTabChange) {
         onTabChange('theory');
       }

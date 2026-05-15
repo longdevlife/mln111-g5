@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 import { BookPage } from "./book/BookPage";
 import { TheoryPage } from "./game/TheoryPage";
 import { AIUsagePage } from "./ai-usage/AIUsagePage";
+import { MuseumPage } from "./museum/MuseumPage";
 import Navbar from "./game/sections/Navbar";
 
 const TABS = [
   { id: "book", label: "Sách 3D" },
   { id: "theory", label: "Lý Thuyết" },
+  { id: "museum", label: "Bảo Tàng" },
   { id: "ai", label: "AI Usage" },
 ];
 
@@ -45,6 +47,7 @@ function App() {
       <div style={{ width: "100%", minHeight: "100vh" }}>
         {activeTab === "book" && <BookPage skipIntro={hasVisitedBook} />}
         {activeTab === "theory" && <TheoryPage />}
+        {activeTab === "museum" && <MuseumPage />}
         {activeTab === "ai" && <AIUsagePage />}
       </div>
     </div>

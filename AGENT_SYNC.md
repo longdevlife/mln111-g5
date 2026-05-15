@@ -18,7 +18,7 @@ The user approved adding a new `Bảo Tàng` / `museum` tab.
 
 Chosen direction: **hybrid 3D gallery** inspired by `homemadegarbage/r3f-gallery-template`.
 
-Implementation status: **not started**. No R3F museum code has been added yet.
+Implementation status: **R3F scaffold implemented**. The museum tab now has placeholder frames, a walkable room, and a guide panel. No real artwork images have been added yet.
 
 Why this direction:
 
@@ -67,35 +67,50 @@ Antigravity owns the museum UI and visual execution:
 - Interaction polish
 - Responsive behavior
 
-Codex should avoid implementing museum UI unless the user explicitly asks. Codex may help with architecture, R3F integration notes, data shape, or code review.
+Codex has implemented the technical R3F scaffold at the user's request. Antigravity should still own visual polish, final artwork choices, responsive refinement, and guide/presenter styling.
 
-Likely files to create:
+Created files:
 
 - `src/museum/MuseumPage.jsx`
 - `src/museum/MuseumScene.jsx`
 - `src/museum/MuseumRoom.jsx`
 - `src/museum/MuseumArtwork.jsx`
 - `src/museum/MuseumGuide.jsx`
+- `src/museum/MuseumPlayer.jsx`
 - `src/museum/museumData.js`
+- `src/museum/museumScaffold.test.mjs`
 
-Likely files to edit:
+Edited files:
 
 - `src/App.jsx`
 - `src/game/sections/Navbar.jsx`
-- `src/index.css`
 
 ## Current Repo Warning
 
-At the time this sync file was written, `src/index.css` already had an uncommitted modification. Do not overwrite or revert it without checking the diff first.
+`src/index.css` already had an uncommitted modification before the museum scaffold work. Codex did not add museum CSS there; do not overwrite or revert it without checking the diff first.
 
 ## Verification So Far
 
-No museum implementation has been written yet.
+- `node --test src/museum/museumScaffold.test.mjs` passed.
+- `npm run build` passed after the museum scaffold was added.
+- Dev server started at `http://127.0.0.1:5173/`.
+- HTTP checks returned 200 for `/`, `/src/App.jsx`, and `/src/museum/MuseumPage.jsx`.
 
-Latest verified build before this planning step:
-
-- `npm run build` passed after earlier cleanup work.
+### Antigravity's UI Polish Updates:
+- Appended museum CSS classes (`.museum-entrance`, `.museum-presenter`, animations, custom scrollbar) to `src/index.css`.
+- Upgraded `MuseumScene.jsx` with `<Sparkles>` for atmospheric dust particles.
+- Added glowing floor markers (using `ringGeometry` and `circleGeometry`) underneath the paintings in `MuseumArtwork.jsx` that react to distance hover and selection.
+- Refactored `MuseumGuide.jsx` into a premium `MuseumPresenter` component featuring:
+  - Slide-in animation from the right (`transform: translateX(120%)`).
+  - Dark backdrop blur with gold accents.
+  - A responsive Typewriter effect with blinking cursor for the narration text.
+  - "Vladimir Lenin" Avatar UI.
+  - Interactive pill buttons to quickly skip between artworks without walking.
+- Added entrance fade animation to `MuseumPage.jsx`.
 
 ## Next Step
 
-Create the implementation plan for the hybrid 3D museum tab, then implement in small scoped edits.
+Codex: The 3D UI polish is complete. You can now step in to:
+1. Replace the placeholder materials in `MuseumArtwork.jsx` with real `useTexture` images (or procedurally generated art).
+2. Extend `museumData.js` to point to actual image paths in `public/museum/`.
+3. Perform any final logic cleanup or scaling adjustments needed for the new textures.
