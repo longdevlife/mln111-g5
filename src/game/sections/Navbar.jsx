@@ -1,12 +1,9 @@
 import { useState, useEffect } from 'react';
 
 const NAV_LINKS = [
-  { href: '#hero', label: 'Mở Đầu' },
-  { href: '#dat-van-de', label: 'Đặt Vấn Đề' },
-  { href: '#co-so-ly-thuyet', label: 'Cơ Sở Lý Thuyết' },
-  { href: '#giai-phap', label: 'Giải Pháp' },
-  { href: '#book', label: 'Triển Lãm 3D' },
-  { href: '#museum', label: 'Bảo Tàng' },
+  { href: '#hero', label: 'Tổng Quan' },
+  { href: '#book', label: 'Sách 3D' },
+  { href: '#exhibition', label: 'Triển Lãm 3D' },
   { href: '#ai', label: 'AI Usage' },
 ];
 
@@ -14,34 +11,20 @@ export default function Navbar({ activeTab, onTabChange }) {
   const [active, setActive] = useState('#hero');
 
   useEffect(() => {
-    // Only observe scroll if we are on the game tab
     if (activeTab === 'book') {
       setActive('#book');
       return;
     }
-    if (activeTab === 'museum') {
-      setActive('#museum');
+    if (activeTab === 'exhibition') {
+      setActive('#exhibition');
       return;
     }
     if (activeTab === 'ai') {
       setActive('#ai');
       return;
     }
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setActive('#' + entry.target.id);
-        }
-      });
-    }, { root: null, rootMargin: '-20% 0px -60% 0px', threshold: 0 });
-
-    const sections = ['hero', 'dat-van-de', 'co-so-ly-thuyet', 'giai-phap']
-      .map(id => document.getElementById(id))
-      .filter(el => el !== null);
-      
-    sections.forEach(sec => observer.observe(sec));
-    return () => sections.forEach(sec => observer.unobserve(sec));
+    
+    setActive('#hero');
   }, [activeTab]);
 
   const handleNavClick = (e, href) => {
@@ -56,10 +39,10 @@ export default function Navbar({ activeTab, onTabChange }) {
       return;
     }
 
-    // Switch to Museum Tab
-    if (id === 'museum') {
-      if (activeTab !== 'museum' && onTabChange) {
-        onTabChange('museum');
+    // Switch to Exhibition Tab
+    if (id === 'exhibition') {
+      if (activeTab !== 'exhibition' && onTabChange) {
+        onTabChange('exhibition');
       }
       return;
     }
@@ -72,12 +55,12 @@ export default function Navbar({ activeTab, onTabChange }) {
       return;
     }
 
-    // Handing clicks to Theory Tab sections while currently on another Tab
-    if (activeTab !== 'theory' && id !== 'book' && id !== 'museum' && id !== 'ai') {
+    // Handing clicks to Intro Tab sections while currently on another Tab
+    if (activeTab !== 'intro' && id !== 'book' && id !== 'exhibition' && id !== 'ai') {
       if (onTabChange) {
-        onTabChange('theory');
+        onTabChange('intro');
       }
-      // Give DOM time to render GamePage then scroll
+      // Give DOM time to render IntroPage then scroll
       setTimeout(() => {
         const target = document.getElementById(id);
         if (target) {
@@ -87,7 +70,7 @@ export default function Navbar({ activeTab, onTabChange }) {
       return;
     }
 
-    // Normal internal scroll within Theory Tab
+    // Normal internal scroll within Intro Tab
     const target = document.getElementById(id);
     if (target) {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -104,7 +87,7 @@ export default function Navbar({ activeTab, onTabChange }) {
           <span className="brand-icon">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
           </span>
-          <span>Triết Mác – Lê-nin</span>
+          <span>Tư Tưởng Hồ Chí Minh</span>
         </a>
 
         <ul className="navbar-nav">

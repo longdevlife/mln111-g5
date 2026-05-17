@@ -12,9 +12,9 @@ export default function LeninPresenter() {
   const [displayedText, setDisplayedText] = useState('');
 
   const speeches = {
-    'dat-van-de': 'Nhà nước không vĩnh cửu. Nó sinh ra từ mâu thuẫn giai cấp!',
-    'co-so-ly-thuyet': 'Khi không còn giai cấp, nhà nước sẽ tự tiêu vong...',
-    'giai-phap': 'Một xã hội tự quản không cần bộ máy áp bức bạo lực!',
+    'dat-van-de': 'Hiến pháp và luật pháp là công cụ cốt lõi để bảo vệ nhân dân!',
+    'co-so-ly-thuyet': 'Pháp luật phải nghiêm minh, tuyệt đối không có vùng cấm...',
+    'giai-phap': 'Một nhà nước thực sự của dân, do dân, vì dân!',
   };
 
   // Typewriter effect

@@ -25,7 +25,7 @@ export const IntroScreen = ({ onEnter }) => {
           className="text-[#C5272D] font-semibold tracking-[0.2em] uppercase text-xs mb-6 opacity-0 animate-[fadeIn_1s_ease_0.5s_forwards]"
           style={{ fontFamily: "'Inter', sans-serif" }}
         >
-          Học phần: Triết học Mác – Lênin
+          Học phần: Triết Học Mác - Lênin
         </p>
 
         <h1

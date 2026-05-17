@@ -2,7 +2,6 @@ import Hero from './sections/Hero';
 import DatVanDe from './sections/DatVanDe';
 import CoSoLyThuyet from './sections/CoSoLyThuyet';
 import GiaiPhap from './sections/GiaiPhap';
-import LeninPresenter from './sections/LeninPresenter';
 import useGsapAnimations from '../hooks/useGsapAnimations';
 import useScrollReveal from '../hooks/useScrollReveal';
 
@@ -15,8 +14,7 @@ export const TheoryPage = () => {
     <div className="theory-page-container" style={{ width: '100%', minHeight: '100vh', scrollBehavior: 'smooth', scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
       <style>{`.theory-page-container::-webkit-scrollbar { display: none; }`}</style>
       
-      {/* Lenin Presenter — sticky guide through theory sections */}
-      <LeninPresenter />
+      {/* Sticky guide removed for HCM theme */}
       
       <Hero />
       <DatVanDe />

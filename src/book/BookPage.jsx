@@ -5,14 +5,19 @@ import { Experience } from "./Experience";
 import { UI } from "./UI";
 import { IntroScreen } from "./IntroScreen";
 
-export const BookPage = ({ skipIntro = false }) => {
+export const BookPage = ({ skipIntro = false, onIntroFinish }) => {
   const [isStarted, setIsStarted] = useState(skipIntro);
+
+  const handleEnter = () => {
+    setIsStarted(true);
+    if (onIntroFinish) onIntroFinish();
+  };
 
   return (
     <>
-      {!isStarted && <IntroScreen onEnter={() => setIsStarted(true)} />}
+      {!isStarted && <IntroScreen onEnter={handleEnter} />}
 
-      <div style={{ opacity: isStarted ? 1 : 0, transition: 'opacity 1s ease', width: '100%', height: '100vh', overflow: 'hidden', pointerEvents: isStarted ? 'auto' : 'none' }}>
+      <div style={{ opacity: isStarted ? 1 : 0, transition: 'opacity 1s ease', width: '100%', height: '100vh', overflow: 'hidden', pointerEvents: isStarted ? 'auto' : 'none', backgroundColor: '#090604', backgroundImage: 'radial-gradient(circle at 50% 45%, #5c3a21 0%, #352214 35%, #150d08 80%, #090604 100%)' }}>
         <UI />
         <Loader />
         <Canvas

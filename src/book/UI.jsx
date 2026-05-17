@@ -89,10 +89,6 @@ export const UI = () => {
 
   return (
     <>
-      {/* ── Animated Mesh Gradient Background ── */}
-
-      <div className="center-spotlight" />
-
       {/* Noise + Vignette overlays */}
       <div className="noise-overlay" />
       <div className="vignette-overlay" />
@@ -110,7 +106,7 @@ export const UI = () => {
             <div>
               <h1
                 className="text-sm font-semibold tracking-wider uppercase"
-                style={{ fontFamily: 'Playfair Display, serif', color: '#1A1A1A' }}
+                style={{ fontFamily: 'Playfair Display, serif', color: '#FAFAF8' }}
               >
                 Karl Marx
               </h1>

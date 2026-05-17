@@ -61,7 +61,7 @@ export const UI = () => {
           </div>
           <div className="text-right hidden sm:block">
             <p className="tracking-widest uppercase" style={{ color: '#8B8680', fontSize: '10px' }}>
-              Chương III • Triết học Mác-Lênin
+              Chương III • Tư Tưởng Hồ Chí Minh
             </p>
           </div>
         </div>

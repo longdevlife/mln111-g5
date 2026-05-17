@@ -46,7 +46,7 @@ export default function useGsapAnimations() {
               if (!text) return;
               const words = text.split(/\s+/);
               el.innerHTML = words
-                .map((w) => `<span class="gsap-word" style="display:inline-block;overflow:hidden;vertical-align:top"><span style="display:inline-block">${w}</span></span>`)
+                .map((w) => `<span class="gsap-word" style="display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:0.4em;margin-bottom:-0.4em;padding-top:0.2em;margin-top:-0.2em;padding-right:0.05em;margin-right:-0.05em;"><span style="display:inline-block">${w}</span></span>`)
                 .join(' ');
 
               const innerSpans = el.querySelectorAll('.gsap-word > span');
@@ -144,9 +144,14 @@ export default function useGsapAnimations() {
 
             // ── 7. Counter animation ──
             gsap.utils.toArray('.gsap-counter').forEach((el) => {
-              const target = parseInt(el.dataset.target || el.textContent, 10);
+              const originalText = el.textContent;
+              const target = parseInt(el.dataset.target || originalText, 10);
               if (isNaN(target)) return;
-              const suffix = el.textContent.includes('.') ? '.' : '';
+              const suffix = originalText.includes('.') ? '.' : '';
+              
+              // Only pad if the original text had a leading zero
+              const padLength = originalText.startsWith('0') ? 2 : 0;
+
               const obj = { val: 0 };
               gsap.to(obj, {
                 val: target,
@@ -158,7 +163,11 @@ export default function useGsapAnimations() {
                   once: true,
                 },
                 onUpdate: () => {
-                  el.textContent = Math.round(obj.val).toString().padStart(2, '0') + suffix;
+                  let strVal = Math.round(obj.val).toString();
+                  if (padLength > 0) {
+                    strVal = strVal.padStart(padLength, '0');
+                  }
+                  el.textContent = strVal + suffix;
                 },
               });
             });

@@ -108,9 +108,25 @@ Edited files:
   - Interactive pill buttons to quickly skip between artworks without walking.
 - Added entrance fade animation to `MuseumPage.jsx`.
 
+### Antigravity's Global UI/UX Fixes (Latest):
+- Upgraded the `Navbar` to a premium, centralized "island" style.
+- Consolidated the `Navbar` tabs to simplify the view (merged Theory tabs into a single `Tổng Quan`).
+- Restored original fonts (`Playfair Display` for serif, `Outfit` for sans-serif) to fix font rendering issues and maintain the original aesthetic.
+- Fixed `BookPage.jsx` background to mimic the warm museum environment: replaced the harsh pitch-black void and stark white `center-spotlight` with a rich, warm dark-academia radial gradient (`#5c3a21` to `#090604`).
+- Corrected the `UI.jsx` and `IntroScreen.jsx` text logic: Ensured the 3D Book module explicitly retains the "Karl Marx - Tồn tại xã hội & Ý thức" branding to match its internal 3D assets, distinguishing it from the main "Tư Tưởng Hồ Chí Minh" site scope.
+
+### Codex Review - 2026-05-17
+
+- `npm run build` passes after Antigravity's UI updates.
+- Dev server verified at `http://127.0.0.1:5173/`.
+- Headless browser smoke checks rendered `#intro`, `#exhibition`, and `#ai` with Vietnamese text and expected UI content.
+- Restored the missing `AI Usage` navbar item in `src/game/sections/Navbar.jsx`; `App.jsx` already had the `ai` tab and navbar active-state logic already handled it.
+- Note: `src/museum/MuseumCarousel.jsx` exists as an untracked experimental file, is not imported by the app, and currently imports `museumFrames` which is not exported from `museumData.js`. Do not wire it into `MuseumPage` until its data shape is reconciled.
+- Note: `AGENT_SYNC.md` previously mentioned `src/museum/museumScaffold.test.mjs`, but that file is not present in the current working tree.
+
 ## Next Step
 
-Codex: The 3D UI polish is complete. You can now step in to:
+Codex: Antigravity has completed the UI/UX polish and fixed the layout/font inconsistencies across the Book and Museum modules. You can now step in to:
 1. Replace the placeholder materials in `MuseumArtwork.jsx` with real `useTexture` images (or procedurally generated art).
 2. Extend `museumData.js` to point to actual image paths in `public/museum/`.
 3. Perform any final logic cleanup or scaling adjustments needed for the new textures.

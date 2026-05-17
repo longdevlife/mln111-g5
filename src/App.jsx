@@ -6,9 +6,9 @@ import { MuseumPage } from "./museum/MuseumPage";
 import Navbar from "./game/sections/Navbar";
 
 const TABS = [
+  { id: "intro", label: "Mở Đầu" },
   { id: "book", label: "Sách 3D" },
-  { id: "theory", label: "Lý Thuyết" },
-  { id: "museum", label: "Bảo Tàng" },
+  { id: "exhibition", label: "Triển Lãm 3D" },
   { id: "ai", label: "AI Usage" },
 ];
 
@@ -16,7 +16,7 @@ function getActiveTab() {
   const hash = window.location.hash.replace("#", "");
   const path = window.location.pathname.replace("/", "");
   const from = TABS.find(t => t.id === hash || t.id === path);
-  return from ? from.id : "theory";
+  return from ? from.id : "intro";
 }
 
 function App() {
@@ -35,7 +35,6 @@ function App() {
   }, []);
 
   const handleTabChange = (id) => {
-    if (id === "book") setHasVisitedBook(true);
     setActiveTab(id);
     window.location.hash = id;
   };
@@ -45,14 +44,13 @@ function App() {
       <Navbar activeTab={activeTab} onTabChange={handleTabChange} />
       {/* Tab Content */}
       <div style={{ width: "100%", minHeight: "100vh" }}>
-        {activeTab === "book" && <BookPage skipIntro={hasVisitedBook} />}
-        {activeTab === "theory" && <TheoryPage />}
-        {activeTab === "museum" && <MuseumPage />}
+        {activeTab === "intro" && <TheoryPage />}
+        {activeTab === "book" && <BookPage skipIntro={hasVisitedBook} onIntroFinish={() => setHasVisitedBook(true)} />}
+        {activeTab === "exhibition" && <MuseumPage />}
         {activeTab === "ai" && <AIUsagePage />}
       </div>
     </div>
   );
 }
-
 
 export default App;

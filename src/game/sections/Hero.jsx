@@ -41,8 +41,8 @@ export default function Hero() {
         />
 
         <img
-          src="/textures/lenin_portrait.png"
-          alt="Vladimir Lenin"
+          src="/revolution-bg.png"
+          alt="Revolution Background"
           className="gsap-parallax h-[100dvh] md:h-[110dvh] w-auto max-w-none object-cover object-right-top z-0 transform translate-x-[10%] md:translate-x-0 opacity-80 md:opacity-100"
           data-speed="0.15"
           style={{
@@ -70,26 +70,25 @@ export default function Hero() {
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
             <span className="gsap-text-reveal block font-light italic text-[#7A6040] text-3xl md:text-4xl lg:text-5xl mb-3">
-              Triết học
+              Tư Tưởng
             </span>
-            <span className="gsap-text-reveal block">Mác–Lênin</span>
+            <span className="gsap-text-reveal block">Hồ Chí Minh</span>
           </h1>
 
           <p
             className="gsap-reveal text-sm md:text-base text-[#C5A028] font-semibold tracking-[0.15em] uppercase mb-8"
             style={{ fontFamily: "'Outfit', sans-serif" }}
           >
-            Tư tưởng V.I. Lênin & Sự Tiêu Vong Của Nhà Nước
+            Về Nhà Nước Pháp Quyền
           </p>
 
           <p
             className="gsap-reveal text-base md:text-lg text-[#7A6040] max-w-xl leading-relaxed font-light mb-12 drop-shadow-sm"
             style={{ fontFamily: "'Outfit', sans-serif" }}
           >
-            Nhà nước là một thiết chế vĩnh cửu hay chỉ là sản phẩm của lịch sử?
-            Khám phá góc nhìn của V.I Lênin về một xã hội nơi bộ máy trấn áp đặc
-            biệt sẽ tự đi vào giấc ngủ, khi ý thức tự giác của con người đạt đến
-            sự tự do đích thực.
+            Một nhà nước thực sự "của nhân dân, do nhân dân và vì nhân dân".
+            Sự kết hợp hài hoà giữa tính hợp pháp, tính thượng tôn pháp luật và
+            pháp quyền nhân nghĩa trong hệ thống chính trị Việt Nam.
           </p>
 
           <div className="gsap-reveal flex flex-col sm:flex-row gap-4 items-start sm:items-center">
@@ -134,9 +133,9 @@ export default function Hero() {
 
           <div className="mt-14 flex flex-wrap gap-3">
             {[
-              "Nguồn Gốc Nhà Nước",
-              "Bản Chất Giai Cấp",
-              "Sự Tiêu Vong Tất Yếu",
+              "Hợp Hiến Hợp Pháp",
+              "Thượng Tôn Pháp Luật",
+              "Pháp Quyền Nhân Nghĩa",
             ].map((tag) => (
               <span
                 key={tag}

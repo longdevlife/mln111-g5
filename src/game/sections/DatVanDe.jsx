@@ -1,19 +1,19 @@
 export default function DatVanDe() {
   const elements = [
-    { n: '01', t: 'Tiền đề kinh tế', s: 'Sự phân công lao động và chế độ tư hữu về tư liệu sản xuất làm xã hội phân hóa thành kẻ bóc lột và người bị bóc lột.' },
-    { n: '02', t: 'Tiền đề xã hội', s: 'Mâu thuẫn giai cấp đối kháng gay gắt đến mức không thể điều hòa được. Nhà nước ra đời để các giai cấp không tiêu diệt lẫn nhau.' },
-    { n: '03', t: 'Sản phẩm lịch sử', s: 'Nhà nước không phải từ bên ngoài áp đặt hay do "hợp đồng xã hội", mà nảy sinh từ chính mâu thuẫn nội tại.' },
+    { n: '01', t: 'Hợp hiến, Hợp pháp', s: 'Tổ chức tổng tuyển cử phổ thông đầu phiếu (1946) để lập Quốc hội, tạo cơ sở pháp lý vững chắc trong quan hệ quốc tế.' },
+    { n: '02', t: 'Thượng tôn pháp luật', s: 'Quản lý bằng pháp luật là ưu tiên hàng đầu, bảo đảm thi hành nghiêm túc và khuyến khích nhân dân giám sát.' },
+    { n: '03', t: 'Pháp quyền nhân nghĩa', s: 'Pháp luật không chỉ để cai trị mà phải vì con người, lấy giáo dục và cảm hóa làm căn bản.' },
   ];
   const practices = [
-    { n: '01', t: 'Công cụ thống trị', s: 'Thực chất là bộ máy bạo lực để duy trì trật tự, bảo vệ quyền sở hữu và áp đặt ý chí giai cấp lên toàn xã hội.' },
-    { n: '02', t: 'Chức năng xã hội', s: 'Quản lý việc chung và duy trì an ninh, nhưng suy cho cùng các chức năng này vẫn phục vụ lợi ích của giai cấp cầm quyền.' },
-    { n: '03', t: 'Sự tha hóa quyền lực', s: 'Từ chỗ là "tôi tớ của xã hội", Nhà nước dần biến thành "chủ nhân của xã hội", tách rời và đứng trên cộng đồng.' }
+    { n: '01', t: 'Yêu sách An Nam', s: 'Đòi hỏi cốt lõi: bình đẳng pháp lý, xóa bỏ tòa án áp bức và thay sắc lệnh bằng đạo luật.' },
+    { n: '02', t: 'Hoạt động lập pháp', s: 'Trực tiếp lãnh đạo soạn thảo 2 bản Hiến pháp (1946, 1959), ký ban hành 16 đạo luật và 613 sắc lệnh.' },
+    { n: '03', t: 'Quyền con người', s: 'Tiếp cận toàn diện: quyền tự nhiên, chính trị - dân sự đến kinh tế, văn hóa, chú trọng nhóm dễ bị tổn thương.' }
   ];
   const solutions = [
-    { n: 'I', t: 'Kinh tế', s: 'Lực lượng sản xuất phát triển cực cao, của cải vật chất dồi dào ("làm theo năng lực, hưởng theo nhu cầu").' },
-    { n: 'II', t: 'Xã hội', s: 'Chế độ tư hữu bị xóa bỏ hoàn toàn, không còn phân chia giai cấp và đối kháng giai cấp cần phải trấn áp.' },
-    { n: 'III', t: 'Con người', s: 'Phát triển toàn diện, tự giác tuân thủ các quy tắc cộng đồng mà không cần cưỡng chế.' },
-    { n: 'IV', t: 'Quá trình', s: 'Nhà nước không bị "xóa bỏ" chủ quan mà tự "tiêu vong", dần đi vào giấc ngủ.' },
+    { n: 'I', t: 'Bình đẳng', s: 'Xóa bỏ tòa án áp bức, thay sắc lệnh bằng đạo luật.' },
+    { n: 'II', t: 'Dân chủ', s: 'Thể hiện quyền lực tối cao của nhân dân qua bầu cử.' },
+    { n: 'III', t: 'Nghiêm minh', s: 'Phê phán tình trạng "thưởng quá rộng, phạt không nghiêm".' },
+    { n: 'IV', t: 'Nhân văn', s: 'Không đối xử dã man với con người, lấy giáo dục làm trọng.' },
   ];
 
   const f1 = "'Playfair Display', serif";
@@ -25,14 +25,14 @@ export default function DatVanDe() {
       <div className="w-full max-w-7xl mx-auto mb-24 md:mb-32">
         <div className="gsap-reveal flex items-center gap-3 mb-6">
           <div className="h-[1px] w-12 bg-[#3D3529]/15 gsap-line-draw" />
-          <span className="text-[10px] uppercase tracking-[0.25em] font-semibold text-[#7A6040]" style={{ fontFamily: f2 }}>Phần 1 & 2.1</span>
+          <span className="text-[10px] uppercase tracking-[0.25em] font-semibold text-[#7A6040]" style={{ fontFamily: f2 }}>Phần 1</span>
         </div>
-        <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-[#3D3529] mb-8" style={{ fontFamily: f1 }}>
-          <span className="gsap-text-reveal block">Đặt Vấn Đề &</span>
-          <span className="gsap-text-reveal block italic font-light text-[#7A6040]">Nguồn Gốc Nhà Nước</span>
+        <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-[#3D3529] mb-8 leading-snug" style={{ fontFamily: f1 }}>
+          <span className="gsap-text-reveal block pb-2 md:pb-3">Cơ Sở Lý Thuyết &</span>
+          <span className="gsap-text-reveal block italic font-light text-[#7A6040] pt-1">Nền Tảng Pháp Lý</span>
         </h2>
         <p className="gsap-reveal text-lg text-[#7A6040] max-w-2xl leading-relaxed font-light" style={{ fontFamily: f2 }}>
-          Một xã hội không còn Nhà nước — Utopia hay Khả năng hiện thực? Để trả lời, chúng ta cần thấu hiểu nguồn gốc ra đời tất yếu của Nhà nước.
+          Hồ Chí Minh sớm nhận thức tầm quan trọng của Hiến pháp. Khi trở thành người đứng đầu Nhà nước, Người chủ trương nhà nước phải được tổ chức và vận hành theo pháp luật.
         </p>
       </div>
 
@@ -53,7 +53,7 @@ export default function DatVanDe() {
       <div className="w-full max-w-7xl mx-auto mb-32">
         <div className="gsap-reveal flex items-center justify-center gap-4 mb-16">
           <div className="h-[1px] w-12 bg-[#3D3529]/15 gsap-line-draw" />
-          <span className="text-sm tracking-[0.25em] text-[#7A6040]/60 uppercase font-semibold" style={{ fontFamily: f2 }}>Bản Chất & Chức Năng</span>
+          <span className="text-sm tracking-[0.25em] text-[#7A6040]/60 uppercase font-semibold" style={{ fontFamily: f2 }}>Biểu Hiện Cụ Thể</span>
           <div className="h-[1px] w-12 bg-[#3D3529]/15 gsap-line-draw" />
         </div>
         <div className="gsap-stagger-parent grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
@@ -72,7 +72,7 @@ export default function DatVanDe() {
       {/* Bottom Summary */}
       <div className="w-full max-w-7xl mx-auto">
         <div className="gsap-scale-in bg-white/50 rounded-[20px] border border-[#3D3529]/5 p-10 md:p-16">
-          <h3 className="gsap-reveal text-center text-sm font-semibold tracking-[0.2em] uppercase text-[#7A6040]/50 mb-16" style={{ fontFamily: f2 }}>Tiền Đề Sự Tiêu Vong</h3>
+          <h3 className="gsap-reveal text-center text-sm font-semibold tracking-[0.2em] uppercase text-[#7A6040]/50 mb-16" style={{ fontFamily: f2 }}>Giá Trị Cốt Lõi</h3>
           <div className="gsap-stagger-parent grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
             {solutions.map((item) => (
               <div key={item.t} className="gsap-stagger-child flex flex-col items-center text-center group">
