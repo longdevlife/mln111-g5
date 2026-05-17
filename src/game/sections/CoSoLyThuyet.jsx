@@ -1,6 +1,6 @@
 export default function CoSoLyThuyet() {
   const f1 = "'Playfair Display', serif";
-  const f2 = "'Outfit', sans-serif";
+  const f2 = "'Inter', sans-serif";
 
   const characteristics = [
     { t: '500 Đại biểu', i: 'Quốc hội' }, { t: '180 Phiếu', i: 'LHQ' },

@@ -19,7 +19,7 @@ export default function Summary() {
 
         <div
           className="space-y-16 text-[#1A1A1A] text-lg font-light leading-relaxed"
-          style={{ fontFamily: "'Outfit', sans-serif" }}
+          style={{ fontFamily: "'Inter', sans-serif" }}
         >
           {/* I. Cơ sở lý thuyết */}
           <div>

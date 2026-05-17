@@ -57,7 +57,7 @@ export default function Hero() {
           <div className="gsap-reveal flex items-center gap-4 mb-10">
             <span
               className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] font-semibold text-[#7A6040]"
-              style={{ fontFamily: "'Outfit', sans-serif" }}
+              style={{ fontFamily: "'Inter', sans-serif" }}
             >
               <span className="w-2 h-2 rounded-full bg-[#C5A028]" />
               GROUP 5
@@ -77,14 +77,14 @@ export default function Hero() {
 
           <p
             className="gsap-reveal text-sm md:text-base text-[#C5A028] font-semibold tracking-[0.15em] uppercase mb-8"
-            style={{ fontFamily: "'Outfit', sans-serif" }}
+            style={{ fontFamily: "'Inter', sans-serif" }}
           >
             Về Nhà Nước Pháp Quyền
           </p>
 
           <p
             className="gsap-reveal text-base md:text-lg text-[#7A6040] max-w-xl leading-relaxed font-light mb-12 drop-shadow-sm"
-            style={{ fontFamily: "'Outfit', sans-serif" }}
+            style={{ fontFamily: "'Inter', sans-serif" }}
           >
             Một nhà nước thực sự "của nhân dân, do nhân dân và vì nhân dân".
             Sự kết hợp hài hoà giữa tính hợp pháp, tính thượng tôn pháp luật và
@@ -98,7 +98,7 @@ export default function Hero() {
             >
               <span
                 className="font-semibold tracking-[0.08em] text-xs uppercase"
-                style={{ fontFamily: "'Outfit', sans-serif" }}
+                style={{ fontFamily: "'Inter', sans-serif" }}
               >
                 Bắt Đầu Hành Trình
               </span>
@@ -124,7 +124,7 @@ export default function Hero() {
             >
               <span
                 className="font-semibold text-xs tracking-[0.08em] uppercase"
-                style={{ fontFamily: "'Outfit', sans-serif" }}
+                style={{ fontFamily: "'Inter', sans-serif" }}
               >
                 Khám Phá Lý Thuyết
               </span>
@@ -140,7 +140,7 @@ export default function Hero() {
               <span
                 key={tag}
                 className={`gsap-reveal px-4 py-2 rounded-full border border-[#3D3529]/10 bg-[#EDE8E1]/30 backdrop-blur-sm text-[10px] uppercase font-semibold tracking-[0.1em] text-[#7A6040]/80 cursor-default transition-colors duration-300 hover:border-[#C5A028]/40 hover:text-[#C5A028]`}
-                style={{ fontFamily: "'Outfit', sans-serif" }}
+                style={{ fontFamily: "'Inter', sans-serif" }}
               >
                 {tag}
               </span>

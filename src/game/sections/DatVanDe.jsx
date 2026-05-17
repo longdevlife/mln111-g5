@@ -17,7 +17,7 @@ export default function DatVanDe() {
   ];
 
   const f1 = "'Playfair Display', serif";
-  const f2 = "'Outfit', sans-serif";
+  const f2 = "'Inter', sans-serif";
 
   return (
     <section id="dat-van-de" className="relative w-full bg-[#EDE8E1] px-4 py-32 md:py-40 overflow-hidden">

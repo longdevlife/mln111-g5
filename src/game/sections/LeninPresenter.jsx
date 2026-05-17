@@ -115,7 +115,7 @@ export default function LeninPresenter() {
         <div
           className="relative bg-[#FDFBF7]/95 backdrop-blur-xl rounded-2xl px-6 py-4 max-w-[260px]"
           style={{
-            fontFamily: "'Outfit', sans-serif",
+            fontFamily: "'Inter', sans-serif",
             boxShadow: '0 12px 40px -8px rgba(61,53,41,0.2)',
             border: '1px solid rgba(61,53,41,0.08)',
           }}

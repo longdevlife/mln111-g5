@@ -1,6 +1,6 @@
 export default function GiaiPhap() {
   const f1 = "'Playfair Display', serif";
-  const f2 = "'Outfit', sans-serif";
+  const f2 = "'Inter', sans-serif";
 
   const features = [
     { n: '01', t: 'Hợp hiến, Hợp pháp', s: 'Tạo nền tảng chính danh và ổn định chính trị qua bầu cử dân chủ; là cơ sở pháp lý để hội nhập quốc tế (CPTPP, EVFTA, FDI).' },
