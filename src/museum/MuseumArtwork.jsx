@@ -2,13 +2,13 @@ import { Html } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import { useRef, useState } from "react";
 
-export function MuseumArtwork({ artwork, selected, onSelect }) {
+export function MuseumArtwork({ panel, selected, onSelect }) {
   const groupRef = useRef();
   const nearRef = useRef(false);
   const { camera } = useThree();
   const [near, setNear] = useState(false);
 
-  const glowColor = selected ? artwork.accent : "#000000";
+  const glowColor = selected ? panel.roomAccent : "#000000";
 
   useFrame(() => {
     if (!groupRef.current) return;
@@ -22,18 +22,20 @@ export function MuseumArtwork({ artwork, selected, onSelect }) {
   });
 
   return (
-    <group ref={groupRef} position={artwork.position} rotation={artwork.rotation}>
-      <pointLight color={artwork.accent} intensity={selected ? 1.15 : 0.25} distance={4.5} position={[0, 0.35, 0.5]} />
+    <group ref={groupRef} position={panel.position} rotation={panel.rotation}>
+      <pointLight color={panel.roomAccent} intensity={selected ? 1.15 : 0.25} distance={4.5} position={[0, 0.35, 0.5]} />
 
+      {/* Frame (Portrait 3:4) */}
       <mesh position={[0, 0, -0.045]} castShadow>
-        <boxGeometry args={[2.95, 2.1, 0.12]} />
+        <boxGeometry args={[2.2, 2.9, 0.12]} />
         <meshStandardMaterial color="#3c2617" roughness={0.48} metalness={0.18} />
       </mesh>
 
-      <mesh position={[0, 0, 0]} onClick={() => onSelect(artwork)} onPointerOver={() => setNear(true)}>
-        <planeGeometry args={[2.42, 1.58]} />
+      {/* Canvas */}
+      <mesh position={[0, 0, 0]} onClick={() => onSelect(panel)} onPointerOver={() => setNear(true)}>
+        <planeGeometry args={[1.8, 2.4]} />
         <meshStandardMaterial
-          color={artwork.accent}
+          color={panel.roomAccent}
           emissive={glowColor}
           emissiveIntensity={selected ? 0.28 : 0.06}
           opacity={0.34}
@@ -42,51 +44,53 @@ export function MuseumArtwork({ artwork, selected, onSelect }) {
         />
       </mesh>
 
-      <mesh position={[0, 0.9, 0.035]}>
-        <boxGeometry args={[2.74, 0.08, 0.1]} />
-        <meshStandardMaterial color={artwork.accent} roughness={0.35} metalness={0.35} />
+      {/* Frame details */}
+      <mesh position={[0, 1.35, 0.035]}>
+        <boxGeometry args={[2.0, 0.08, 0.1]} />
+        <meshStandardMaterial color={panel.roomAccent} roughness={0.35} metalness={0.35} />
       </mesh>
-      <mesh position={[0, -0.9, 0.035]}>
-        <boxGeometry args={[2.74, 0.08, 0.1]} />
-        <meshStandardMaterial color={artwork.accent} roughness={0.35} metalness={0.35} />
+      <mesh position={[0, -1.35, 0.035]}>
+        <boxGeometry args={[2.0, 0.08, 0.1]} />
+        <meshStandardMaterial color={panel.roomAccent} roughness={0.35} metalness={0.35} />
       </mesh>
-      <mesh position={[-1.37, 0, 0.035]}>
-        <boxGeometry args={[0.08, 1.88, 0.1]} />
-        <meshStandardMaterial color={artwork.accent} roughness={0.35} metalness={0.35} />
+      <mesh position={[-0.96, 0, 0.035]}>
+        <boxGeometry args={[0.08, 2.62, 0.1]} />
+        <meshStandardMaterial color={panel.roomAccent} roughness={0.35} metalness={0.35} />
       </mesh>
-      <mesh position={[1.37, 0, 0.035]}>
-        <boxGeometry args={[0.08, 1.88, 0.1]} />
-        <meshStandardMaterial color={artwork.accent} roughness={0.35} metalness={0.35} />
+      <mesh position={[0.96, 0, 0.035]}>
+        <boxGeometry args={[0.08, 2.62, 0.1]} />
+        <meshStandardMaterial color={panel.roomAccent} roughness={0.35} metalness={0.35} />
       </mesh>
 
       {/* Floor marker */}
       <mesh position={[0, -2.99, 1.2]} rotation={[-Math.PI / 2, 0, 0]}>
         <ringGeometry args={[0.6, 0.65, 32]} />
-        <meshBasicMaterial color={artwork.accent} transparent opacity={selected ? 0.8 : 0.2} />
+        <meshBasicMaterial color={panel.roomAccent} transparent opacity={selected ? 0.8 : 0.2} />
       </mesh>
       {(near || selected) && (
         <mesh position={[0, -2.99, 1.2]} rotation={[-Math.PI / 2, 0, 0]}>
           <circleGeometry args={[0.6, 32]} />
-          <meshBasicMaterial color={artwork.accent} transparent opacity={selected ? 0.15 : 0.05} />
+          <meshBasicMaterial color={panel.roomAccent} transparent opacity={selected ? 0.15 : 0.05} />
         </mesh>
       )}
 
+      {/* Panel Labels */}
       <Html position={[0, -0.18, 0.06]} transform center scale={0.45}>
         <div style={{ width: 260, textAlign: "center", color: "#f8efe4", pointerEvents: "none" }}>
-          <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 22, lineHeight: 1.1 }}>{artwork.title}</div>
+          <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 22, lineHeight: 1.1 }}>{panel.title}</div>
           <div style={{ marginTop: 8, fontSize: 10, letterSpacing: "0.16em", textTransform: "uppercase", color: "#c8bda9" }}>
-            {artwork.subtitle}
+            {panel.heading}
           </div>
         </div>
       </Html>
 
       {(near || selected) && (
-        <Html position={[0, 1.35, 0.12]} transform center scale={0.42}>
+        <Html position={[0, 1.65, 0.12]} transform center scale={0.42}>
           <button
             type="button"
-            onClick={() => onSelect(artwork)}
+            onClick={() => onSelect(panel)}
             style={{
-              border: `1px solid ${artwork.accent}`,
+              border: `1px solid ${panel.roomAccent}`,
               borderRadius: 999,
               background: "rgba(10, 7, 5, 0.82)",
               color: "#fff8ed",
@@ -98,7 +102,7 @@ export function MuseumArtwork({ artwork, selected, onSelect }) {
               whiteSpace: "nowrap",
             }}
           >
-            Xem lời dẫn
+            Xem nội dung
           </button>
         </Html>
       )}

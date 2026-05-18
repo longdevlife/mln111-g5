@@ -5,7 +5,7 @@ import * as THREE from "three";
 const ROOM_LIMIT = {
   minX: -7,
   maxX: 7,
-  minZ: -7,
+  minZ: -48,
   maxZ: 6.5,
 };
 

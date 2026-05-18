@@ -2,10 +2,23 @@ import { useState } from "react";
 
 import { MuseumGuide } from "./MuseumGuide";
 import { MuseumScene } from "./MuseumScene";
-import { defaultArtwork } from "./museumData";
+import { museumRooms, defaultPanel } from "./museumData";
 
 export function MuseumPage() {
-  const [selectedArtwork, setSelectedArtwork] = useState(defaultArtwork);
+  const [selectedPanel, setSelectedPanel] = useState(null);
+  const [focusedPanel, setFocusedPanel] = useState(defaultPanel);
+
+  const focusedRoom = museumRooms.find(r => r.id === focusedPanel?.roomId) || museumRooms[0];
+  const guideRoom = selectedPanel
+    ? museumRooms.find(r => r.id === selectedPanel.roomId) || focusedRoom
+    : focusedRoom;
+
+  const handleSelectPanel = (panel) => {
+    setSelectedPanel(panel);
+    if (panel) {
+      setFocusedPanel(panel);
+    }
+  };
 
   return (
     <main
@@ -20,8 +33,9 @@ export function MuseumPage() {
       }}
     >
       <MuseumScene
-        selectedArtwork={selectedArtwork}
-        onSelectArtwork={setSelectedArtwork}
+        selectedPanel={selectedPanel}
+        onSelectPanel={handleSelectPanel}
+        onFocusPanel={setFocusedPanel}
       />
 
       <div
@@ -44,39 +58,69 @@ export function MuseumPage() {
           maxWidth: 440,
           color: "#fff8ed",
           pointerEvents: "none",
+          transition: "opacity 0.3s ease",
         }}
       >
         <div
           style={{
-            color: "#c5a028",
+            color: focusedRoom.accent || "#c5a028",
             fontSize: 11,
             letterSpacing: "0.22em",
             textTransform: "uppercase",
+            transition: "color 0.3s ease",
+            fontWeight: "bold"
           }}
         >
-          Bảo tàng thử nghiệm
+          Phòng: {focusedRoom.title}
         </div>
         <h1
           style={{
             margin: "10px 0 14px",
             fontFamily: "'Playfair Display', serif",
-            fontSize: "clamp(42px, 7vw, 78px)",
-            lineHeight: 0.95,
+            fontSize: "clamp(32px, 5vw, 52px)",
+            lineHeight: 1.05,
+            transition: "all 0.3s ease",
           }}
         >
-          Gallery Marxist
+          {focusedPanel?.title || "Bảo tàng 3D"}
         </h1>
         <p
           style={{
             margin: 0,
             color: "rgba(255,248,237,0.68)",
             lineHeight: 1.8,
+            transition: "opacity 0.3s ease",
           }}
         >
-          Khung 3D placeholder cho tab Bảo Tàng. Tranh thật và visual polish sẽ
-          được các bạn gửi cho anh nhé.
+          {focusedPanel?.heading || "Di chuyển để xem nội dung"}
         </p>
       </section>
+
+      <div
+        style={{
+          position: "absolute",
+          left: "50%",
+          transform: "translateX(-50%)",
+          bottom: "clamp(18px, 5vw, 48px)",
+          zIndex: 16,
+          display: "flex",
+          gap: 12,
+          pointerEvents: "none",
+        }}
+      >
+        {museumRooms.map((room) => (
+          <div
+            key={room.id}
+            style={{
+              width: room.id === focusedRoom.id ? 24 : 8,
+              height: 8,
+              borderRadius: 4,
+              background: room.id === focusedRoom.id ? room.accent : "rgba(255,255,255,0.2)",
+              transition: "all 0.3s ease",
+            }}
+          />
+        ))}
+      </div>
 
       <div
         style={{
@@ -127,8 +171,9 @@ export function MuseumPage() {
       </div>
 
       <MuseumGuide
-        selectedArtwork={selectedArtwork}
-        onSelectArtwork={setSelectedArtwork}
+        selectedPanel={selectedPanel}
+        onSelectPanel={handleSelectPanel}
+        currentRoom={guideRoom}
       />
     </main>
   );
