@@ -93,6 +93,15 @@ export const UI = () => {
       <div className="vignette-overlay" />
 
       <main className="pointer-events-none select-none z-10 fixed inset-0 flex justify-between flex-col">
+        {/* ── Minimal Header (below Navbar) ── */}
+        <div className="pointer-events-auto px-8 pt-24 w-full flex justify-between items-center opacity-60">
+          <div className="text-[10px] tracking-[0.2em] uppercase" style={{ fontFamily: 'Playfair Display, serif', color: '#E5D5B5' }}>
+            Tạp Chí Pháp Quyền
+          </div>
+          <div className="text-[9px] tracking-[0.2em] uppercase" style={{ fontFamily: "'Inter', sans-serif", color: '#E5D5B5' }}>
+            {page === 0 ? "Bìa" : page === totalPages - 1 ? "Bìa Sau" : `Trang ${page}`}
+          </div>
+        </div>
 
         {/* ── Side Navigation Arrows ── */}
         <div className="pointer-events-auto flex items-center justify-between px-4 absolute top-1/2 left-0 right-0 -translate-y-1/2">
