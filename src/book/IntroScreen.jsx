@@ -1,62 +1,5 @@
 import { useState } from "react";
 
-/* ── SVG Decorations ── */
-const TeaCupSVG = ({ className = "" }) => (
-  <svg className={className} width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-    {/* Glass */}
-    <rect x="16" y="20" width="24" height="32" rx="2" fill="#E8F4E8" stroke="#8B7355" strokeWidth="1.5"/>
-    {/* Tea color */}
-    <rect x="17" y="24" width="22" height="27" rx="1" fill="#C9A86C" opacity="0.6"/>
-    {/* Ice cubes */}
-    <rect x="20" y="26" width="7" height="6" rx="1" fill="white" opacity="0.7"/>
-    <rect x="29" y="30" width="6" height="5" rx="1" fill="white" opacity="0.5"/>
-    <rect x="22" y="35" width="5" height="5" rx="1" fill="white" opacity="0.6"/>
-    {/* Straw */}
-    <line x1="32" y1="14" x2="28" y2="40" stroke="#C5272D" strokeWidth="2" strokeLinecap="round"/>
-    {/* Handle area - condensation drops */}
-    <circle cx="22" cy="48" r="1" fill="#8B7355" opacity="0.3"/>
-    <circle cx="34" cy="44" r="0.8" fill="#8B7355" opacity="0.2"/>
-  </svg>
-);
-
-const PlasticChairSVG = ({ className = "" }) => (
-  <svg className={className} width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-    {/* Seat */}
-    <path d="M10 24 H46 L44 32 H12 Z" fill="#2E8B57" stroke="#1a5c38" strokeWidth="1"/>
-    {/* Back rest */}
-    <path d="M12 24 L14 8 H42 L44 24" fill="#2E8B57" stroke="#1a5c38" strokeWidth="1"/>
-    {/* Back rest holes */}
-    <ellipse cx="28" cy="14" rx="8" ry="3" fill="#1a5c38" opacity="0.3"/>
-    {/* Legs */}
-    <line x1="14" y1="32" x2="12" y2="50" stroke="#1a5c38" strokeWidth="2.5" strokeLinecap="round"/>
-    <line x1="42" y1="32" x2="44" y2="50" stroke="#1a5c38" strokeWidth="2.5" strokeLinecap="round"/>
-    <line x1="16" y1="32" x2="15" y2="48" stroke="#1a5c38" strokeWidth="2" strokeLinecap="round"/>
-    <line x1="40" y1="32" x2="41" y2="48" stroke="#1a5c38" strokeWidth="2" strokeLinecap="round"/>
-  </svg>
-);
-
-const SmokeSVG = ({ className = "" }) => (
-  <svg className={className} width="30" height="50" viewBox="0 0 30 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path className="mag-smoke mag-smoke-1" d="M15 45 Q12 35 16 28 Q20 20 14 12 Q10 5 15 0" stroke="#8B7355" strokeWidth="1.2" strokeLinecap="round" fill="none" opacity="0.3"/>
-    <path className="mag-smoke mag-smoke-2" d="M18 44 Q22 36 17 30 Q12 24 18 16 Q22 10 17 4" stroke="#8B7355" strokeWidth="1" strokeLinecap="round" fill="none" opacity="0.2"/>
-  </svg>
-);
-
-const PottedPlantSVG = ({ className = "" }) => (
-  <svg className={className} width="48" height="60" viewBox="0 0 48 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-    {/* Pot */}
-    <path d="M14 40 L12 56 H36 L34 40 Z" fill="#C5272D" opacity="0.7" stroke="#8B4513" strokeWidth="1"/>
-    <rect x="11" y="38" width="26" height="4" rx="1" fill="#C5272D" opacity="0.8"/>
-    {/* Stems & Leaves */}
-    <path d="M24 38 Q24 28 20 20 Q16 14 22 8" stroke="#2E8B57" strokeWidth="1.5" fill="none"/>
-    <path d="M24 38 Q26 30 30 24 Q34 18 28 12" stroke="#2E8B57" strokeWidth="1.5" fill="none"/>
-    <ellipse cx="20" cy="18" rx="6" ry="3" fill="#2E8B57" opacity="0.7" transform="rotate(-30 20 18)"/>
-    <ellipse cx="30" cy="22" rx="5" ry="2.5" fill="#3CB371" opacity="0.6" transform="rotate(25 30 22)"/>
-    <ellipse cx="22" cy="10" rx="5" ry="2.5" fill="#2E8B57" opacity="0.5" transform="rotate(-15 22 10)"/>
-    <ellipse cx="28" cy="14" rx="4" ry="2" fill="#3CB371" opacity="0.5" transform="rotate(10 28 14)"/>
-  </svg>
-);
-
 export const IntroScreen = ({ onEnter }) => {
   const [isHiding, setIsHiding] = useState(false);
 
@@ -76,18 +19,40 @@ export const IntroScreen = ({ onEnter }) => {
     >
       <div className="noise-overlay" />
 
-      {/* Decorative elements */}
-      <div className="absolute bottom-8 left-8 opacity-50 animate-[fadeIn_2s_ease_2s_forwards]" style={{ opacity: 0 }}>
-        <TeaCupSVG />
+      {/* ── Decorative emoji elements ── */}
+      {/* Bottom-left: trà đá + ghế nhựa combo */}
+      <div 
+        className="absolute animate-[fadeIn_2s_ease_2s_forwards]" 
+        style={{ opacity: 0, bottom: '40px', left: '32px' }}
+      >
+        <div className="flex items-end gap-2">
+          <span className="mag-decor mag-decor-tea" style={{ fontSize: '40px', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))' }}>🍵</span>
+          <span className="mag-decor mag-decor-chair" style={{ fontSize: '28px', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.08))', opacity: 0.7 }}>🪑</span>
+        </div>
       </div>
-      <div className="absolute bottom-6 left-24 opacity-40 animate-[fadeIn_2s_ease_2.3s_forwards]" style={{ opacity: 0 }}>
-        <PlasticChairSVG />
+
+      {/* Bottom-right: cây cảnh */}
+      <div 
+        className="absolute animate-[fadeIn_2s_ease_2.4s_forwards]" 
+        style={{ opacity: 0, bottom: '36px', right: '36px' }}
+      >
+        <span className="mag-decor mag-decor-chair" style={{ fontSize: '36px', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))' }}>🪴</span>
       </div>
-      <div className="absolute bottom-12 right-10 opacity-40 animate-[fadeIn_2s_ease_2.5s_forwards]" style={{ opacity: 0 }}>
-        <PottedPlantSVG />
+
+      {/* Top-right corner: newspaper */}
+      <div 
+        className="absolute animate-[fadeIn_2s_ease_2.6s_forwards]" 
+        style={{ opacity: 0, top: '28px', right: '32px' }}
+      >
+        <span style={{ fontSize: '24px', filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.08))', opacity: 0.5 }}>📰</span>
       </div>
-      <div className="absolute top-16 right-16 opacity-30 animate-[fadeIn_2s_ease_2.8s_forwards]" style={{ opacity: 0 }}>
-        <SmokeSVG />
+
+      {/* Top-left corner: coffee */}
+      <div 
+        className="absolute animate-[fadeIn_2s_ease_2.8s_forwards]" 
+        style={{ opacity: 0, top: '28px', left: '32px' }}
+      >
+        <span style={{ fontSize: '22px', filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.08))', opacity: 0.45 }}>☕</span>
       </div>
 
       {/* Magazine Cover Content */}
