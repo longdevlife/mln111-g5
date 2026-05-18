@@ -25,16 +25,16 @@ export const IntroScreen = ({ onEnter }) => {
           className="text-[#C5272D] font-semibold tracking-[0.2em] uppercase text-xs mb-6 opacity-0 animate-[fadeIn_1s_ease_0.5s_forwards]"
           style={{ fontFamily: "'Inter', sans-serif" }}
         >
-          Học phần: Triết Học Mác - Lênin
+          Tư tưởng Hồ Chí Minh
         </p>
 
         <h1
           className="text-5xl md:text-7xl font-bold mb-4 text-[#1A1A1A] opacity-0 animate-[slideInFromTop_1s_ease_0.8s_forwards]"
           style={{ fontFamily: "'Playfair Display', serif", lineHeight: 1.2 }}
         >
-          Xã Hội Không <br />
-          <span className="italic font-light opacity-80" style={{ fontFamily: "'EB Garamond', serif" }}>Còn</span>{" "}
-          Nhà Nước?
+          Nhà Nước <br />
+          <span className="italic font-light opacity-80" style={{ fontFamily: "'EB Garamond', serif" }}>Pháp Quyền</span>{" "}
+          Nhân Nghĩa
         </h1>
 
         <div className="w-12 h-[1px] bg-[#C5272D]/40 my-8 mx-auto opacity-0 animate-[fadeIn_1s_ease_1.2s_forwards]" />
@@ -43,7 +43,7 @@ export const IntroScreen = ({ onEnter }) => {
           className="text-[#8B8680] text-sm md:text-base max-w-md mx-auto leading-relaxed mb-12 opacity-0 animate-[fadeIn_1s_ease_1.5s_forwards]"
           style={{ fontFamily: "'Inter', sans-serif" }}
         >
-          Khám phá góc nhìn triết học về sự tiêu vong của Nhà nước: đây chỉ là ảo tưởng Utopia hay một khả năng hiện thực tất yếu của lịch sử?
+          Khám phá tư tưởng Hồ Chí Minh về xây dựng Nhà nước pháp quyền: hợp hiến hợp pháp, thượng tôn pháp luật, và đậm tính nhân nghĩa.
         </p>
 
         <button

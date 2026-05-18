@@ -6,16 +6,15 @@ export const pageAtom = atom(0);
 export const viewModeAtom = atom("showcase"); // "showcase" | "reading"
 
 export const pages = [
-  { front: "Cover page - Open", back: "2_Page_1" },
-  { front: "2_Page 2", back: "3_page_1" },
-  { front: "3_page_2", back: "4_page_1" },
-  { front: "4_page_2", back: "5_page_1" },
-  { front: "5_page_2", back: "6_page_1" },
-  { front: "6_page_2", back: "7_page_1" },
-  { front: "7_page_2", back: "8_page_1" },
-  { front: "8_page_2", back: "9_page_1" },
-  { front: "9_page_2", back: "10_page_1" },
-  { front: "10_page_2", back: "cover end" },
+  { front: "Bia dau", back: "trang1" },
+  { front: "trang2", back: "trang3" },
+  { front: "trang4", back: "trang5" },
+  { front: "trang6", back: "trang7" },
+  { front: "trang8", back: "trang9" },
+  { front: "trang10", back: "trang11" },
+  { front: "trang12", back: "trang13" },
+  { front: "trang14", back: "trang15" },
+  { front: "trang16", back: "Bia dau" }, // Bìa sau - tạm dùng Bia dau, sẽ thay sau
 ];
 
 const pageLabels = [
@@ -28,7 +27,6 @@ const pageLabels = [
   "Trang 7",
   "Trang 8",
   "Trang 9",
-  "Trang 10",
   "Bìa sau",
 ];
 
@@ -42,7 +40,6 @@ const pageTitles = [
   "Trang 7",
   "Trang 8",
   "Trang 9",
-  "Trang 10",
   null,
 ];
 
@@ -101,17 +98,17 @@ export const UI = () => {
               className="w-9 h-9 rounded-full flex items-center justify-center"
               style={{ background: '#C5272D' }}
             >
-              <span className="text-white text-sm font-bold" style={{ fontFamily: 'Playfair Display, serif' }}>M</span>
+              <span className="text-white text-sm font-bold" style={{ fontFamily: 'Playfair Display, serif' }}>H</span>
             </div>
             <div>
               <h1
                 className="text-sm font-semibold tracking-wider uppercase"
                 style={{ fontFamily: 'Playfair Display, serif', color: '#FAFAF8' }}
               >
-                Karl Marx
+                Hồ Chí Minh
               </h1>
               <p className="tracking-widest uppercase" style={{ color: '#8B8680', fontSize: '10px' }}>
-                Tồn tại xã hội & Ý thức
+                Nhà nước pháp quyền
               </p>
             </div>
           </div>
@@ -127,7 +124,7 @@ export const UI = () => {
             )}
             <div className="text-right hidden sm:block">
               <p className="tracking-widest uppercase" style={{ color: '#8B8680', fontSize: '10px' }}>
-                Chương III
+                Tư tưởng HCM
               </p>
             </div>
           </div>
