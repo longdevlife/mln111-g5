@@ -93,53 +93,6 @@ export const UI = () => {
       <div className="vignette-overlay" />
 
       <main className="pointer-events-none select-none z-10 fixed inset-0 flex justify-between flex-col">
-        {/* ── Header — Magazine Masthead (below Navbar) ── */}
-        <div className="pointer-events-auto px-8 pt-20">
-          {/* Top rule line */}
-          <div className="w-full h-[1px] mb-3" style={{ background: 'rgba(250,250,248,0.1)' }} />
-          
-          <div className="flex items-center justify-between">
-            {/* Left: Masthead */}
-            <div className="flex items-center gap-4">
-              <div className="flex flex-col">
-                <h1
-                  className="text-sm font-bold tracking-[0.2em] uppercase"
-                  style={{ fontFamily: 'Playfair Display, serif', color: '#C5272D' }}
-                >
-                  Tạp Chí Pháp Quyền
-                </h1>
-                <p className="tracking-[0.15em] uppercase" style={{ color: '#8B7355', fontSize: '9px', fontFamily: "'Inter', sans-serif" }}>
-                  Nhà nước pháp quyền nhân nghĩa
-                </p>
-              </div>
-            </div>
-
-            {/* Center: Page info */}
-            <div className="flex items-center gap-4">
-              {currentTitle && (
-                <div className="page-eyebrow hidden md:block">
-                  <span className="accent">{String(page).padStart(2, '0')}</span>
-                  <span style={{ margin: '0 6px', opacity: 0.3 }}>|</span>
-                  {currentTitle}
-                </div>
-              )}
-            </div>
-
-            {/* Right: Issue info */}
-            <div className="text-right hidden sm:flex items-center gap-2">
-              <span className="text-[9px] tracking-[0.2em] uppercase" style={{ color: '#8B7355', fontFamily: "'Inter', sans-serif" }}>
-                Kỳ 1
-              </span>
-              <span style={{ color: '#C5272D', fontSize: '6px' }}>●</span>
-              <span className="text-[9px] tracking-[0.2em] uppercase" style={{ color: '#8B7355', fontFamily: "'Inter', sans-serif" }}>
-                05/2026
-              </span>
-            </div>
-          </div>
-
-          {/* Bottom rule line */}
-          <div className="w-full h-[1px] mt-3" style={{ background: 'rgba(250,250,248,0.06)' }} />
-        </div>
 
         {/* ── Side Navigation Arrows ── */}
         <div className="pointer-events-auto flex items-center justify-between px-4 absolute top-1/2 left-0 right-0 -translate-y-1/2">
