@@ -97,7 +97,7 @@ export const UI = () => {
         
         {/* Left Vertical */}
         <div 
-          className="absolute left-4 top-1/2 -translate-y-1/2 -rotate-90 origin-center text-[9px] tracking-[0.4em] font-light opacity-40 whitespace-nowrap uppercase"
+          className="absolute left-6 top-1/2 -translate-y-1/2 -rotate-90 origin-center text-[12px] tracking-[0.3em] font-light opacity-50 whitespace-nowrap uppercase"
           style={{ fontFamily: "'Inter', sans-serif", color: '#E5D5B5' }}
         >
           Tạp Chí Pháp Quyền <span className="mx-4 text-[#C5272D] opacity-80">●</span> 2026
@@ -105,38 +105,38 @@ export const UI = () => {
 
         {/* Right Vertical */}
         <div 
-          className="absolute right-4 top-1/2 -translate-y-1/2 rotate-90 origin-center text-[9px] tracking-[0.4em] font-light opacity-40 whitespace-nowrap uppercase"
+          className="absolute right-6 top-1/2 -translate-y-1/2 rotate-90 origin-center text-[12px] tracking-[0.3em] font-light opacity-50 whitespace-nowrap uppercase"
           style={{ fontFamily: "'Inter', sans-serif", color: '#E5D5B5' }}
         >
           Nhà Nước Pháp Quyền
         </div>
 
         {/* Top Left: Issue Stamp */}
-        <div className="absolute top-28 left-10 flex flex-col items-center opacity-80">
-          <div className="w-[1px] h-12 bg-[#C5272D] mb-3 opacity-80" />
-          <span className="text-[10px] tracking-[0.3em] font-bold text-[#C5272D]" style={{ writingMode: 'vertical-rl' }}>
+        <div className="absolute top-28 left-12 flex flex-col items-center opacity-80">
+          <div className="w-[1.5px] h-16 bg-[#C5272D] mb-4 opacity-80" />
+          <span className="text-[13px] tracking-[0.3em] font-bold text-[#C5272D]" style={{ writingMode: 'vertical-rl' }}>
             KỲ 05
           </span>
         </div>
 
         {/* Top Right: Current Focus */}
-        <div className="absolute top-28 right-10 flex flex-col items-end text-right">
-          <span className="text-[8px] tracking-[0.3em] uppercase text-[#E5D5B5] opacity-40 mb-1" style={{ fontFamily: "'Inter', sans-serif" }}>
+        <div className="absolute top-28 right-12 flex flex-col items-end text-right">
+          <span className="text-[11px] tracking-[0.3em] uppercase text-[#E5D5B5] opacity-50 mb-2" style={{ fontFamily: "'Inter', sans-serif" }}>
             Tiêu Điểm
           </span>
-          <span className="text-[16px] max-w-[150px]" style={{ fontFamily: 'Playfair Display, serif', color: '#C5A028', fontStyle: 'italic', lineHeight: 1.2 }}>
+          <span className="text-[22px] max-w-[200px]" style={{ fontFamily: 'Playfair Display, serif', color: '#C5A028', fontStyle: 'italic', lineHeight: 1.2 }}>
             Tư tưởng Hồ Chí Minh
           </span>
         </div>
 
         {/* Bottom Left: Elegant Page Indicator */}
-        <div className="absolute bottom-10 left-10 flex items-end gap-3 opacity-90">
-          <span className="text-4xl leading-none font-medium" style={{ fontFamily: 'Playfair Display, serif', color: '#C5A028' }}>
+        <div className="absolute bottom-12 left-12 flex items-end gap-4 opacity-90">
+          <span className="text-6xl leading-none font-medium" style={{ fontFamily: 'Playfair Display, serif', color: '#C5A028' }}>
             {String(page).padStart(2, '0')}
           </span>
-          <div className="flex flex-col pb-1">
-            <div className="w-12 h-[1px] bg-[#E5D5B5] opacity-20 mb-1.5" />
-            <span className="text-[8px] tracking-[0.3em] text-[#E5D5B5] opacity-60 uppercase">
+          <div className="flex flex-col pb-1.5">
+            <div className="w-16 h-[2px] bg-[#E5D5B5] opacity-30 mb-2" />
+            <span className="text-[11px] tracking-[0.3em] text-[#E5D5B5] opacity-70 uppercase">
               {page === 0 ? "Bìa" : page === totalPages - 1 ? "Bìa Sau" : `Trang ${page}`}
             </span>
           </div>
