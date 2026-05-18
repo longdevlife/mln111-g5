@@ -181,18 +181,6 @@ export const UI = () => {
           </div>
         </div>
       </main>
-
-      {/* ── View Mode Toggle (fixed bottom-right) ── */}
-      <button
-        className={`view-toggle fixed z-20 ${viewMode === 'reading' ? 'active' : ''}`}
-        style={{ bottom: '100px', right: '32px' }}
-        onClick={() => setViewMode(viewMode === 'showcase' ? 'reading' : 'showcase')}
-      >
-        {viewMode === 'showcase' ? <BookIcon /> : <CubeIcon />}
-        <span>{viewMode === 'showcase' ? 'Đọc sách' : '3D View'}</span>
-      </button>
-
-
     </>
   );
 };

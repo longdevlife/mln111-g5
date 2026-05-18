@@ -7,7 +7,7 @@ import Navbar from "./game/sections/Navbar";
 
 const TABS = [
   { id: "intro", label: "Mở Đầu" },
-  { id: "book", label: "Sách 3D" },
+  { id: "book", label: "Tạp chí" },
   { id: "exhibition", label: "Triển Lãm 3D" },
   { id: "ai", label: "AI Usage" },
 ];

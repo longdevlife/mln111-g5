@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 const NAV_LINKS = [
   { href: '#hero', label: 'Tổng Quan' },
-  { href: '#book', label: 'Sách 3D' },
+  { href: '#book', label: 'Tạp chí' },
   { href: '#exhibition', label: 'Triển Lãm 3D' },
   { href: '#ai', label: 'AI Usage' },
 ];
