@@ -92,14 +92,53 @@ export const UI = () => {
       <div className="noise-overlay" />
       <div className="vignette-overlay" />
 
-      <main className="pointer-events-none select-none z-10 fixed inset-0 flex justify-between flex-col">
-        {/* ── Minimal Header (below Navbar) ── */}
-        <div className="pointer-events-auto px-8 pt-24 w-full flex justify-between items-center opacity-60">
-          <div className="text-[10px] tracking-[0.2em] uppercase" style={{ fontFamily: 'Playfair Display, serif', color: '#E5D5B5' }}>
-            Tạp Chí Pháp Quyền
-          </div>
-          <div className="text-[9px] tracking-[0.2em] uppercase" style={{ fontFamily: "'Inter', sans-serif", color: '#E5D5B5' }}>
-            {page === 0 ? "Bìa" : page === totalPages - 1 ? "Bìa Sau" : `Trang ${page}`}
+      <main className="pointer-events-none select-none z-10 fixed inset-0 overflow-hidden">
+        {/* ── Premium Magazine Edge Branding ── */}
+        
+        {/* Left Vertical */}
+        <div 
+          className="absolute left-4 top-1/2 -translate-y-1/2 -rotate-90 origin-center text-[9px] tracking-[0.4em] font-light opacity-40 whitespace-nowrap uppercase"
+          style={{ fontFamily: "'Inter', sans-serif", color: '#E5D5B5' }}
+        >
+          Tạp Chí Pháp Quyền <span className="mx-4 text-[#C5272D] opacity-80">●</span> 2026
+        </div>
+
+        {/* Right Vertical */}
+        <div 
+          className="absolute right-4 top-1/2 -translate-y-1/2 rotate-90 origin-center text-[9px] tracking-[0.4em] font-light opacity-40 whitespace-nowrap uppercase"
+          style={{ fontFamily: "'Inter', sans-serif", color: '#E5D5B5' }}
+        >
+          Nhà Nước Pháp Quyền
+        </div>
+
+        {/* Top Left: Issue Stamp */}
+        <div className="absolute top-28 left-10 flex flex-col items-center opacity-80">
+          <div className="w-[1px] h-12 bg-[#C5272D] mb-3 opacity-80" />
+          <span className="text-[10px] tracking-[0.3em] font-bold text-[#C5272D]" style={{ writingMode: 'vertical-rl' }}>
+            KỲ 05
+          </span>
+        </div>
+
+        {/* Top Right: Current Focus */}
+        <div className="absolute top-28 right-10 flex flex-col items-end text-right">
+          <span className="text-[8px] tracking-[0.3em] uppercase text-[#E5D5B5] opacity-40 mb-1" style={{ fontFamily: "'Inter', sans-serif" }}>
+            Tiêu Điểm
+          </span>
+          <span className="text-[16px] max-w-[150px]" style={{ fontFamily: 'Playfair Display, serif', color: '#C5A028', fontStyle: 'italic', lineHeight: 1.2 }}>
+            Tư tưởng Hồ Chí Minh
+          </span>
+        </div>
+
+        {/* Bottom Left: Elegant Page Indicator */}
+        <div className="absolute bottom-10 left-10 flex items-end gap-3 opacity-90">
+          <span className="text-4xl leading-none font-medium" style={{ fontFamily: 'Playfair Display, serif', color: '#C5A028' }}>
+            {String(page).padStart(2, '0')}
+          </span>
+          <div className="flex flex-col pb-1">
+            <div className="w-12 h-[1px] bg-[#E5D5B5] opacity-20 mb-1.5" />
+            <span className="text-[8px] tracking-[0.3em] text-[#E5D5B5] opacity-60 uppercase">
+              {page === 0 ? "Bìa" : page === totalPages - 1 ? "Bìa Sau" : `Trang ${page}`}
+            </span>
           </div>
         </div>
 
@@ -130,7 +169,7 @@ export const UI = () => {
         </div>
 
         {/* ── Bottom: Floating Nav Island ── */}
-        <div className="w-full pointer-events-auto flex justify-center pb-6">
+        <div className="absolute bottom-6 left-0 right-0 w-full pointer-events-auto flex justify-center">
           <div className="book-nav rounded-full px-2 py-2 flex flex-col items-center gap-0" style={{ maxWidth: '90vw' }}>
 
             {/* Nav buttons */}
