@@ -17,7 +17,7 @@ export const BookPage = ({ skipIntro = false, onIntroFinish }) => {
     <>
       {!isStarted && <IntroScreen onEnter={handleEnter} />}
 
-      <div style={{ opacity: isStarted ? 1 : 0, transition: 'opacity 1s ease', width: '100%', height: '100vh', overflow: 'hidden', pointerEvents: isStarted ? 'auto' : 'none', backgroundColor: '#090604', backgroundImage: 'radial-gradient(circle at 50% 45%, #5c3a21 0%, #352214 35%, #150d08 80%, #090604 100%)' }}>
+      <div style={{ opacity: isStarted ? 1 : 0, transition: 'opacity 1s ease', width: '100%', height: '100vh', overflow: 'hidden', pointerEvents: isStarted ? 'auto' : 'none', backgroundColor: '#1E1A14' }}>
         <UI />
         <Loader />
         <Canvas

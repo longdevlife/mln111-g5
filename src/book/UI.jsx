@@ -43,11 +43,12 @@ const pageTitles = [
   null,
 ];
 
-/* ── SVG Icons (no emoji, no external lib) ── */
-const BookIcon = () => (
+/* ── SVG Icons ── */
+const MagazineIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+    <rect x="3" y="3" width="18" height="18" rx="2" />
+    <line x1="3" y1="9" x2="21" y2="9" />
+    <line x1="9" y1="21" x2="9" y2="9" />
   </svg>
 );
 
@@ -71,6 +72,33 @@ const ChevronRight = () => (
   </svg>
 );
 
+/* ── Small decorative SVGs ── */
+const TeaCupMini = () => (
+  <svg className="mag-decor mag-decor-tea" width="40" height="40" viewBox="0 0 64 64" fill="none">
+    <rect x="16" y="20" width="24" height="32" rx="2" fill="#E8F4E8" stroke="#8B7355" strokeWidth="1.2" opacity="0.5"/>
+    <rect x="17" y="24" width="22" height="27" rx="1" fill="#C9A86C" opacity="0.3"/>
+    <rect x="20" y="26" width="7" height="6" rx="1" fill="white" opacity="0.4"/>
+    <rect x="29" y="30" width="6" height="5" rx="1" fill="white" opacity="0.3"/>
+    <line x1="32" y1="14" x2="28" y2="40" stroke="#C5272D" strokeWidth="1.5" strokeLinecap="round" opacity="0.5"/>
+  </svg>
+);
+
+const ChairMini = () => (
+  <svg className="mag-decor mag-decor-chair" width="36" height="36" viewBox="0 0 56 56" fill="none">
+    <path d="M10 24 H46 L44 32 H12 Z" fill="#2E8B57" opacity="0.4"/>
+    <path d="M12 24 L14 8 H42 L44 24" fill="#2E8B57" opacity="0.35"/>
+    <line x1="14" y1="32" x2="12" y2="50" stroke="#1a5c38" strokeWidth="2" strokeLinecap="round" opacity="0.4"/>
+    <line x1="42" y1="32" x2="44" y2="50" stroke="#1a5c38" strokeWidth="2" strokeLinecap="round" opacity="0.4"/>
+  </svg>
+);
+
+const SmokeMini = () => (
+  <svg className="mag-decor mag-decor-smoke" width="20" height="36" viewBox="0 0 30 50" fill="none">
+    <path className="mag-smoke mag-smoke-1" d="M15 45 Q12 35 16 28 Q20 20 14 12 Q10 5 15 0" stroke="#FAFAF8" strokeWidth="1" strokeLinecap="round" fill="none" opacity="0.15"/>
+    <path className="mag-smoke mag-smoke-2" d="M18 44 Q22 36 17 30 Q12 24 18 16 Q22 10 17 4" stroke="#FAFAF8" strokeWidth="0.8" strokeLinecap="round" fill="none" opacity="0.1"/>
+  </svg>
+);
+
 export const UI = () => {
   const [page, setPage] = useAtom(pageAtom);
   const [viewMode, setViewMode] = useAtom(viewModeAtom);
@@ -90,44 +118,64 @@ export const UI = () => {
       <div className="noise-overlay" />
       <div className="vignette-overlay" />
 
+      {/* ── Decorative Vietnamese elements ── */}
+      <div className="fixed z-[5] pointer-events-none" style={{ bottom: '90px', left: '24px' }}>
+        <TeaCupMini />
+      </div>
+      <div className="fixed z-[5] pointer-events-none" style={{ bottom: '80px', left: '72px' }}>
+        <ChairMini />
+      </div>
+      <div className="fixed z-[5] pointer-events-none" style={{ top: '80px', right: '24px' }}>
+        <SmokeMini />
+      </div>
+
       <main className="pointer-events-none select-none z-10 fixed inset-0 flex justify-between flex-col">
-        {/* ── Header ── */}
-        <div className="pointer-events-auto flex items-center justify-between px-8 pt-6">
-          <div className="flex items-center gap-3">
-            <div
-              className="w-9 h-9 rounded-full flex items-center justify-center"
-              style={{ background: '#C5272D' }}
-            >
-              <span className="text-white text-sm font-bold" style={{ fontFamily: 'Playfair Display, serif' }}>H</span>
+        {/* ── Header — Magazine Masthead ── */}
+        <div className="pointer-events-auto px-8 pt-5">
+          {/* Top rule line */}
+          <div className="w-full h-[1px] mb-3" style={{ background: 'rgba(250,250,248,0.1)' }} />
+          
+          <div className="flex items-center justify-between">
+            {/* Left: Masthead */}
+            <div className="flex items-center gap-4">
+              <div className="flex flex-col">
+                <h1
+                  className="text-sm font-bold tracking-[0.2em] uppercase"
+                  style={{ fontFamily: 'Playfair Display, serif', color: '#C5272D' }}
+                >
+                  Tạp Chí Pháp Quyền
+                </h1>
+                <p className="tracking-[0.15em] uppercase" style={{ color: '#8B7355', fontSize: '9px', fontFamily: "'Inter', sans-serif" }}>
+                  Nhà nước pháp quyền nhân nghĩa
+                </p>
+              </div>
             </div>
-            <div>
-              <h1
-                className="text-sm font-semibold tracking-wider uppercase"
-                style={{ fontFamily: 'Playfair Display, serif', color: '#FAFAF8' }}
-              >
-                Hồ Chí Minh
-              </h1>
-              <p className="tracking-widest uppercase" style={{ color: '#8B8680', fontSize: '10px' }}>
-                Nhà nước pháp quyền
-              </p>
+
+            {/* Center: Page info */}
+            <div className="flex items-center gap-4">
+              {currentTitle && (
+                <div className="page-eyebrow hidden md:block">
+                  <span className="accent">{String(page).padStart(2, '0')}</span>
+                  <span style={{ margin: '0 6px', opacity: 0.3 }}>|</span>
+                  {currentTitle}
+                </div>
+              )}
+            </div>
+
+            {/* Right: Issue info */}
+            <div className="text-right hidden sm:flex items-center gap-2">
+              <span className="text-[9px] tracking-[0.2em] uppercase" style={{ color: '#8B7355', fontFamily: "'Inter', sans-serif" }}>
+                Kỳ 1
+              </span>
+              <span style={{ color: '#C5272D', fontSize: '6px' }}>●</span>
+              <span className="text-[9px] tracking-[0.2em] uppercase" style={{ color: '#8B7355', fontFamily: "'Inter', sans-serif" }}>
+                05/2026
+              </span>
             </div>
           </div>
 
-          {/* Page eyebrow title */}
-          <div className="flex items-center gap-4">
-            {currentTitle && (
-              <div className="page-eyebrow hidden md:block">
-                <span className="accent">{String(page).padStart(2, '0')}</span>
-                <span style={{ margin: '0 6px', opacity: 0.3 }}>|</span>
-                {currentTitle}
-              </div>
-            )}
-            <div className="text-right hidden sm:block">
-              <p className="tracking-widest uppercase" style={{ color: '#8B8680', fontSize: '10px' }}>
-                Tư tưởng HCM
-              </p>
-            </div>
-          </div>
+          {/* Bottom rule line */}
+          <div className="w-full h-[1px] mt-3" style={{ background: 'rgba(250,250,248,0.06)' }} />
         </div>
 
         {/* ── Side Navigation Arrows ── */}
@@ -188,7 +236,7 @@ export const UI = () => {
         style={{ bottom: '100px', right: '32px' }}
         onClick={() => setViewMode(viewMode === 'showcase' ? 'reading' : 'showcase')}
       >
-        {viewMode === 'showcase' ? <BookIcon /> : <CubeIcon />}
+        {viewMode === 'showcase' ? <MagazineIcon /> : <CubeIcon />}
         <span>{viewMode === 'showcase' ? 'Đọc tạp chí' : '3D View'}</span>
       </button>
     </>
