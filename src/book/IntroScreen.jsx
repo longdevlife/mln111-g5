@@ -19,42 +19,6 @@ export const IntroScreen = ({ onEnter }) => {
     >
       <div className="noise-overlay" />
 
-      {/* ── Decorative emoji elements ── */}
-      {/* Bottom-left: trà đá + ghế nhựa combo */}
-      <div 
-        className="absolute animate-[fadeIn_2s_ease_2s_forwards]" 
-        style={{ opacity: 0, bottom: '40px', left: '32px' }}
-      >
-        <div className="flex items-end gap-2">
-          <span className="mag-decor mag-decor-tea" style={{ fontSize: '40px', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))' }}>🍵</span>
-          <span className="mag-decor mag-decor-chair" style={{ fontSize: '28px', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.08))', opacity: 0.7 }}>🪑</span>
-        </div>
-      </div>
-
-      {/* Bottom-right: cây cảnh */}
-      <div 
-        className="absolute animate-[fadeIn_2s_ease_2.4s_forwards]" 
-        style={{ opacity: 0, bottom: '36px', right: '36px' }}
-      >
-        <span className="mag-decor mag-decor-chair" style={{ fontSize: '36px', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))' }}>🪴</span>
-      </div>
-
-      {/* Top-right corner: newspaper */}
-      <div 
-        className="absolute animate-[fadeIn_2s_ease_2.6s_forwards]" 
-        style={{ opacity: 0, top: '28px', right: '32px' }}
-      >
-        <span style={{ fontSize: '24px', filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.08))', opacity: 0.5 }}>📰</span>
-      </div>
-
-      {/* Top-left corner: coffee */}
-      <div 
-        className="absolute animate-[fadeIn_2s_ease_2.8s_forwards]" 
-        style={{ opacity: 0, top: '28px', left: '32px' }}
-      >
-        <span style={{ fontSize: '22px', filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.08))', opacity: 0.45 }}>☕</span>
-      </div>
-
       {/* Magazine Cover Content */}
       <div className="relative z-10 flex flex-col items-center text-center max-w-2xl px-6">
         
@@ -118,8 +82,11 @@ export const IntroScreen = ({ onEnter }) => {
           }}
         >
           <span className="relative z-10 flex items-center gap-3">
-            Mở tạp chí
-            <span style={{ fontSize: '16px' }}>☕</span>
+            Bắt đầu khám phá
+            <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
           </span>
           <div className="absolute inset-0 bg-[#C5272D] translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-y-0" />
         </button>
@@ -128,7 +95,7 @@ export const IntroScreen = ({ onEnter }) => {
       {/* Bottom hint */}
       <div className="absolute bottom-10 text-center opacity-0 animate-[fadeIn_1s_ease_2.2s_forwards]">
         <p className="text-[10px] uppercase tracking-widest" style={{ fontFamily: "'Inter', sans-serif", color: '#8B7355', opacity: 0.5 }}>
-          Ngồi ghế nhựa · Uống trà đá · Đọc tạp chí
+          Sử dụng tai nghe & chuột để có trải nghiệm tốt nhất
         </p>
       </div>
     </div>

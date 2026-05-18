@@ -72,7 +72,7 @@ const ChevronRight = () => (
   </svg>
 );
 
-/* ── Small decorative SVGs ── */
+
 export const UI = () => {
   const [page, setPage] = useAtom(pageAtom);
   const [viewMode, setViewMode] = useAtom(viewModeAtom);
@@ -92,17 +92,9 @@ export const UI = () => {
       <div className="noise-overlay" />
       <div className="vignette-overlay" />
 
-      {/* ── Decorative Vietnamese elements (emoji) ── */}
-      <div className="fixed z-[5] pointer-events-none mag-decor mag-decor-tea" style={{ bottom: '100px', left: '28px', fontSize: '28px', opacity: 0.4, filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.15))' }}>
-        🍵
-      </div>
-      <div className="fixed z-[5] pointer-events-none mag-decor mag-decor-chair" style={{ bottom: '88px', right: '28px', fontSize: '24px', opacity: 0.35, filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.12))' }}>
-        🪴
-      </div>
-
       <main className="pointer-events-none select-none z-10 fixed inset-0 flex justify-between flex-col">
-        {/* ── Header — Magazine Masthead ── */}
-        <div className="pointer-events-auto px-8 pt-5">
+        {/* ── Header — Magazine Masthead (below Navbar) ── */}
+        <div className="pointer-events-auto px-8 pt-20">
           {/* Top rule line */}
           <div className="w-full h-[1px] mb-3" style={{ background: 'rgba(250,250,248,0.1)' }} />
           
