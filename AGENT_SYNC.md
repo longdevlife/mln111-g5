@@ -1,7 +1,7 @@
 # AGENT_SYNC.md — Handoff cho Codex
 
-> **Cập nhật:** 2026-05-19 18:00 (GMT+7)
-> **Tác giả cập nhật gần nhất:** Codex
+> **Cập nhật:** 2026-05-19 23:10 (GMT+7)
+> **Tác giả cập nhật gần nhất:** Antigravity/Claude
 > **Mục đích:** Ghi trạng thái hiện tại của module Museum để agent sau không dựa vào context cũ.
 
 ---
@@ -14,7 +14,7 @@ Nguyên tắc sản phẩm mới nhất:
 
 - **Không dùng hướng dẫn viên.**
 - **Không dùng avatar/nhân vật thuyết minh.**
-- Trải nghiệm tự dẫn bằng không gian, tranh, HUD, plaque, room labels và card ghim tranh.
+- Trải nghiệm tự dẫn bằng không gian, tranh, plaque, room labels và card ghim tranh.
 - Giữ phạm vi sửa trong `src/museum/` và asset texture liên quan.
 
 ---
@@ -23,11 +23,11 @@ Nguyên tắc sản phẩm mới nhất:
 
 ```
 src/museum/
-├── museumData.js        # Room definitions, panel positions, JPG texture mapping, collision zones
+├── museumData.js        # Room definitions, panel positions, phân bổ PNG texture thực tế theo thư mục, collision zones
 ├── MuseumPage.jsx       # Page wrapper, HUD, selected/focused panel state, pinned artwork card
-├── MuseumScene.jsx      # R3F Canvas + local lighting + camera focus tracker
-├── MuseumRoom.jsx       # Architecture: lobby, rooms, hallway, trims, chandelier, benches, centerpiece
-├── MuseumArtwork.jsx    # Artwork frame, picture light, texture canvas, focus/selected plaque
+├── MuseumScene.jsx      # R3F Canvas + ambient lighting mạnh + camera focus tracker
+├── MuseumRoom.jsx       # Architecture: sáng sủa hơn, lobby, rooms, hallway, trims, chandelier, benches, centerpiece
+├── MuseumArtwork.jsx    # Artwork frame, texture canvas chuẩn độ sâu, focus/selected plaque (luôn hiện mờ hoặc sáng)
 └── MuseumPlayer.jsx     # WASD / arrow movement with AABB collision
 ```
 
@@ -36,6 +36,7 @@ src/museum/
 - `src/museum/MuseumGuide.jsx`
 - `src/museum/MuseumCarousel.jsx`
 - `public/textures/guide-avatar.png`
+- HUD hướng dẫn di chuyển (WASD/Arrows) ở góc dưới bên trái màn hình.
 
 Không thêm lại các file/asset trên nếu không có yêu cầu mới rõ ràng.
 
@@ -43,18 +44,15 @@ Không thêm lại các file/asset trên nếu không có yêu cầu mới rõ r
 
 ## Asset textures
 
-Museum panels hiện dùng JPG nén:
+Museum panels hiện lấy ảnh trực tiếp từ thư mục `public/museum/`:
 
 ```
-public/textures/trang1.jpg → trang16.jpg
+public/museum/nhanuochophienhopphap/ (5 ảnh)
+public/museum/nhanuocthuongtonphapluat/ (4 ảnh)
+public/museum/phapquyennhannghia/ (3 ảnh)
 ```
 
-Kích thước hiện tại:
-
-- JPG museum set: khoảng **9.64MB**
-- PNG gốc `trang1.png → trang16.png`: khoảng **68.48MB**
-
-Lưu ý: PNG gốc vẫn còn vì module `src/book/` đang dùng/preload `trang*.png`. Không xóa PNG nếu không refactor module Book.
+Lưu ý: Các ảnh đã được phân bổ đích danh cho từng bức tường, không còn dùng cơ chế lặp vòng `trang1.png -> trang16.png` nữa.
 
 Textures kiến trúc:
 
@@ -92,11 +90,11 @@ Player height lock: `y = 2.65`
 
 Trong `museumData.js`:
 
-1. `rawRooms`: 3 phòng, mỗi phòng có 3 wall definitions.
-2. Auto-multiply: mỗi wall nhân thành 3 tranh, tổng **27 artwork panels**.
-3. Texture mapping: dùng tuần tự `/textures/trangN.jpg`, N từ 1 đến 16 rồi quay vòng.
-4. Title format mới: `"<title> - Tư liệu I/II/III"` thay cho `(1/3)`.
-5. `museumPanels`: flat array cho `MuseumScene` render 27 `MuseumArtwork`.
+1. `rawRooms`: 3 phòng, mỗi phòng có định nghĩa mảng `images` trực tiếp cho từng tường.
+2. Tự động tính toán vị trí: dựa trên số lượng ảnh của mỗi tường (1 hoặc 2 ảnh), tự động chia khoảng cách (spacing) và dàn đều căn giữa tường.
+3. Texture mapping: lấy đúng đường dẫn ảnh PNG tương ứng từ thư mục.
+4. Title format mới: `"<title> - Tư liệu I/II/III"` (nếu tường có nhiều tranh).
+5. `museumPanels`: flat array cho `MuseumScene` render tổng cộng **12 `MuseumArtwork`**.
 
 Mỗi panel có dạng chính:
 
@@ -109,7 +107,7 @@ Mỗi panel có dạng chính:
   sequenceLabel,
   position,
   rotation,
-  imageSrc,        // /textures/trangN.jpg
+  imageSrc,        // /museum/[room]/[tên ảnh].png
   roomAccent,
   roomTitle,
   roomId
@@ -123,10 +121,11 @@ Mỗi panel có dạng chính:
 Tranh hiện có:
 
 - Khung vàng cổ điển bằng nhiều lớp `boxGeometry`.
-- Canvas texture từ `panel.imageSrc`.
-- Picture light nhỏ phía trên tranh.
-- Plaque chỉ render khi tranh đang `focused` hoặc `selected`.
-- `selected` làm tranh sáng hơn và plaque viền theo accent.
+- Canvas texture được kéo nhô lên `z=0.042` để không bị lấp sau viền vàng.
+- Đèn rọi (pointLight) đã được giảm cường độ tối đa để tránh bị đốm đỏ/vàng lóa mắt.
+- Canvas không còn phát sáng emissive.
+- Plaque tên tranh.
+- `selected` làm plaque viền theo accent.
 - Click tranh gọi `onSelect(panel)` để ghim tranh.
 
 Đã bỏ:
@@ -134,7 +133,7 @@ Tranh hiện có:
 - `near` state thừa.
 - `useFrame` proximity logic trong artwork.
 - Nút `Xem nội dung`.
-- 27 plaque luôn hiển thị cùng lúc.
+- Vật thể lưới (mesh) giả làm đèn rọi tranh.
 
 ---
 
@@ -152,11 +151,12 @@ HUD:
 
 - Top-left: phòng hiện tại, title và heading của panel đang focus/ghim.
 - Bottom-center: indicator cho Lobby + 3 rooms.
-- Bottom-left controls: `W/A/S/D`, `Mũi tên nhìn quanh`, `Click ghim tranh`, `Esc bỏ ghim`.
 - Khi click tranh: hiện card `Đang ghim tranh` ở góc phải dưới.
 - `Escape`: bỏ ghim tranh.
 
-Không render `MuseumGuide`.
+Đã bỏ:
+- Render `MuseumGuide`.
+- Thanh hướng dẫn các nút bấm `W/A/S/D`, `Mũi tên nhìn quanh`, `Click ghim tranh`, `Esc bỏ ghim` để giao diện gọn gàng hơn.
 
 ---
 
@@ -167,7 +167,7 @@ Components chính:
 | Component | Chức năng |
 |-----------|-----------|
 | `useMuseumTextures()` | Load damask + marble textures, RepeatWrapping |
-| `Room` | Render phòng/sảnh với floor, ceiling, walls/openings, trims, chandelier |
+| `Room` | Render phòng/sảnh với floor, ceiling (màu sáng hơn), walls/openings, trims, chandelier |
 | `CeilingTrim` | Viền trần gỗ + brass |
 | `MuseumBench` | Ghế băng ở các phòng phụ |
 | `LobbyCenterpiece` | Centerpiece procedural trong sảnh, không dùng GLB |
@@ -175,46 +175,27 @@ Components chính:
 | `WallWithOpening` | Tường có cổng, casing, label |
 | `Hallway` | Hành lang nối sảnh với phòng giữa |
 
-Đã bỏ:
-
-- `useGLTF("/models/globe.glb")`
-- `LobbyCenterpiece` cũ không render
-- các hằng `PLANT_*` orphan
-
-Centerpiece mới:
-
-- Bệ gỗ/brass.
-- Abstract globe bằng `sphereGeometry` + `torusGeometry`.
-- Brass floor inlay chỉ hướng tới các phòng.
-- Label `Sơ đồ triển lãm`.
+Vật liệu (Materials) đã được giảm độ nhám (roughness) và tăng độ sáng để không gian lộng lẫy và phản xạ ánh sáng tốt hơn.
 
 ---
 
 ## MuseumScene.jsx
 
-Không còn:
+Không còn `Environment preset="warehouse"`.
+Scene hiện dùng lighting local được tăng cường mạnh mẽ:
 
-```jsx
-<Environment preset="warehouse" />
-```
-
-Lý do: preset này gọi HDR từ GitHub/rawgithack, rủi ro khi demo offline/mạng yếu.
-
-Scene hiện dùng lighting local:
-
-- `ambientLight`
-- `hemisphereLight`
+- `ambientLight` cường độ 0.9
+- `hemisphereLight` cường độ 0.9 (màu trời xanh nhạt, đất vàng ấm)
 - `directionalLight`
-- lobby/room `spotLight`
-- room accent `pointLight`
-- artwork picture lights
+- lobby/room `spotLight` (tông màu trắng kem/ấm tinh tế thay vì vàng khè)
+- Sương mù (fog) được đẩy ra xa hơn để không gian mở rộng.
 
 Render order hiện tại:
 
 ```
 background/fog → local lights → Sparkles →
 MuseumPlayer → CameraDirectionTracker → MuseumRoom →
-27× MuseumArtwork → ContactShadows
+12× MuseumArtwork → ContactShadows
 ```
 
 `CameraDirectionTracker`:
@@ -225,87 +206,40 @@ MuseumPlayer → CameraDirectionTracker → MuseumRoom →
 
 ---
 
-## MuseumPlayer.jsx
-
-Không đổi trong lượt mới nhất.
-
-- WASD: di chuyển.
-- ArrowLeft: nhìn sang trái. ArrowRight: nhìn sang phải.
-- ArrowUp: nhìn lên. ArrowDown: nhìn xuống. Có giới hạn pitch để không lật camera.
-- Camera rotation order: `YXZ` để nhìn trái/phải sau khi nhìn lên/xuống không làm màn hình bị nghiêng.
-- Speed: `4.2`.
-- Yaw speed: `1.5`.
-- Pitch speed: `1.1`.
-- Collision: AABB zones trong `WALKABLE_ZONES`.
-- Wall-slide: thử X và Z độc lập.
-
----
-
 ## Verification mới nhất
 
-Đã chạy:
-
-```bash
-npm run build
-```
-
 Kết quả:
 
-- Build success.
-- `657 modules transformed`.
-- Không có lỗi compile.
-- Vẫn còn warning chunk > 500KB do Three/R3F bundle, chưa code-split.
-
-Đã kiểm tra bằng Playwright tại:
-
-```text
-http://localhost:5173/#exhibition
-```
-
-Kết quả:
-
-- Console: không có runtime error.
-- Network: không còn gọi HDR `rawgithack/raw.githubusercontent` cho museum environment.
-- Museum panels tải `trang*.jpg`.
-- Đi vào phòng bằng `W` được.
-- Focus panel hoạt động.
-- Click tranh mở card `Đang ghim tranh`.
-- `Esc` đóng card.
-- Mobile `390x844`: HUD/card không overflow.
-
-Screenshot kiểm tra gần nhất:
-
-```text
-.playwright-cli/page-2026-05-19T10-57-23-232Z.png
-```
-
-Không dùng `view_image`.
+- Museum panels tải ảnh chuẩn từ folder `public/museum/`.
+- Ánh sáng ngập tràn, sáng sủa, kiến trúc hiện rõ hoa văn Damask.
+- Ảnh trong tranh không còn bị lấp đằng sau khung vàng.
+- Các vết sáng đỏ/chói trên khung đã bị xóa bỏ.
+- Không còn HUD rườm rà dưới đáy màn hình.
 
 ---
 
 ## Lưu ý còn lại
 
-1. PNG `trang*.png` vẫn được tải ở dev vì module Book import/preload texture PNG, dù đang ở tab exhibition. Đây không phải lỗi museum, nhưng nếu muốn tối ưu toàn app thì cần lazy import/code split theo tab.
-2. `guideText` vẫn còn trong `museumData.js` như legacy data. Không dùng nó để hiện hướng dẫn viên. Nếu sau này cần, chỉ nên dùng như metadata/caption catalog, không phải thuyết minh nhân vật.
-3. 27 panel vẫn dùng 16 ảnh lặp vòng. Nếu muốn polish nội dung, cần map ảnh đúng chủ đề thay vì tuần tự modulo.
-4. Chunk production vẫn lớn khoảng 1.14MB minified. Tối ưu tiếp theo nên là dynamic import `BookPage`/`MuseumPage` theo tab.
+1. PNG `trang*.png` ở gốc public/textures vẫn còn dùng ở module Book `src/book/`.
+2. `guideText` vẫn còn trong `museumData.js` như legacy data. Không dùng nó để hiện hướng dẫn viên.
 
 ---
 
 ## Lịch sử thay đổi gần nhất
+
+### Session 5 — 2026-05-19 tối (Antigravity/Claude)
+
+- Map ảnh trực tiếp từ thư mục `public/museum/[tên_phòng]/` thay vì dùng ảnh dummy.
+- Tự động chia lại khoảng cách tranh dựa trên số lượng ảnh thực tế của từng tường. Tổng 12 bức.
+- Xóa UI HUD hướng dẫn W/A/S/D cho gọn gàng.
+- Sửa lỗi z-index làm tranh bị chìm vào trong khung.
+- Tăng sáng cực mạnh cho toàn bộ phòng, giảm độ nhám, dời đèn làm chói tranh.
 
 ### Session 4 — 2026-05-19 18:00 (Codex)
 
 - Xóa hẳn `MuseumGuide.jsx`, `MuseumCarousel.jsx`, `guide-avatar.png`.
 - Không dùng hướng dẫn viên/thuyết minh viên.
 - Bỏ `Environment preset="warehouse"` để tránh remote HDR.
-- Bỏ orphan `useGLTF`, globe GLB centerpiece cũ, plant constants.
-- Thêm centerpiece procedural trong sảnh.
-- Thêm brass floor inlay chỉ hướng.
-- Artwork có picture light.
-- Plaque chỉ hiện khi focused/selected.
-- Click tranh thành cơ chế “ghim tranh”, mở catalog card nhỏ.
-- Chuyển museum texture từ PNG sang JPG nén.
 
 ### Session 3 — 2026-05-19 17:00 (Antigravity/Claude)
 
@@ -316,8 +250,8 @@ Không dùng `view_image`.
 
 ### Session 2 — 2026-05-19 (Antigravity/Claude + Codex)
 
-- Nhân mỗi tường thành 3 tranh, tổng 27 panel.
-- Tích hợp texture `trang1.png → trang16.png`.
+- Nhân mỗi tường thành tranh.
+- Tích hợp texture.
 - Thêm bench, chandelier, trims, hallway/collision polish.
 
 ### Session 1 — 2026-05-19 (Antigravity/Claude)

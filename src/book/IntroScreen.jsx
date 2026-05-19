@@ -66,7 +66,7 @@ export const IntroScreen = ({ onEnter }) => {
           className="text-sm md:text-base max-w-md mx-auto leading-relaxed mb-10 opacity-0 animate-[fadeIn_1s_ease_1.3s_forwards]"
           style={{ fontFamily: "'EB Garamond', serif", color: '#5C5044', fontStyle: 'italic' }}
         >
-          Hợp hiến, hợp pháp — Thượng tôn pháp luật — Đậm tính nhân nghĩa
+          Hợp hiến, hợp pháp — Thượng tôn pháp luật — Pháp quyền nhân nghĩa
         </p>
 
         {/* CTA Button */}

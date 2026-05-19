@@ -124,7 +124,7 @@ export const UI = () => {
           <span className="text-[11px] tracking-[0.3em] uppercase text-[#E5D5B5] opacity-50 mb-2" style={{ fontFamily: "'Inter', sans-serif" }}>
             Tiêu Điểm
           </span>
-          <span className="text-[22px] max-w-[200px]" style={{ fontFamily: 'Playfair Display, serif', color: '#C5A028', fontStyle: 'italic', lineHeight: 1.2 }}>
+          <span className="text-[22px] max-w-[300px]" style={{ fontFamily: 'Playfair Display, serif', color: '#C5A028', fontStyle: 'italic', lineHeight: 1.2, whiteSpace: 'nowrap' }}>
             Tư tưởng Hồ Chí Minh
           </span>
         </div>

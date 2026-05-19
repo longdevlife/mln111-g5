@@ -65,35 +65,9 @@ export default function CoSoLyThuyet() {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Characteristics — Domino stagger effect */}
-      <div className="w-full max-w-7xl mx-auto mb-32">
-        <div className="gsap-reveal flex items-center justify-center gap-4 mb-16">
-          <div className="h-[1px] w-12 bg-[#3D3529]/15 gsap-line-draw" />
-          <span className="text-sm tracking-[0.25em] text-[#7A6040]/60 uppercase font-semibold" style={{ fontFamily: f2 }}>Những Con Số Biết Nói</span>
-          <div className="h-[1px] w-12 bg-[#3D3529]/15 gsap-line-draw" />
-        </div>
-        <div className="gsap-stagger-parent grid grid-cols-2 md:grid-cols-4 gap-4">
-          {characteristics.map((item) => (
-            <div key={item.t} className="gsap-stagger-child card-tilt flex flex-col items-center justify-center p-6 bg-white/50 rounded-[16px] border border-[#3D3529]/5 hover:bg-white hover:shadow-sm transition-all duration-300 group">
-              <span className="text-lg font-light text-[#C5A028] mb-2" style={{ fontFamily: f1 }}>{item.i}</span>
-              <span className="text-[#3D3529] text-sm font-medium text-center" style={{ fontFamily: f2 }}>{item.t}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Class Nature — Bento entrance */}
-      <div className="w-full max-w-7xl mx-auto">
-        <div className="gsap-reveal flex items-center gap-4 mb-16">
-          <span className="text-sm tracking-[0.25em] text-[#7A6040]/60 uppercase font-semibold" style={{ fontFamily: f2 }}>Nhà nước thượng tôn pháp luật</span>
-          <div className="h-[1px] flex-1 bg-[#3D3529]/10 gsap-line-draw" />
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
-          <div className="gsap-slide-left md:col-span-7 card-tilt">
-            <div className="h-full p-8 md:p-10 bg-white/50 rounded-[20px] border border-[#3D3529]/5">
+          {/* Card 3: Đại án Vạn Thịnh Phát */}
+          <div className="gsap-slide-left card-tilt group">
+            <div className="h-full p-8 md:p-10 bg-white/50 rounded-[20px] border border-[#3D3529]/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(61,53,41,0.08)]">
               <h3 className="text-3xl font-bold text-[#3D3529] mb-6" style={{ fontFamily: f1 }}>Đại án Vạn Thịnh Phát</h3>
               <p className="text-[#7A6040] text-base leading-relaxed font-light mb-8" style={{ fontFamily: f2 }}>
                 Cho thấy người có tiềm lực kinh tế lớn vẫn phải chịu trách nhiệm trước pháp luật: 86 bị can truy tố, bà Trương Mỹ Lan chiếm đoạt hơn 304.000 tỷ đồng, tuyên án tử hình phúc thẩm.
@@ -112,14 +86,33 @@ export default function CoSoLyThuyet() {
               </div>
             </div>
           </div>
-          <div className="gsap-slide-right md:col-span-5 card-tilt">
-            <div className="h-full p-8 md:p-10 bg-[#C5A028] rounded-[20px]">
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-6" style={{ fontFamily: f1 }}>Nghị định 168 (Nồng độ cồn)</h3>
+
+          {/* Card 4: Nghị định 168 */}
+          <div className="gsap-slide-right card-tilt group">
+            <div className="h-full p-8 md:p-10 bg-[#C5A028] rounded-[20px] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(197,160,40,0.3)]">
+              <h3 className="text-3xl font-bold text-white mb-6" style={{ fontFamily: f1 }}>Nghị định 168 (Nồng độ cồn)</h3>
               <p className="text-white/90 text-base leading-relaxed font-light" style={{ fontFamily: f2 }}>
                 Sau 3 tháng thực hiện, số vi phạm giảm 46,5%. Trong 4 ngày nghỉ lễ 30/4–3/5/2026, phát hiện 11.411 trường hợp vi phạm, xử lý theo phương châm "không có vùng cấm, không có ngoại lệ".
               </p>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Characteristics — Domino stagger effect */}
+      <div className="w-full max-w-7xl mx-auto">
+        <div className="gsap-reveal flex items-center justify-center gap-4 mb-16">
+          <div className="h-[1px] w-12 bg-[#3D3529]/15 gsap-line-draw" />
+          <span className="text-sm tracking-[0.25em] text-[#7A6040]/60 uppercase font-semibold" style={{ fontFamily: f2 }}>Những Con Số Biết Nói</span>
+          <div className="h-[1px] w-12 bg-[#3D3529]/15 gsap-line-draw" />
+        </div>
+        <div className="gsap-stagger-parent grid grid-cols-2 md:grid-cols-4 gap-4">
+          {characteristics.map((item) => (
+            <div key={item.t} className="gsap-stagger-child card-tilt flex flex-col items-center justify-center p-6 bg-white/50 rounded-[16px] border border-[#3D3529]/5 hover:bg-white hover:shadow-sm transition-all duration-300 group">
+              <span className="text-lg font-light text-[#C5A028] mb-2" style={{ fontFamily: f1 }}>{item.i}</span>
+              <span className="text-[#3D3529] text-sm font-medium text-center" style={{ fontFamily: f2 }}>{item.t}</span>
+            </div>
+          ))}
         </div>
       </div>
     </section>

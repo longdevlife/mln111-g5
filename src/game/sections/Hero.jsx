@@ -60,7 +60,7 @@ export default function Hero() {
               style={{ fontFamily: "'Inter', sans-serif" }}
             >
               <span className="w-2 h-2 rounded-full bg-[#C5A028]" />
-              GROUP 5
+              GROUP 2
             </span>
           </div>
 
@@ -86,8 +86,8 @@ export default function Hero() {
             className="gsap-reveal text-base md:text-lg text-[#7A6040] max-w-xl leading-relaxed font-light mb-12 drop-shadow-sm"
             style={{ fontFamily: "'Inter', sans-serif" }}
           >
-            Một nhà nước thực sự "của nhân dân, do nhân dân và vì nhân dân".
-            Sự kết hợp hài hoà giữa tính hợp pháp, tính thượng tôn pháp luật và
+            Một nhà nước thực sự "của nhân dân, do nhân dân và vì nhân dân". Sự
+            kết hợp hài hoà giữa tính hợp pháp, tính thượng tôn pháp luật và
             pháp quyền nhân nghĩa trong hệ thống chính trị Việt Nam.
           </p>
 
