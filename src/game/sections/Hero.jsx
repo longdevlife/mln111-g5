@@ -41,12 +41,14 @@ export default function Hero() {
         />
 
         <img
-          src="/revolution-bg.png"
+          src="/!!!!ảnh nền.png"
           alt="Revolution Background"
-          className="gsap-parallax h-[100dvh] md:h-[110dvh] w-auto max-w-none object-cover object-right-top z-0 transform translate-x-[10%] md:translate-x-0 opacity-80 md:opacity-100"
+          className="gsap-parallax h-[100dvh] md:h-[110dvh] w-full md:w-[60%] object-cover object-center z-0 opacity-85 mix-blend-multiply"
           data-speed="0.15"
           style={{
-            filter: "sepia(0.12) contrast(1.05) brightness(0.95)",
+            filter: "contrast(1.15) brightness(0.95) saturate(0.9)",
+            WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 25%)",
+            maskImage: "linear-gradient(to right, transparent 0%, black 25%)"
           }}
         />
       </div>
