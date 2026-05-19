@@ -44,7 +44,11 @@ const rawRooms = [
         guideText: "Hồ Chí Minh sớm nhận thức vai trò của Hiến pháp; yêu cầu bình đẳng pháp lý, xóa bỏ tòa án áp bức, thay sắc lệnh bằng đạo luật; Nhà nước phải tổ chức và vận hành theo pháp luật.",
         // visitor-left wall when entering from the lobby (south wall, facing -z)
         position: [-16, 3, 4.9],
-        rotation: [0, Math.PI, 0]
+        rotation: [0, Math.PI, 0],
+        images: [
+          "/museum/nhanuochophienhopphap/tường trái 1.png",
+          "/museum/nhanuochophienhopphap/tường trái 2.png"
+        ]
       },
       {
         id: "room1-center",
@@ -55,7 +59,11 @@ const rawRooms = [
         guideText: "Tổng tuyển cử, Quốc hội, tính hợp hiến của bộ máy nhà nước; Bầu cử Quốc hội khóa XVI có 864 người ứng cử, xác nhận 500 đại biểu. Việt Nam tái đắc cử Hội đồng Nhân quyền LHQ.",
         // back wall of left room (west wall, facing +x)
         position: [-21.9, 3, 0],
-        rotation: [0, Math.PI / 2, 0]
+        rotation: [0, Math.PI / 2, 0],
+        images: [
+          "/museum/nhanuochophienhopphap/tường giữa 1.png",
+          "/museum/nhanuochophienhopphap/tường giữa 2.png"
+        ]
       },
       {
         id: "room1-right",
@@ -66,7 +74,10 @@ const rawRooms = [
         guideText: "Quyền lực nhà nước chỉ chính danh khi xuất phát từ nhân dân; tạo nền tảng ổn định chính trị và tư cách pháp lý để hội nhập quốc tế (CPTPP, EVFTA, FDI).",
         // visitor-right wall when entering from the lobby (north wall, facing +z)
         position: [-16, 3, -4.9],
-        rotation: [0, 0, 0]
+        rotation: [0, 0, 0],
+        images: [
+          "/museum/nhanuochophienhopphap/tường phải.png"
+        ]
       }
     ]
   },
@@ -87,7 +98,11 @@ const rawRooms = [
         guideText: "Quản lý bằng pháp luật là ưu tiên hàng đầu; Hồ Chí Minh lãnh đạo soạn thảo Hiến pháp, ký ban hành luật/sắc lệnh; luật phải được thi hành nghiêm.",
         // left wall of center room (facing +x)
         position: [-5.9, 3, -19],
-        rotation: [0, Math.PI / 2, 0]
+        rotation: [0, Math.PI / 2, 0],
+        images: [
+          "/museum/nhanuocthuongtonphapluat/tường trái 1.png",
+          "/museum/nhanuocthuongtonphapluat/tường trái 2.png"
+        ]
       },
       {
         id: "room2-center",
@@ -98,7 +113,10 @@ const rawRooms = [
         guideText: "Đại án Vạn Thịnh Phát, xử lý nồng độ cồn (Nghị định 168), tinh thần 'không có vùng cấm, không có ngoại lệ'.",
         // back wall of center room (facing +z)
         position: [0, 3, -23.9],
-        rotation: [0, 0, 0]
+        rotation: [0, 0, 0],
+        images: [
+          "/museum/nhanuocthuongtonphapluat/tường giữa.png"
+        ]
       },
       {
         id: "room2-right",
@@ -109,7 +127,10 @@ const rawRooms = [
         guideText: "Bảo đảm công bằng, bình đẳng trước pháp luật; kiểm soát quyền lực; phòng chống tham nhũng; củng cố niềm tin của nhân dân.",
         // right wall of center room (facing -x)
         position: [5.9, 3, -19],
-        rotation: [0, -Math.PI / 2, 0]
+        rotation: [0, -Math.PI / 2, 0],
+        images: [
+          "/museum/nhanuocthuongtonphapluat/tường phải.png"
+        ]
       }
     ]
   },
@@ -130,7 +151,10 @@ const rawRooms = [
         guideText: "Pháp luật không chỉ để cai trị mà phải vì con người; tiếp cận quyền con người toàn diện; nghiêm minh nhưng nhân văn.",
         // visitor-left wall when entering from the lobby (north wall, facing +z)
         position: [16, 3, -4.9],
-        rotation: [0, 0, 0]
+        rotation: [0, 0, 0],
+        images: [
+          "/museum/phapquyennhannghia/tường trái.png"
+        ]
       },
       {
         id: "room3-center",
@@ -141,7 +165,10 @@ const rawRooms = [
         guideText: "Chính sách hỗ trợ COVID-19 (Quyết định 23/2021/QĐ-TTg), vaccine miễn phí, ưu tiên nhóm nguy cơ cao, các chính sách vì dân.",
         // back wall of right room (east wall, facing -x)
         position: [21.9, 3, 0],
-        rotation: [0, -Math.PI / 2, 0]
+        rotation: [0, -Math.PI / 2, 0],
+        images: [
+          "/museum/phapquyennhannghia/tường giữa.png"
+        ]
       },
       {
         id: "room3-right",
@@ -152,41 +179,47 @@ const rawRooms = [
         guideText: "Bảo đảm quyền con người và công bằng xã hội; pháp luật là công cụ phục vụ và phát triển con người toàn diện.",
         // visitor-right wall when entering from the lobby (south wall, facing -z)
         position: [16, 3, 4.9],
-        rotation: [0, Math.PI, 0]
+        rotation: [0, Math.PI, 0],
+        images: [
+          "/museum/phapquyennhannghia/tường phải.png"
+        ]
       }
     ]
   }
 ];
 
-let globalPanelCount = 1;
-const panelCopyLabels = ["Tư liệu I", "Tư liệu II", "Tư liệu III"];
+const panelCopyLabels = ["Tư liệu I", "Tư liệu II", "Tư liệu III", "Tư liệu IV"];
 
-// Automatically multiply paintings to 3 per wall
+// Map images to walls
 export const museumRooms = rawRooms.map(room => {
   const expandedWalls = [];
   room.walls.forEach(wall => {
-    for (let i = -1; i <= 1; i++) {
+    const images = wall.images || [];
+    const count = images.length;
+    
+    // Calculate offsets based on count to center them on the wall
+    const spacing = 3.4; // Distance between frames
+    const startOffset = -((count - 1) * spacing) / 2;
+
+    for (let i = 0; i < count; i++) {
       let newPos = [...wall.position];
-      // Check rotation to know which axis is along the wall
-      // If rotation Y is Math.PI/2 or -Math.PI/2, it faces X axis -> wall spans Z axis
       const isFacingX = Math.abs(Math.cos(wall.rotation[1])) < 0.01;
+      
+      const offset = startOffset + i * spacing;
 
       if (isFacingX) {
-        newPos[2] += i * 3.2; // Spread 3.2 units along Z
+        newPos[2] += offset; 
       } else {
-        newPos[0] += i * 3.2; // Spread 3.2 units along X
+        newPos[0] += offset; 
       }
-
-      const imgIndex = ((globalPanelCount - 1) % 16) + 1;
-      globalPanelCount++;
 
       expandedWalls.push({
         ...wall,
-        id: `${wall.id}-${i + 2}`,
-        title: `${wall.title} - ${panelCopyLabels[i + 1]}`,
-        sequenceLabel: panelCopyLabels[i + 1],
+        id: `${wall.id}-${i + 1}`,
+        title: count > 1 ? `${wall.title} - ${panelCopyLabels[i]}` : wall.title,
+        sequenceLabel: panelCopyLabels[i],
         position: newPos,
-        imageSrc: `/textures/trang${imgIndex}.png`
+        imageSrc: images[i]
       });
     }
   });
