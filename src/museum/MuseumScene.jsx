@@ -1,5 +1,6 @@
 import { ContactShadows, Environment, Sparkles } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { useRef } from "react";
 import * as THREE from "three";
 
 import { MuseumArtwork } from "./MuseumArtwork";
@@ -9,6 +10,7 @@ import { museumPanels, ROOM_LEFT_POS, ROOM_CENTER_POS, ROOM_RIGHT_POS } from "./
 
 function CameraDirectionTracker({ onFocusPanel }) {
   const { camera } = useThree();
+  const lastFocusedId = useRef(null);
   
   useFrame(() => {
     let closestPanel = null;
@@ -31,7 +33,9 @@ function CameraDirectionTracker({ onFocusPanel }) {
       }
     });
     
-    if (closestPanel) {
+    const nextFocusedId = closestPanel?.id || null;
+    if (lastFocusedId.current !== nextFocusedId) {
+      lastFocusedId.current = nextFocusedId;
       onFocusPanel(closestPanel);
     }
   });

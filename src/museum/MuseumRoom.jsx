@@ -1,4 +1,5 @@
-import { useTexture } from "@react-three/drei";
+import { Html, useTexture } from "@react-three/drei";
+import { useMemo } from "react";
 import * as THREE from "three";
 import {
   LOBBY_SIZE,
@@ -22,29 +23,56 @@ function useMuseumTextures() {
 
 // ── Constants ──
 const WALL_COLOR = "#30231b";
-const CEILING_COLOR = "#17110d";
+const CEILING_COLOR = "#261a12";
 const BASEBOARD_COLOR = "#5a3f28";
+const FLOOR_COLOR = "#f2d89b";
+const DOOR_WOOD_COLOR = "#3a2417";
+const DOOR_BRASS_COLOR = "#c59a3a";
+const TRIM_BRASS_COLOR = "#b88a32";
+const PLANT_LEAF_COLOR = "#385536";
+const PLANT_LEAF_DARK = "#243b25";
+const PLANT_POT_COLOR = "#4a2d1d";
 
 // ── Individual Room Component ──
-function Room({ position, size, accent, label, textures, openings = [] }) {
+function Room({
+  position,
+  size,
+  accent,
+  label,
+  textures,
+  openings = [],
+  openingLabels = {},
+  chandelier = "small",
+  decor = "room",
+}) {
   const { w, d, h } = size;
   const { damask, marble } = textures;
 
   // Clone textures for this room to avoid sharing repeat state
-  const wallTex = damask.clone();
-  wallTex.wrapS = wallTex.wrapT = THREE.RepeatWrapping;
-  wallTex.repeat.set(w / 3, h / 3);
+  const wallTex = useMemo(() => {
+    const tex = damask.clone();
+    tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+    tex.repeat.set(w / 3, h / 3);
+    return tex;
+  }, [damask, h, w]);
 
-  const wallTexSide = damask.clone();
-  wallTexSide.wrapS = wallTexSide.wrapT = THREE.RepeatWrapping;
-  wallTexSide.repeat.set(d / 3, h / 3);
+  const wallTexSide = useMemo(() => {
+    const tex = damask.clone();
+    tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+    tex.repeat.set(d / 3, h / 3);
+    return tex;
+  }, [damask, d, h]);
 
-  const floorTex = marble.clone();
-  floorTex.wrapS = floorTex.wrapT = THREE.RepeatWrapping;
-  floorTex.repeat.set(w / 4, d / 4);
+  const floorTex = useMemo(() => {
+    const tex = marble.clone();
+    tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+    tex.repeat.set(w / 4, d / 4);
+    return tex;
+  }, [marble, d, w]);
 
   // Determine which walls have openings
   const hasOpening = (wall) => openings.includes(wall);
+  const getOpeningLabel = (wall) => openingLabels[wall] || label;
 
   return (
     <group position={position}>
@@ -53,9 +81,9 @@ function Room({ position, size, accent, label, textures, openings = [] }) {
         <planeGeometry args={[w, d]} />
         <meshStandardMaterial
           map={floorTex}
-          color="#f5e6c8"
-          roughness={0.35}
-          metalness={0.08}
+          color={FLOOR_COLOR}
+          roughness={0.36}
+          metalness={0.03}
         />
       </mesh>
 
@@ -64,6 +92,16 @@ function Room({ position, size, accent, label, textures, openings = [] }) {
         <planeGeometry args={[w, d]} />
         <meshStandardMaterial color={CEILING_COLOR} roughness={0.95} />
       </mesh>
+
+      <CeilingTrim width={w} depth={d} height={h} />
+      <MuseumChandelier
+        height={h}
+        radius={chandelier === "large" ? 1.45 : 0.9}
+        scale={chandelier === "large" ? 1 : 0.72}
+        intensity={chandelier === "large" ? 0.9 : 0.45}
+      />
+
+      {decor === "lobby" && <LobbyDecor />}
 
       {/* Back Wall (z = -d/2) — may have opening */}
       {!hasOpening("back") ? (
@@ -84,7 +122,7 @@ function Room({ position, size, accent, label, textures, openings = [] }) {
           openH={4.5}
           tex={wallTex}
           accent={accent}
-          label={label}
+          label={getOpeningLabel("back")}
         />
       )}
 
@@ -108,7 +146,7 @@ function Room({ position, size, accent, label, textures, openings = [] }) {
           tex={wallTex}
           flipZ
           accent={accent}
-          label={label}
+          label={getOpeningLabel("front")}
         />
       )}
 
@@ -132,7 +170,7 @@ function Room({ position, size, accent, label, textures, openings = [] }) {
           tex={wallTexSide}
           rotateY={Math.PI / 2}
           accent={accent}
-          label={label}
+          label={getOpeningLabel("left")}
         />
       )}
 
@@ -156,7 +194,7 @@ function Room({ position, size, accent, label, textures, openings = [] }) {
           tex={wallTexSide}
           rotateY={-Math.PI / 2}
           accent={accent}
-          label={label}
+          label={getOpeningLabel("right")}
         />
       )}
 
@@ -169,6 +207,142 @@ function Room({ position, size, accent, label, textures, openings = [] }) {
         <boxGeometry args={[d, 0.16, 0.16]} />
         <meshStandardMaterial color={BASEBOARD_COLOR} roughness={0.58} />
       </mesh>
+    </group>
+  );
+}
+
+function CeilingTrim({ width, depth, height }) {
+  const topY = height - 0.28;
+  const brassY = height - 0.48;
+
+  return (
+    <group>
+      <mesh position={[0, topY, -depth / 2 + 0.12]}>
+        <boxGeometry args={[width - 0.16, 0.24, 0.24]} />
+        <meshStandardMaterial color={DOOR_WOOD_COLOR} roughness={0.48} metalness={0.12} />
+      </mesh>
+      <mesh position={[0, topY, depth / 2 - 0.12]}>
+        <boxGeometry args={[width - 0.16, 0.24, 0.24]} />
+        <meshStandardMaterial color={DOOR_WOOD_COLOR} roughness={0.48} metalness={0.12} />
+      </mesh>
+      <mesh position={[-width / 2 + 0.12, topY, 0]}>
+        <boxGeometry args={[0.24, 0.24, depth - 0.16]} />
+        <meshStandardMaterial color={DOOR_WOOD_COLOR} roughness={0.48} metalness={0.12} />
+      </mesh>
+      <mesh position={[width / 2 - 0.12, topY, 0]}>
+        <boxGeometry args={[0.24, 0.24, depth - 0.16]} />
+        <meshStandardMaterial color={DOOR_WOOD_COLOR} roughness={0.48} metalness={0.12} />
+      </mesh>
+
+      <mesh position={[0, brassY, -depth / 2 + 0.2]}>
+        <boxGeometry args={[width - 0.9, 0.1, 0.12]} />
+        <meshStandardMaterial color={TRIM_BRASS_COLOR} roughness={0.35} metalness={0.35} />
+      </mesh>
+      <mesh position={[0, brassY, depth / 2 - 0.2]}>
+        <boxGeometry args={[width - 0.9, 0.1, 0.12]} />
+        <meshStandardMaterial color={TRIM_BRASS_COLOR} roughness={0.35} metalness={0.35} />
+      </mesh>
+      <mesh position={[-width / 2 + 0.2, brassY, 0]}>
+        <boxGeometry args={[0.12, 0.1, depth - 0.9]} />
+        <meshStandardMaterial color={TRIM_BRASS_COLOR} roughness={0.35} metalness={0.35} />
+      </mesh>
+      <mesh position={[width / 2 - 0.2, brassY, 0]}>
+        <boxGeometry args={[0.12, 0.1, depth - 0.9]} />
+        <meshStandardMaterial color={TRIM_BRASS_COLOR} roughness={0.35} metalness={0.35} />
+      </mesh>
+    </group>
+  );
+}
+
+function LobbyDecor() {
+  return (
+    <group>
+      <MuseumPlanter position={[-7.8, 0, 4.5]} rotation={[0, Math.PI / 7, 0]} />
+      <MuseumPlanter position={[7.8, 0, 4.5]} rotation={[0, -Math.PI / 7, 0]} />
+      <MuseumPlanter position={[-7.7, 0, -4.9]} rotation={[0, Math.PI / 1.4, 0]} scale={0.86} />
+      <MuseumPlanter position={[7.7, 0, -4.9]} rotation={[0, -Math.PI / 1.4, 0]} scale={0.86} />
+    </group>
+  );
+}
+
+function MuseumPlanter({ position, rotation = [0, 0, 0], scale = 1 }) {
+  const leaves = [
+    [-0.28, 1.55, 0, 0.8, 1.3, 0.42, 0.35],
+    [0.28, 1.5, 0.08, 0.7, 1.2, 0.4, -0.35],
+    [0, 1.7, -0.22, 0.75, 1.15, 0.38, 0],
+    [-0.18, 1.28, 0.25, 0.55, 0.95, 0.34, 0.75],
+    [0.2, 1.32, 0.28, 0.55, 0.95, 0.34, -0.75],
+  ];
+
+  return (
+    <group position={position} rotation={rotation} scale={scale}>
+      <mesh position={[0, 0.28, 0]}>
+        <cylinderGeometry args={[0.42, 0.5, 0.56, 24]} />
+        <meshStandardMaterial color={PLANT_POT_COLOR} roughness={0.62} metalness={0.08} />
+      </mesh>
+      <mesh position={[0, 0.6, 0]}>
+        <cylinderGeometry args={[0.47, 0.43, 0.12, 24]} />
+        <meshStandardMaterial color={DOOR_BRASS_COLOR} roughness={0.38} metalness={0.28} />
+      </mesh>
+      <mesh position={[0, 0.82, 0]}>
+        <cylinderGeometry args={[0.06, 0.08, 0.72, 10]} />
+        <meshStandardMaterial color="#2b1a10" roughness={0.7} />
+      </mesh>
+      {leaves.map(([x, y, z, sx, sy, sz, rz], index) => (
+        <mesh key={index} position={[x, y, z]} rotation={[0.2, 0, rz]} scale={[sx, sy, sz]}>
+          <sphereGeometry args={[0.38, 20, 12]} />
+          <meshStandardMaterial
+            color={index % 2 === 0 ? PLANT_LEAF_COLOR : PLANT_LEAF_DARK}
+            roughness={0.8}
+          />
+        </mesh>
+      ))}
+    </group>
+  );
+}
+
+function MuseumChandelier({ height, radius, scale, intensity }) {
+  const ringY = height - 1.25 * scale;
+  const bulbY = ringY - 0.08 * scale;
+  const bulbPositions = Array.from({ length: 6 }, (_, index) => {
+    const angle = (index / 6) * Math.PI * 2;
+    return [Math.cos(angle) * radius, bulbY, Math.sin(angle) * radius];
+  });
+
+  return (
+    <group>
+      <pointLight position={[0, ringY - 0.25, 0]} intensity={intensity} distance={10 * scale} color="#ffd89a" />
+
+      <mesh position={[0, height - 0.42 * scale, 0]}>
+        <cylinderGeometry args={[0.03 * scale, 0.03 * scale, 0.75 * scale, 10]} />
+        <meshStandardMaterial color={DOOR_BRASS_COLOR} roughness={0.28} metalness={0.55} />
+      </mesh>
+      <mesh position={[0, ringY + 0.28 * scale, 0]}>
+        <cylinderGeometry args={[0.22 * scale, 0.18 * scale, 0.1 * scale, 24]} />
+        <meshStandardMaterial color={DOOR_BRASS_COLOR} roughness={0.32} metalness={0.5} />
+      </mesh>
+
+      <mesh position={[0, ringY, 0]} rotation={[Math.PI / 2, 0, 0]}>
+        <torusGeometry args={[radius, 0.035 * scale, 12, 72]} />
+        <meshStandardMaterial color={DOOR_BRASS_COLOR} roughness={0.28} metalness={0.55} />
+      </mesh>
+      <mesh position={[0, height - 0.06, 0]} rotation={[Math.PI / 2, 0, 0]}>
+        <torusGeometry args={[radius * 0.72, 0.025 * scale, 10, 64]} />
+        <meshStandardMaterial color={TRIM_BRASS_COLOR} roughness={0.35} metalness={0.36} />
+      </mesh>
+
+      {bulbPositions.map((pos, index) => (
+        <mesh key={index} position={pos}>
+          <sphereGeometry args={[0.1 * scale, 18, 18]} />
+          <meshStandardMaterial
+            color="#ffe5b5"
+            emissive="#ffc978"
+            emissiveIntensity={0.65}
+            roughness={0.2}
+            metalness={0.05}
+          />
+        </mesh>
+      ))}
     </group>
   );
 }
@@ -210,19 +384,62 @@ function WallWithOpening({
         <meshStandardMaterial map={tex} color={WALL_COLOR} roughness={0.85} />
       </mesh>
 
-      {/* Archway frame accents */}
-      <mesh position={[-(openW / 2), openH / 2, 0.26]}>
-        <boxGeometry args={[0.15, openH, 0.15]} />
-        <meshStandardMaterial color={accent} roughness={0.4} metalness={0.3} />
+      {/* Layered museum door casing */}
+      <mesh position={[-(openW / 2 + 0.17), openH / 2, 0.31]}>
+        <boxGeometry args={[0.34, openH + 0.18, 0.24]} />
+        <meshStandardMaterial color={DOOR_WOOD_COLOR} roughness={0.42} metalness={0.16} />
       </mesh>
-      <mesh position={[(openW / 2), openH / 2, 0.26]}>
-        <boxGeometry args={[0.15, openH, 0.15]} />
-        <meshStandardMaterial color={accent} roughness={0.4} metalness={0.3} />
+      <mesh position={[(openW / 2 + 0.17), openH / 2, 0.31]}>
+        <boxGeometry args={[0.34, openH + 0.18, 0.24]} />
+        <meshStandardMaterial color={DOOR_WOOD_COLOR} roughness={0.42} metalness={0.16} />
       </mesh>
-      <mesh position={[0, openH, 0.26]}>
-        <boxGeometry args={[openW + 0.3, 0.15, 0.15]} />
-        <meshStandardMaterial color={accent} roughness={0.4} metalness={0.3} />
+      <mesh position={[0, openH + 0.16, 0.31]}>
+        <boxGeometry args={[openW + 0.7, 0.32, 0.24]} />
+        <meshStandardMaterial color={DOOR_WOOD_COLOR} roughness={0.42} metalness={0.16} />
       </mesh>
+      <mesh position={[0, 0.05, 0.31]}>
+        <boxGeometry args={[openW + 0.66, 0.1, 0.22]} />
+        <meshStandardMaterial color="#1b120d" roughness={0.48} metalness={0.18} />
+      </mesh>
+
+      <mesh position={[-openW / 2, openH / 2, 0.46]}>
+        <boxGeometry args={[0.07, openH + 0.03, 0.08]} />
+        <meshStandardMaterial color={DOOR_BRASS_COLOR} roughness={0.32} metalness={0.42} />
+      </mesh>
+      <mesh position={[openW / 2, openH / 2, 0.46]}>
+        <boxGeometry args={[0.07, openH + 0.03, 0.08]} />
+        <meshStandardMaterial color={DOOR_BRASS_COLOR} roughness={0.32} metalness={0.42} />
+      </mesh>
+      <mesh position={[0, openH, 0.46]}>
+        <boxGeometry args={[openW + 0.1, 0.07, 0.08]} />
+        <meshStandardMaterial color={DOOR_BRASS_COLOR} roughness={0.32} metalness={0.42} />
+      </mesh>
+
+      {label && (
+        <Html position={[0, openH + 0.47, 0.4]} transform center scale={0.3}>
+          <div
+            style={{
+              minWidth: 220,
+              border: `1px solid ${accent}70`,
+              borderRadius: 999,
+              background: "rgba(12, 8, 5, 0.84)",
+              boxShadow: `0 0 14px ${accent}30`,
+              color: "#fff8ed",
+              fontFamily: "'Outfit', sans-serif",
+              fontSize: 12,
+              fontWeight: 700,
+              letterSpacing: "0.09em",
+              padding: "6px 12px",
+              pointerEvents: "none",
+              textAlign: "center",
+              textTransform: "uppercase",
+              whiteSpace: "normal",
+            }}
+          >
+            {label}
+          </div>
+        </Html>
+      )}
     </group>
   );
 }
@@ -236,26 +453,34 @@ function Hallway({ from, to, axis, textures }) {
   let cx, cz, length;
 
   if (axis === "x") {
-    // Horizontal hallway
-    cx = (from[0] + to[0]) / 2;
+    const direction = to[0] < from[0] ? -1 : 1;
+    const fromEdge = from[0] + direction * (LOBBY_SIZE.w / 2);
+    const toEdge = to[0] - direction * (ROOM_SIZE.w / 2);
+    cx = (fromEdge + toEdge) / 2;
     cz = (from[2] + to[2]) / 2;
-    length = Math.abs(from[0] - to[0]) - 10 - 6; // subtract half-widths of lobby and room
-    if (length < 1) length = 2;
+    length = Math.max(0.01, Math.abs(toEdge - fromEdge));
   } else {
-    // Vertical hallway (z-axis)
     cx = (from[0] + to[0]) / 2;
-    cz = (from[2] + to[2]) / 2;
-    length = Math.abs(from[2] - to[2]) - 7 - 5; // subtract half-depths
-    if (length < 1) length = 2;
+    const direction = to[2] < from[2] ? -1 : 1;
+    const fromEdge = from[2] + direction * (LOBBY_SIZE.d / 2);
+    const toEdge = to[2] - direction * (ROOM_SIZE.d / 2);
+    cz = (fromEdge + toEdge) / 2;
+    length = Math.max(0.01, Math.abs(toEdge - fromEdge));
   }
 
-  const floorTex = marble.clone();
-  floorTex.wrapS = floorTex.wrapT = THREE.RepeatWrapping;
-  floorTex.repeat.set(1, length / 4);
+  const floorTex = useMemo(() => {
+    const tex = marble.clone();
+    tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+    tex.repeat.set(1, length / 4);
+    return tex;
+  }, [marble, length]);
 
-  const wallTex = damask.clone();
-  wallTex.wrapS = wallTex.wrapT = THREE.RepeatWrapping;
-  wallTex.repeat.set(length / 3, h / 3);
+  const wallTex = useMemo(() => {
+    const tex = damask.clone();
+    tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+    tex.repeat.set(length / 3, h / 3);
+    return tex;
+  }, [damask, length]);
 
   const isHorizontal = axis === "x";
   const fW = isHorizontal ? length : hw;
@@ -266,7 +491,7 @@ function Hallway({ from, to, axis, textures }) {
       {/* Floor */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.01, 0]}>
         <planeGeometry args={[fW, fD]} />
-        <meshStandardMaterial map={floorTex} color="#f5e6c8" roughness={0.35} metalness={0.08} />
+        <meshStandardMaterial map={floorTex} color={FLOOR_COLOR} roughness={0.36} metalness={0.03} />
       </mesh>
 
       {/* Ceiling */}
@@ -317,14 +542,13 @@ export function MuseumRoom() {
         openings={["left", "right", "back"]}
         accent="#C5A028"
         label="Sảnh chính"
-      />
-
-      {/* ── Hallway: Lobby → Left Room ── */}
-      <Hallway
-        from={[0, 0, 0]}
-        to={ROOM_LEFT_POS}
-        axis="x"
-        textures={textures}
+        openingLabels={{
+          left: "Nhà nước hợp hiến, hợp pháp",
+          back: "Nhà nước thượng tôn pháp luật",
+          right: "Pháp quyền nhân nghĩa",
+        }}
+        chandelier="large"
+        decor="lobby"
       />
 
       {/* ── Hallway: Lobby → Center Room ── */}
@@ -335,14 +559,6 @@ export function MuseumRoom() {
         textures={textures}
       />
 
-      {/* ── Hallway: Lobby → Right Room ── */}
-      <Hallway
-        from={[0, 0, 0]}
-        to={ROOM_RIGHT_POS}
-        axis="x"
-        textures={textures}
-      />
-
       {/* ── LEFT ROOM: Nhà nước hợp hiến, hợp pháp ── */}
       <Room
         position={ROOM_LEFT_POS}
@@ -350,7 +566,7 @@ export function MuseumRoom() {
         textures={textures}
         openings={["right"]}
         accent="#C5272D"
-        label="Nhà nước hợp hiến, hợp pháp"
+        label=""
       />
 
       {/* ── CENTER ROOM: Nhà nước thượng tôn pháp luật ── */}
@@ -360,7 +576,7 @@ export function MuseumRoom() {
         textures={textures}
         openings={["front"]}
         accent="#C5A028"
-        label="Nhà nước thượng tôn pháp luật"
+        label=""
       />
 
       {/* ── RIGHT ROOM: Pháp quyền nhân nghĩa ── */}
@@ -370,7 +586,7 @@ export function MuseumRoom() {
         textures={textures}
         openings={["left"]}
         accent="#6F8F4E"
-        label="Pháp quyền nhân nghĩa"
+        label=""
       />
     </group>
   );

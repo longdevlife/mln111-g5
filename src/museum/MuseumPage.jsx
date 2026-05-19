@@ -4,14 +4,25 @@ import { MuseumGuide } from "./MuseumGuide";
 import { MuseumScene } from "./MuseumScene";
 import { museumRooms, defaultPanel } from "./museumData";
 
+const LOBBY_VIEW = {
+  id: "lobby",
+  title: "Sảnh trung tâm",
+  shortTitle: "Sảnh",
+  accent: "#C5A028",
+};
+
 export function MuseumPage() {
   const [selectedPanel, setSelectedPanel] = useState(null);
   const [focusedPanel, setFocusedPanel] = useState(defaultPanel);
 
-  const focusedRoom = museumRooms.find(r => r.id === focusedPanel?.roomId) || museumRooms[0];
+  const focusedRoom = focusedPanel
+    ? museumRooms.find(r => r.id === focusedPanel.roomId) || null
+    : null;
+  const activeView = focusedRoom || LOBBY_VIEW;
   const guideRoom = selectedPanel
-    ? museumRooms.find(r => r.id === selectedPanel.roomId) || focusedRoom
-    : focusedRoom;
+    ? museumRooms.find(r => r.id === selectedPanel.roomId) || museumRooms[0]
+    : focusedRoom || museumRooms[0];
+  const indicators = [LOBBY_VIEW, ...museumRooms];
 
   const handleSelectPanel = (panel) => {
     setSelectedPanel(panel);
@@ -63,7 +74,7 @@ export function MuseumPage() {
       >
         <div
           style={{
-            color: focusedRoom.accent || "#c5a028",
+            color: activeView.accent || "#c5a028",
             fontSize: 11,
             letterSpacing: "0.22em",
             textTransform: "uppercase",
@@ -71,7 +82,7 @@ export function MuseumPage() {
             fontWeight: "bold"
           }}
         >
-          Phòng: {focusedRoom.title}
+          {focusedRoom ? `Phòng: ${focusedRoom.title}` : "Sảnh trung tâm"}
         </div>
         <h1
           style={{
@@ -82,7 +93,7 @@ export function MuseumPage() {
             transition: "all 0.3s ease",
           }}
         >
-          {focusedPanel?.title || "Bảo tàng 3D"}
+          {focusedPanel?.title || "Triển lãm Nhà nước pháp quyền"}
         </h1>
         <p
           style={{
@@ -92,7 +103,7 @@ export function MuseumPage() {
             transition: "opacity 0.3s ease",
           }}
         >
-          {focusedPanel?.heading || "Di chuyển để xem nội dung"}
+          {focusedPanel?.heading || "Bước vào một phòng và hướng camera về từng bức tường nội dung."}
         </p>
       </section>
 
@@ -108,14 +119,14 @@ export function MuseumPage() {
           pointerEvents: "none",
         }}
       >
-        {museumRooms.map((room) => (
+        {indicators.map((room) => (
           <div
             key={room.id}
             style={{
-              width: room.id === focusedRoom.id ? 24 : 8,
+              width: room.id === activeView.id ? 24 : 8,
               height: 8,
               borderRadius: 4,
-              background: room.id === focusedRoom.id ? room.accent : "rgba(255,255,255,0.2)",
+              background: room.id === activeView.id ? room.accent : "rgba(255,255,255,0.2)",
               transition: "all 0.3s ease",
             }}
           />

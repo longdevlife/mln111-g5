@@ -22,9 +22,9 @@ export const HALLWAY_W = 4; // corridor width connecting rooms
 
 // Room center positions
 export const LOBBY_POS = [0, 0, 0];
-export const ROOM_LEFT_POS = [-16, 0, 2];
+export const ROOM_LEFT_POS = [-16, 0, 0];
 export const ROOM_CENTER_POS = [0, 0, -19];
-export const ROOM_RIGHT_POS = [16, 0, 2];
+export const ROOM_RIGHT_POS = [16, 0, 0];
 
 export const museumRooms = [
   {
@@ -42,9 +42,9 @@ export const museumRooms = [
         title: "Cơ sở lý thuyết",
         heading: "Vận hành theo pháp luật",
         guideText: "Hồ Chí Minh sớm nhận thức vai trò của Hiến pháp; yêu cầu bình đẳng pháp lý, xóa bỏ tòa án áp bức, thay sắc lệnh bằng đạo luật; Nhà nước phải tổ chức và vận hành theo pháp luật.",
-        // back wall of left room (facing +z)
-        position: [-16, 3, -2.9],
-        rotation: [0, 0, 0]
+        // visitor-left wall when entering from the lobby (south wall, facing -z)
+        position: [-16, 3, 4.9],
+        rotation: [0, Math.PI, 0]
       },
       {
         id: "room1-center",
@@ -53,8 +53,8 @@ export const museumRooms = [
         title: "Liên hệ thực tiễn",
         heading: "Tính Hợp Hiến & Uy Tín",
         guideText: "Tổng tuyển cử, Quốc hội, tính hợp hiến của bộ máy nhà nước; Bầu cử Quốc hội khóa XVI có 864 người ứng cử, xác nhận 500 đại biểu. Việt Nam tái đắc cử Hội đồng Nhân quyền LHQ.",
-        // left wall of left room (facing +x)
-        position: [-21.9, 3, 2],
+        // back wall of left room (west wall, facing +x)
+        position: [-21.9, 3, 0],
         rotation: [0, Math.PI / 2, 0]
       },
       {
@@ -64,9 +64,9 @@ export const museumRooms = [
         title: "Giá trị vận dụng",
         heading: "Nền tảng chính danh",
         guideText: "Quyền lực nhà nước chỉ chính danh khi xuất phát từ nhân dân; tạo nền tảng ổn định chính trị và tư cách pháp lý để hội nhập quốc tế (CPTPP, EVFTA, FDI).",
-        // right wall of left room (facing -x)
-        position: [-10.1, 3, 2],
-        rotation: [0, -Math.PI / 2, 0]
+        // visitor-right wall when entering from the lobby (north wall, facing +z)
+        position: [-16, 3, -4.9],
+        rotation: [0, 0, 0]
       }
     ]
   },
@@ -128,9 +128,9 @@ export const museumRooms = [
         title: "Cơ sở lý thuyết",
         heading: "Pháp luật vì con người",
         guideText: "Pháp luật không chỉ để cai trị mà phải vì con người; tiếp cận quyền con người toàn diện; nghiêm minh nhưng nhân văn.",
-        // left wall of right room (facing +x)
-        position: [10.1, 3, 2],
-        rotation: [0, Math.PI / 2, 0]
+        // visitor-left wall when entering from the lobby (north wall, facing +z)
+        position: [16, 3, -4.9],
+        rotation: [0, 0, 0]
       },
       {
         id: "room3-center",
@@ -139,9 +139,9 @@ export const museumRooms = [
         title: "Liên hệ thực tiễn",
         heading: "Chính sách hỗ trợ",
         guideText: "Chính sách hỗ trợ COVID-19 (Quyết định 23/2021/QĐ-TTg), vaccine miễn phí, ưu tiên nhóm nguy cơ cao, các chính sách vì dân.",
-        // back wall of right room (facing -z)
-        position: [16, 3, -2.9],
-        rotation: [0, 0, 0]
+        // back wall of right room (east wall, facing -x)
+        position: [21.9, 3, 0],
+        rotation: [0, -Math.PI / 2, 0]
       },
       {
         id: "room3-right",
@@ -150,9 +150,9 @@ export const museumRooms = [
         title: "Giá trị vận dụng",
         heading: "Quyền con người",
         guideText: "Bảo đảm quyền con người và công bằng xã hội; pháp luật là công cụ phục vụ và phát triển con người toàn diện.",
-        // right wall of right room (facing -x)
-        position: [21.9, 3, 2],
-        rotation: [0, -Math.PI / 2, 0]
+        // visitor-right wall when entering from the lobby (south wall, facing -z)
+        position: [16, 3, 4.9],
+        rotation: [0, Math.PI, 0]
       }
     ]
   }
@@ -162,25 +162,25 @@ export const museumPanels = museumRooms.flatMap((room) =>
   room.walls.map((wall) => ({ ...wall, roomAccent: room.accent, roomTitle: room.title, roomId: room.id }))
 );
 
-export const defaultPanel = museumPanels.find((panel) => panel.id === "room1-center");
+export const defaultPanel = null;
 
 /**
  * Collision zones — array of AABB boxes {minX, maxX, minZ, maxZ}
  * Player can move freely inside these zones.
  */
 export const WALKABLE_ZONES = [
-  // Lobby (20 wide × 14 deep, centered at 0,0)
-  { minX: -10, maxX: 10, minZ: -7, maxZ: 7 },
-  // Hallway to left room
-  { minX: -10, maxX: -10, minZ: 0, maxZ: 4 }, // handled by lobby overlap
-  // Left room (12 wide × 10 deep, centered at -16, 2)
-  { minX: -22, maxX: -10, minZ: -3, maxZ: 7 },
-  // Hallway to center room
-  { minX: -2, maxX: 2, minZ: -14, maxZ: -7 },
+  // Lobby, inset from wall edges so side rooms only connect through door zones.
+  { minX: -9.2, maxX: 9.2, minZ: -6.6, maxZ: 6.6 },
+  // Left doorway.
+  { minX: -10.8, maxX: -9.2, minZ: -1.8, maxZ: 1.8 },
+  // Left room.
+  { minX: -21.2, maxX: -10.8, minZ: -4.6, maxZ: 4.6 },
+  // Center hallway.
+  { minX: -1.8, maxX: 1.8, minZ: -14.4, maxZ: -6.4 },
   // Center room (12 wide × 10 deep, centered at 0, -19)
-  { minX: -6, maxX: 6, minZ: -24, maxZ: -14 },
-  // Hallway to right room
-  { minX: 10, maxX: 10, minZ: 0, maxZ: 4 }, // handled by lobby overlap
-  // Right room (12 wide × 10 deep, centered at 16, 2)
-  { minX: 10, maxX: 22, minZ: -3, maxZ: 7 },
+  { minX: -5.6, maxX: 5.6, minZ: -23.6, maxZ: -14.4 },
+  // Right doorway.
+  { minX: 9.2, maxX: 10.8, minZ: -1.8, maxZ: 1.8 },
+  // Right room.
+  { minX: 10.8, maxX: 21.2, minZ: -4.6, maxZ: 4.6 },
 ];

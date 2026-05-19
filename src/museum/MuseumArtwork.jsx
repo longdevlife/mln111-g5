@@ -75,7 +75,7 @@ export function MuseumArtwork({ panel, selected, onSelect }) {
       )}
 
       {/* Panel Labels */}
-      <Html position={[0, -0.18, 0.06]} transform center scale={0.45}>
+      <Html position={[0, -0.18, 0.06]} transform center scale={0.45} occlude>
         <div style={{ width: 260, textAlign: "center", color: "#f8efe4", pointerEvents: "none" }}>
           <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 22, lineHeight: 1.1 }}>{panel.title}</div>
           <div style={{ marginTop: 8, fontSize: 10, letterSpacing: "0.16em", textTransform: "uppercase", color: "#c8bda9" }}>
@@ -85,7 +85,7 @@ export function MuseumArtwork({ panel, selected, onSelect }) {
       </Html>
 
       {(near || selected) && (
-        <Html position={[0, 1.65, 0.12]} transform center scale={0.42}>
+        <Html position={[0, 1.65, 0.12]} transform center scale={0.42} occlude>
           <button
             type="button"
             onClick={() => onSelect(panel)}
