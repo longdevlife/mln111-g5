@@ -6,15 +6,15 @@ export const pageAtom = atom(0);
 export const viewModeAtom = atom("showcase"); // "showcase" | "reading"
 
 export const pages = [
-  { front: "Bia dau", back: "trang1" },
+  { front: "!!!bìa đầu", back: "trang1" },
   { front: "trang2", back: "trang3" },
   { front: "trang4", back: "trang5" },
   { front: "trang6", back: "trang7" },
   { front: "trang8", back: "trang9" },
   { front: "trang10", back: "trang11" },
-  { front: "trang12", back: "trang13" },
+  { front: "trang12", back: "!!!trang13" },
   { front: "trang14", back: "trang15" },
-  { front: "trang16", back: "Bia dau" }, // Bìa sau - tạm dùng Bia dau, sẽ thay sau
+  { front: "!!!trang16", back: "!!!bìa cuối" },
 ];
 
 const pageLabels = [
