@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-import { MuseumGuide } from "./MuseumGuide";
 import { MuseumScene } from "./MuseumScene";
 import { museumRooms, defaultPanel } from "./museumData";
 
@@ -14,15 +13,24 @@ const LOBBY_VIEW = {
 export function MuseumPage() {
   const [selectedPanel, setSelectedPanel] = useState(null);
   const [focusedPanel, setFocusedPanel] = useState(defaultPanel);
+  const displayPanel = selectedPanel || focusedPanel;
 
-  const focusedRoom = focusedPanel
-    ? museumRooms.find(r => r.id === focusedPanel.roomId) || null
+  const focusedRoom = displayPanel
+    ? museumRooms.find(r => r.id === displayPanel.roomId) || null
     : null;
   const activeView = focusedRoom || LOBBY_VIEW;
-  const guideRoom = selectedPanel
-    ? museumRooms.find(r => r.id === selectedPanel.roomId) || museumRooms[0]
-    : focusedRoom || museumRooms[0];
   const indicators = [LOBBY_VIEW, ...museumRooms];
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.code === "Escape") {
+        setSelectedPanel(null);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   const handleSelectPanel = (panel) => {
     setSelectedPanel(panel);
@@ -45,6 +53,7 @@ export function MuseumPage() {
     >
       <MuseumScene
         selectedPanel={selectedPanel}
+        focusedPanel={focusedPanel}
         onSelectPanel={handleSelectPanel}
         onFocusPanel={setFocusedPanel}
       />
@@ -93,7 +102,7 @@ export function MuseumPage() {
             transition: "all 0.3s ease",
           }}
         >
-          {focusedPanel?.title || "Triển lãm Nhà nước pháp quyền"}
+          {displayPanel?.title || "Triển lãm Nhà nước pháp quyền"}
         </h1>
         <p
           style={{
@@ -103,9 +112,88 @@ export function MuseumPage() {
             transition: "opacity 0.3s ease",
           }}
         >
-          {focusedPanel?.heading || "Bước vào một phòng và hướng camera về từng bức tường nội dung."}
+          {displayPanel?.heading || "Bước vào một phòng và hướng camera về từng bức tường nội dung."}
         </p>
       </section>
+
+      {selectedPanel && (
+        <aside
+          style={{
+            position: "absolute",
+            right: "clamp(18px, 4vw, 56px)",
+            bottom: "clamp(86px, 12vh, 116px)",
+            zIndex: 18,
+            width: "min(360px, calc(100vw - 36px))",
+            border: `1px solid ${selectedPanel.roomAccent}55`,
+            borderRadius: 14,
+            background: "linear-gradient(145deg, rgba(16, 10, 6, 0.9), rgba(42, 28, 18, 0.78))",
+            boxShadow: "0 24px 70px rgba(0,0,0,0.46)",
+            color: "#fff8ed",
+            padding: "18px 20px",
+            pointerEvents: "auto",
+            backdropFilter: "blur(16px)",
+          }}
+        >
+          <button
+            type="button"
+            onClick={() => setSelectedPanel(null)}
+            aria-label="Bỏ ghim tranh"
+            style={{
+              position: "absolute",
+              right: 12,
+              top: 10,
+              width: 32,
+              height: 32,
+              border: "1px solid rgba(255,255,255,0.12)",
+              borderRadius: "50%",
+              background: "rgba(255,255,255,0.04)",
+              color: "rgba(255,248,237,0.76)",
+              cursor: "pointer",
+              fontSize: 20,
+              lineHeight: "28px",
+            }}
+          >
+            ×
+          </button>
+          <div
+            style={{
+              color: selectedPanel.roomAccent,
+              fontSize: 10,
+              fontWeight: 700,
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+            }}
+          >
+            Đang ghim tranh
+          </div>
+          <h2
+            style={{
+              margin: "8px 34px 8px 0",
+              fontFamily: "'Playfair Display', serif",
+              fontSize: 26,
+              lineHeight: 1.12,
+            }}
+          >
+            {selectedPanel.title}
+          </h2>
+          <p style={{ margin: 0, color: "rgba(255,248,237,0.72)", lineHeight: 1.65, fontSize: 14 }}>
+            {selectedPanel.heading}
+          </p>
+          <div
+            style={{
+              marginTop: 14,
+              paddingTop: 12,
+              borderTop: "1px solid rgba(255,255,255,0.1)",
+              color: "rgba(255,248,237,0.54)",
+              fontSize: 11,
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+            }}
+          >
+            {selectedPanel.roomTitle}
+          </div>
+        </aside>
+      )}
 
       <div
         style={{
@@ -132,60 +220,6 @@ export function MuseumPage() {
           />
         ))}
       </div>
-
-      <div
-        style={{
-          position: "absolute",
-          left: "clamp(18px, 4vw, 56px)",
-          bottom: "clamp(18px, 5vw, 48px)",
-          zIndex: 16,
-          display: "flex",
-          flexWrap: "wrap",
-          gap: 8,
-          color: "rgba(255,248,237,0.72)",
-          fontSize: 11,
-          letterSpacing: "0.08em",
-          textTransform: "uppercase",
-          pointerEvents: "none",
-        }}
-      >
-        <span
-          style={{
-            border: "1px solid rgba(255,255,255,0.12)",
-            borderRadius: 999,
-            padding: "8px 12px",
-            background: "rgba(0,0,0,0.28)",
-          }}
-        >
-          W/A/S/D di chuyển
-        </span>
-        <span
-          style={{
-            border: "1px solid rgba(255,255,255,0.12)",
-            borderRadius: 999,
-            padding: "8px 12px",
-            background: "rgba(0,0,0,0.28)",
-          }}
-        >
-          Mũi tên xoay
-        </span>
-        <span
-          style={{
-            border: "1px solid rgba(255,255,255,0.12)",
-            borderRadius: 999,
-            padding: "8px 12px",
-            background: "rgba(0,0,0,0.28)",
-          }}
-        >
-          Click tranh
-        </span>
-      </div>
-
-      <MuseumGuide
-        selectedPanel={selectedPanel}
-        onSelectPanel={handleSelectPanel}
-        currentRoom={guideRoom}
-      />
     </main>
   );
 }

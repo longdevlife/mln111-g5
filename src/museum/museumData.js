@@ -26,7 +26,7 @@ export const ROOM_LEFT_POS = [-16, 0, 0];
 export const ROOM_CENTER_POS = [0, 0, -19];
 export const ROOM_RIGHT_POS = [16, 0, 0];
 
-export const museumRooms = [
+const rawRooms = [
   {
     id: "constitutional-legal",
     title: "Nhà nước hợp hiến, hợp pháp",
@@ -157,6 +157,41 @@ export const museumRooms = [
     ]
   }
 ];
+
+let globalPanelCount = 1;
+const panelCopyLabels = ["Tư liệu I", "Tư liệu II", "Tư liệu III"];
+
+// Automatically multiply paintings to 3 per wall
+export const museumRooms = rawRooms.map(room => {
+  const expandedWalls = [];
+  room.walls.forEach(wall => {
+    for (let i = -1; i <= 1; i++) {
+      let newPos = [...wall.position];
+      // Check rotation to know which axis is along the wall
+      // If rotation Y is Math.PI/2 or -Math.PI/2, it faces X axis -> wall spans Z axis
+      const isFacingX = Math.abs(Math.cos(wall.rotation[1])) < 0.01;
+
+      if (isFacingX) {
+        newPos[2] += i * 3.2; // Spread 3.2 units along Z
+      } else {
+        newPos[0] += i * 3.2; // Spread 3.2 units along X
+      }
+
+      const imgIndex = ((globalPanelCount - 1) % 16) + 1;
+      globalPanelCount++;
+
+      expandedWalls.push({
+        ...wall,
+        id: `${wall.id}-${i + 2}`,
+        title: `${wall.title} - ${panelCopyLabels[i + 1]}`,
+        sequenceLabel: panelCopyLabels[i + 1],
+        position: newPos,
+        imageSrc: `/textures/trang${imgIndex}.png`
+      });
+    }
+  });
+  return { ...room, walls: expandedWalls };
+});
 
 export const museumPanels = museumRooms.flatMap((room) =>
   room.walls.map((wall) => ({ ...wall, roomAccent: room.accent, roomTitle: room.title, roomId: room.id }))

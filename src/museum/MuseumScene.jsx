@@ -1,4 +1,4 @@
-import { ContactShadows, Environment, Sparkles } from "@react-three/drei";
+import { ContactShadows, Sparkles } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { useRef } from "react";
 import * as THREE from "three";
@@ -43,47 +43,36 @@ function CameraDirectionTracker({ onFocusPanel }) {
   return null;
 }
 
-function MuseumWorld({ selectedPanel, onSelectPanel, onFocusPanel }) {
+function MuseumWorld({ selectedPanel, focusedPanel, onSelectPanel, onFocusPanel }) {
   return (
     <>
       <color attach="background" args={["#090604"]} />
-      <fog attach="fog" args={["#090604", 8, 40]} />
+      <fog attach="fog" args={["#090604", 16, 55]} />
 
-      <ambientLight intensity={0.3} />
-      <directionalLight position={[4, 7, 5]} intensity={0.6} />
+      <ambientLight intensity={0.9} />
+      <hemisphereLight args={["#ffffff", "#4a3324", 0.9]} />
+      <directionalLight position={[4, 7, 5]} intensity={0.7} />
+      <pointLight position={[0, 5.2, 5.2]} intensity={0.4} color="#f4d49a" distance={12} />
       
       {/* ── Lobby Lights ── */}
-      <spotLight position={[0, 5.8, 0]} angle={0.7} penumbra={0.8} intensity={3.2} color="#f4d49a" castShadow />
-      <pointLight position={[0, 4, 0]} intensity={0.6} color="#f4d49a" distance={18} />
+      <spotLight position={[0, 5.8, 0]} angle={0.85} penumbra={0.8} intensity={3.5} color="#fef0d8" castShadow />
       
       {/* ── Left Room Lights (Red accent) ── */}
       <spotLight 
         position={[ROOM_LEFT_POS[0], 5.8, ROOM_LEFT_POS[2]]} 
-        angle={0.6} penumbra={0.8} intensity={2.5} color="#f4c8a0" castShadow 
-      />
-      <pointLight 
-        position={[ROOM_LEFT_POS[0], 3, ROOM_LEFT_POS[2]]} 
-        intensity={0.3} color="#C5272D" distance={12} 
+        angle={0.85} penumbra={0.8} intensity={3.5} color="#ffede0" castShadow 
       />
 
       {/* ── Center Room Lights (Gold accent) ── */}
       <spotLight 
         position={[ROOM_CENTER_POS[0], 5.8, ROOM_CENTER_POS[2]]} 
-        angle={0.6} penumbra={0.8} intensity={2.5} color="#f4d49a" castShadow 
-      />
-      <pointLight 
-        position={[ROOM_CENTER_POS[0], 3, ROOM_CENTER_POS[2]]} 
-        intensity={0.3} color="#C5A028" distance={12} 
+        angle={0.85} penumbra={0.8} intensity={3.5} color="#fef0d8" castShadow 
       />
 
       {/* ── Right Room Lights (Green accent) ── */}
       <spotLight 
         position={[ROOM_RIGHT_POS[0], 5.8, ROOM_RIGHT_POS[2]]} 
-        angle={0.6} penumbra={0.8} intensity={2.5} color="#d4e4c0" castShadow 
-      />
-      <pointLight 
-        position={[ROOM_RIGHT_POS[0], 3, ROOM_RIGHT_POS[2]]} 
-        intensity={0.3} color="#6F8F4E" distance={12} 
+        angle={0.85} penumbra={0.8} intensity={3.5} color="#eef7e0" castShadow 
       />
 
       {/* Sparkles in lobby area */}
@@ -98,6 +87,7 @@ function MuseumWorld({ selectedPanel, onSelectPanel, onFocusPanel }) {
           key={panel.id}
           panel={panel}
           selected={selectedPanel?.id === panel.id}
+          focused={focusedPanel?.id === panel.id}
           onSelect={onSelectPanel}
         />
       ))}
@@ -107,12 +97,11 @@ function MuseumWorld({ selectedPanel, onSelectPanel, onFocusPanel }) {
       <ContactShadows position={[ROOM_LEFT_POS[0], 0.02, ROOM_LEFT_POS[2]]} opacity={0.3} scale={14} blur={2.8} far={4} frames={1} color="#000000" />
       <ContactShadows position={[ROOM_CENTER_POS[0], 0.02, ROOM_CENTER_POS[2]]} opacity={0.3} scale={14} blur={2.8} far={4} frames={1} color="#000000" />
       <ContactShadows position={[ROOM_RIGHT_POS[0], 0.02, ROOM_RIGHT_POS[2]]} opacity={0.3} scale={14} blur={2.8} far={4} frames={1} color="#000000" />
-      <Environment preset="warehouse" />
     </>
   );
 }
 
-export function MuseumScene({ selectedPanel, onSelectPanel, onFocusPanel }) {
+export function MuseumScene({ selectedPanel, focusedPanel, onSelectPanel, onFocusPanel }) {
   return (
     <Canvas
       camera={{ position: [0, 2.65, 5], rotation: [0, 0, 0], fov: 55 }}
@@ -120,7 +109,12 @@ export function MuseumScene({ selectedPanel, onSelectPanel, onFocusPanel }) {
       shadows={false}
       performance={{ min: 0.5 }}
     >
-      <MuseumWorld selectedPanel={selectedPanel} onSelectPanel={onSelectPanel} onFocusPanel={onFocusPanel} />
+      <MuseumWorld
+        selectedPanel={selectedPanel}
+        focusedPanel={focusedPanel}
+        onSelectPanel={onSelectPanel}
+        onFocusPanel={onFocusPanel}
+      />
     </Canvas>
   );
 }

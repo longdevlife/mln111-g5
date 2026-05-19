@@ -3,6 +3,10 @@ import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { WALKABLE_ZONES } from "./museumData";
 
+const DEFAULT_CAMERA_HEIGHT = 2.65;
+const MIN_LOOK_PITCH = -0.5;
+const MAX_LOOK_PITCH = 0.58;
+
 /**
  * Check if a point (x, z) is inside any walkable zone.
  */
@@ -18,6 +22,8 @@ export function MuseumPlayer() {
   const velocity = useRef(new THREE.Vector3());
 
   useEffect(() => {
+    camera.rotation.order = "YXZ";
+
     const handleKeyDown = (event) => {
       keys.current[event.code] = true;
     };
@@ -36,19 +42,25 @@ export function MuseumPlayer() {
 
   useFrame((_, delta) => {
     const speed = 4.2;
-    const rotateSpeed = 1.5;
+    const yawSpeed = 1.5;
+    const pitchSpeed = 1.1;
 
     velocity.current.set(0, 0, 0);
 
-    if (keys.current.KeyW || keys.current.ArrowUp) velocity.current.z -= speed;
-    if (keys.current.KeyS || keys.current.ArrowDown) velocity.current.z += speed;
+    if (keys.current.KeyW) velocity.current.z -= speed;
+    if (keys.current.KeyS) velocity.current.z += speed;
     if (keys.current.KeyA) velocity.current.x -= speed;
     if (keys.current.KeyD) velocity.current.x += speed;
 
-    if (keys.current.ArrowLeft) camera.rotation.y += rotateSpeed * delta;
-    if (keys.current.ArrowRight) camera.rotation.y -= rotateSpeed * delta;
+    if (keys.current.ArrowLeft) camera.rotation.y += yawSpeed * delta;
+    if (keys.current.ArrowRight) camera.rotation.y -= yawSpeed * delta;
+    if (keys.current.ArrowUp) {
+      camera.rotation.x = Math.min(MAX_LOOK_PITCH, camera.rotation.x + pitchSpeed * delta);
+    }
+    if (keys.current.ArrowDown) {
+      camera.rotation.x = Math.max(MIN_LOOK_PITCH, camera.rotation.x - pitchSpeed * delta);
+    }
 
-    camera.rotation.x = 0;
     camera.rotation.z = 0;
 
     const angle = camera.rotation.y;
@@ -72,7 +84,7 @@ export function MuseumPlayer() {
       camera.position.z = tryZ;
     }
 
-    camera.position.y = 2.65;
+    camera.position.y = DEFAULT_CAMERA_HEIGHT;
   });
 
   return null;

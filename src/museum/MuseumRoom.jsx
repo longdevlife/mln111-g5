@@ -22,16 +22,13 @@ function useMuseumTextures() {
 }
 
 // ── Constants ──
-const WALL_COLOR = "#30231b";
-const CEILING_COLOR = "#261a12";
+const WALL_COLOR = "#3d2e24";
+const CEILING_COLOR = "#4a382d";
 const BASEBOARD_COLOR = "#5a3f28";
 const FLOOR_COLOR = "#f2d89b";
 const DOOR_WOOD_COLOR = "#3a2417";
 const DOOR_BRASS_COLOR = "#c59a3a";
 const TRIM_BRASS_COLOR = "#b88a32";
-const PLANT_LEAF_COLOR = "#385536";
-const PLANT_LEAF_DARK = "#243b25";
-const PLANT_POT_COLOR = "#4a2d1d";
 
 // ── Individual Room Component ──
 function Room({
@@ -101,7 +98,11 @@ function Room({
         intensity={chandelier === "large" ? 0.9 : 0.45}
       />
 
-      {decor === "lobby" && <LobbyDecor />}
+      {decor === "lobby" ? (
+        <LobbyCenterpiece accent={accent} />
+      ) : (
+        <MuseumBench position={[0, 0, 0]} rotation={[0, hasOpening("left") && hasOpening("right") ? Math.PI / 2 : 0, 0]} />
+      )}
 
       {/* Back Wall (z = -d/2) — may have opening */}
       {!hasOpening("back") ? (
@@ -110,7 +111,7 @@ function Room({
           <meshStandardMaterial
             map={wallTex}
             color={WALL_COLOR}
-            roughness={0.85}
+            roughness={0.72}
           />
         </mesh>
       ) : (
@@ -133,7 +134,7 @@ function Room({
           <meshStandardMaterial
             map={wallTex}
             color={WALL_COLOR}
-            roughness={0.85}
+            roughness={0.72}
           />
         </mesh>
       ) : (
@@ -157,7 +158,7 @@ function Room({
           <meshStandardMaterial
             map={wallTexSide}
             color={WALL_COLOR}
-            roughness={0.85}
+            roughness={0.72}
           />
         </mesh>
       ) : (
@@ -181,7 +182,7 @@ function Room({
           <meshStandardMaterial
             map={wallTexSide}
             color={WALL_COLOR}
-            roughness={0.85}
+            roughness={0.72}
           />
         </mesh>
       ) : (
@@ -254,49 +255,104 @@ function CeilingTrim({ width, depth, height }) {
   );
 }
 
-function LobbyDecor() {
+function MuseumBench({ position, rotation = [0, 0, 0] }) {
   return (
-    <group>
-      <MuseumPlanter position={[-7.8, 0, 4.5]} rotation={[0, Math.PI / 7, 0]} />
-      <MuseumPlanter position={[7.8, 0, 4.5]} rotation={[0, -Math.PI / 7, 0]} />
-      <MuseumPlanter position={[-7.7, 0, -4.9]} rotation={[0, Math.PI / 1.4, 0]} scale={0.86} />
-      <MuseumPlanter position={[7.7, 0, -4.9]} rotation={[0, -Math.PI / 1.4, 0]} scale={0.86} />
+    <group position={position} rotation={rotation}>
+      {/* Seat */}
+      <mesh position={[0, 0.45, 0]} castShadow receiveShadow>
+        <boxGeometry args={[3, 0.1, 0.8]} />
+        <meshStandardMaterial color="#2d2217" roughness={0.6} />
+      </mesh>
+      {/* Cushions */}
+      <mesh position={[0, 0.52, 0]} castShadow receiveShadow>
+        <boxGeometry args={[2.9, 0.05, 0.7]} />
+        <meshStandardMaterial color="#5e1511" roughness={0.9} />
+      </mesh>
+      {/* Legs */}
+      <mesh position={[-1.2, 0.225, 0]} castShadow receiveShadow>
+        <boxGeometry args={[0.08, 0.45, 0.6]} />
+        <meshStandardMaterial color="#bda783" roughness={0.4} metalness={0.6} />
+      </mesh>
+      <mesh position={[1.2, 0.225, 0]} castShadow receiveShadow>
+        <boxGeometry args={[0.08, 0.45, 0.6]} />
+        <meshStandardMaterial color="#bda783" roughness={0.4} metalness={0.6} />
+      </mesh>
     </group>
   );
 }
 
-function MuseumPlanter({ position, rotation = [0, 0, 0], scale = 1 }) {
-  const leaves = [
-    [-0.28, 1.55, 0, 0.8, 1.3, 0.42, 0.35],
-    [0.28, 1.5, 0.08, 0.7, 1.2, 0.4, -0.35],
-    [0, 1.7, -0.22, 0.75, 1.15, 0.38, 0],
-    [-0.18, 1.28, 0.25, 0.55, 0.95, 0.34, 0.75],
-    [0.2, 1.32, 0.28, 0.55, 0.95, 0.34, -0.75],
-  ];
-
+function LobbyCenterpiece({ accent }) {
   return (
-    <group position={position} rotation={rotation} scale={scale}>
-      <mesh position={[0, 0.28, 0]}>
-        <cylinderGeometry args={[0.42, 0.5, 0.56, 24]} />
-        <meshStandardMaterial color={PLANT_POT_COLOR} roughness={0.62} metalness={0.08} />
+    <group position={[0, 0, 0]}>
+      {/* Brass wayfinding inlay on the floor */}
+      <mesh position={[-4.2, 0.035, 0]}>
+        <boxGeometry args={[7.2, 0.03, 0.09]} />
+        <meshStandardMaterial color={DOOR_BRASS_COLOR} roughness={0.34} metalness={0.5} />
       </mesh>
-      <mesh position={[0, 0.6, 0]}>
-        <cylinderGeometry args={[0.47, 0.43, 0.12, 24]} />
-        <meshStandardMaterial color={DOOR_BRASS_COLOR} roughness={0.38} metalness={0.28} />
+      <mesh position={[4.2, 0.035, 0]}>
+        <boxGeometry args={[7.2, 0.03, 0.09]} />
+        <meshStandardMaterial color={DOOR_BRASS_COLOR} roughness={0.34} metalness={0.5} />
       </mesh>
-      <mesh position={[0, 0.82, 0]}>
-        <cylinderGeometry args={[0.06, 0.08, 0.72, 10]} />
-        <meshStandardMaterial color="#2b1a10" roughness={0.7} />
+      <mesh position={[0, 0.035, -3.8]}>
+        <boxGeometry args={[0.09, 0.03, 6.7]} />
+        <meshStandardMaterial color={DOOR_BRASS_COLOR} roughness={0.34} metalness={0.5} />
       </mesh>
-      {leaves.map(([x, y, z, sx, sy, sz, rz], index) => (
-        <mesh key={index} position={[x, y, z]} rotation={[0.2, 0, rz]} scale={[sx, sy, sz]}>
-          <sphereGeometry args={[0.38, 20, 12]} />
-          <meshStandardMaterial
-            color={index % 2 === 0 ? PLANT_LEAF_COLOR : PLANT_LEAF_DARK}
-            roughness={0.8}
-          />
-        </mesh>
-      ))}
+
+      {/* Pedestal */}
+      <mesh position={[0, 0.4, 0]}>
+        <cylinderGeometry args={[1.05, 1.28, 0.8, 48]} />
+        <meshStandardMaterial color={DOOR_WOOD_COLOR} roughness={0.62} metalness={0.1} />
+      </mesh>
+      <mesh position={[0, 0.85, 0]}>
+        <cylinderGeometry args={[1.12, 1.12, 0.12, 48]} />
+        <meshStandardMaterial color={DOOR_BRASS_COLOR} roughness={0.3} metalness={0.5} />
+      </mesh>
+      <mesh position={[0, 0.2, 0]}>
+        <cylinderGeometry args={[1.34, 1.46, 0.12, 48]} />
+        <meshStandardMaterial color="#1b120d" roughness={0.5} metalness={0.12} />
+      </mesh>
+
+      {/* Abstract rule-of-law globe: local geometry, no external GLB */}
+      <mesh position={[0, 1.72, 0]}>
+        <sphereGeometry args={[0.68, 32, 24]} />
+        <meshStandardMaterial color="#263540" roughness={0.46} metalness={0.08} transparent opacity={0.72} />
+      </mesh>
+      <mesh position={[0, 1.72, 0]} rotation={[Math.PI / 2, 0, 0]}>
+        <torusGeometry args={[0.72, 0.018, 12, 72]} />
+        <meshStandardMaterial color={DOOR_BRASS_COLOR} roughness={0.28} metalness={0.65} />
+      </mesh>
+      <mesh position={[0, 1.72, 0]} rotation={[0, Math.PI / 2, 0]}>
+        <torusGeometry args={[0.72, 0.016, 12, 72]} />
+        <meshStandardMaterial color={TRIM_BRASS_COLOR} roughness={0.28} metalness={0.62} />
+      </mesh>
+      <mesh position={[0, 1.72, 0]} rotation={[0.72, 0, 0.42]}>
+        <torusGeometry args={[0.86, 0.015, 12, 72]} />
+        <meshStandardMaterial color="#e4bd67" roughness={0.24} metalness={0.72} />
+      </mesh>
+
+      <pointLight position={[0, 2.6, 0]} intensity={0.46} color={accent} distance={5} />
+
+      <Html position={[0, 1.08, 1.08]} transform center scale={0.28} occlude>
+        <div
+          style={{
+            minWidth: 240,
+            border: `1px solid ${accent}70`,
+            borderRadius: 3,
+            background: "linear-gradient(135deg, rgba(34,24,16,0.95), rgba(12,8,5,0.92))",
+            boxShadow: "0 10px 28px rgba(0,0,0,0.5)",
+            color: "#fff8ed",
+            fontFamily: "'Outfit', sans-serif",
+            fontSize: 12,
+            letterSpacing: "0.12em",
+            padding: "9px 13px",
+            pointerEvents: "none",
+            textAlign: "center",
+            textTransform: "uppercase",
+          }}
+        >
+          Sơ đồ triển lãm
+        </div>
+      </Html>
     </group>
   );
 }
@@ -369,19 +425,19 @@ function WallWithOpening({
       {/* Left pillar */}
       <mesh position={[-(openW / 2 + sideW / 2), wallH / 2, 0]}>
         <boxGeometry args={[sideW, wallH, 0.5]} />
-        <meshStandardMaterial map={tex} color={WALL_COLOR} roughness={0.85} />
+        <meshStandardMaterial map={tex} color={WALL_COLOR} roughness={0.72} />
       </mesh>
 
       {/* Right pillar */}
       <mesh position={[(openW / 2 + sideW / 2), wallH / 2, 0]}>
         <boxGeometry args={[sideW, wallH, 0.5]} />
-        <meshStandardMaterial map={tex} color={WALL_COLOR} roughness={0.85} />
+        <meshStandardMaterial map={tex} color={WALL_COLOR} roughness={0.72} />
       </mesh>
 
       {/* Top beam */}
       <mesh position={[0, openH + topH / 2, 0]}>
         <boxGeometry args={[openW + 0.6, topH, 0.5]} />
-        <meshStandardMaterial map={tex} color={WALL_COLOR} roughness={0.85} />
+        <meshStandardMaterial map={tex} color={WALL_COLOR} roughness={0.72} />
       </mesh>
 
       {/* Layered museum door casing */}
@@ -505,22 +561,22 @@ function Hallway({ from, to, axis, textures }) {
         <>
           <mesh position={[0, h / 2, -hw / 2]} rotation={[0, 0, 0]}>
             <planeGeometry args={[length, h]} />
-            <meshStandardMaterial map={wallTex} color={WALL_COLOR} roughness={0.85} />
+            <meshStandardMaterial map={wallTex} color={WALL_COLOR} roughness={0.72} />
           </mesh>
           <mesh position={[0, h / 2, hw / 2]} rotation={[0, Math.PI, 0]}>
             <planeGeometry args={[length, h]} />
-            <meshStandardMaterial map={wallTex} color={WALL_COLOR} roughness={0.85} />
+            <meshStandardMaterial map={wallTex} color={WALL_COLOR} roughness={0.72} />
           </mesh>
         </>
       ) : (
         <>
           <mesh position={[-hw / 2, h / 2, 0]} rotation={[0, Math.PI / 2, 0]}>
             <planeGeometry args={[length, h]} />
-            <meshStandardMaterial map={wallTex} color={WALL_COLOR} roughness={0.85} />
+            <meshStandardMaterial map={wallTex} color={WALL_COLOR} roughness={0.72} />
           </mesh>
           <mesh position={[hw / 2, h / 2, 0]} rotation={[0, -Math.PI / 2, 0]}>
             <planeGeometry args={[length, h]} />
-            <meshStandardMaterial map={wallTex} color={WALL_COLOR} roughness={0.85} />
+            <meshStandardMaterial map={wallTex} color={WALL_COLOR} roughness={0.72} />
           </mesh>
         </>
       )}
