@@ -5,7 +5,7 @@ import * as THREE from "three";
 import { MuseumArtwork } from "./MuseumArtwork";
 import { MuseumPlayer } from "./MuseumPlayer";
 import { MuseumRoom } from "./MuseumRoom";
-import { museumPanels } from "./museumData";
+import { museumPanels, ROOM_LEFT_POS, ROOM_CENTER_POS, ROOM_RIGHT_POS } from "./museumData";
 
 function CameraDirectionTracker({ onFocusPanel }) {
   const { camera } = useThree();
@@ -43,21 +43,47 @@ function MuseumWorld({ selectedPanel, onSelectPanel, onFocusPanel }) {
   return (
     <>
       <color attach="background" args={["#090604"]} />
-      <fog attach="fog" args={["#090604", 8, 35]} />
+      <fog attach="fog" args={["#090604", 8, 40]} />
 
-      <ambientLight intensity={0.35} />
-      <directionalLight position={[4, 7, 5]} intensity={0.75} />
+      <ambientLight intensity={0.3} />
+      <directionalLight position={[4, 7, 5]} intensity={0.6} />
       
-      {/* Lights for Room 1 */}
-      <spotLight position={[0, 5.8, -2]} angle={0.55} penumbra={0.8} intensity={2.8} color="#f4d49a" castShadow />
+      {/* ── Lobby Lights ── */}
+      <spotLight position={[0, 5.8, 0]} angle={0.7} penumbra={0.8} intensity={3.2} color="#f4d49a" castShadow />
+      <pointLight position={[0, 4, 0]} intensity={0.6} color="#f4d49a" distance={18} />
       
-      {/* Lights for Room 2 */}
-      <spotLight position={[0, 5.8, -22]} angle={0.55} penumbra={0.8} intensity={2.8} color="#f4d49a" castShadow />
+      {/* ── Left Room Lights (Red accent) ── */}
+      <spotLight 
+        position={[ROOM_LEFT_POS[0], 5.8, ROOM_LEFT_POS[2]]} 
+        angle={0.6} penumbra={0.8} intensity={2.5} color="#f4c8a0" castShadow 
+      />
+      <pointLight 
+        position={[ROOM_LEFT_POS[0], 3, ROOM_LEFT_POS[2]]} 
+        intensity={0.3} color="#C5272D" distance={12} 
+      />
 
-      {/* Lights for Room 3 */}
-      <spotLight position={[0, 5.8, -42]} angle={0.55} penumbra={0.8} intensity={2.8} color="#f4d49a" castShadow />
+      {/* ── Center Room Lights (Gold accent) ── */}
+      <spotLight 
+        position={[ROOM_CENTER_POS[0], 5.8, ROOM_CENTER_POS[2]]} 
+        angle={0.6} penumbra={0.8} intensity={2.5} color="#f4d49a" castShadow 
+      />
+      <pointLight 
+        position={[ROOM_CENTER_POS[0], 3, ROOM_CENTER_POS[2]]} 
+        intensity={0.3} color="#C5A028" distance={12} 
+      />
 
-      <Sparkles count={300} scale={[20, 10, 60]} position={[0, 3, -20]} size={3.5} speed={0.3} opacity={0.15} color="#f4d49a" />
+      {/* ── Right Room Lights (Green accent) ── */}
+      <spotLight 
+        position={[ROOM_RIGHT_POS[0], 5.8, ROOM_RIGHT_POS[2]]} 
+        angle={0.6} penumbra={0.8} intensity={2.5} color="#d4e4c0" castShadow 
+      />
+      <pointLight 
+        position={[ROOM_RIGHT_POS[0], 3, ROOM_RIGHT_POS[2]]} 
+        intensity={0.3} color="#6F8F4E" distance={12} 
+      />
+
+      {/* Sparkles in lobby area */}
+      <Sparkles count={200} scale={[22, 8, 22]} position={[0, 3, 0]} size={3} speed={0.25} opacity={0.12} color="#f4d49a" />
 
       <MuseumPlayer />
       <CameraDirectionTracker onFocusPanel={onFocusPanel} />
@@ -72,9 +98,11 @@ function MuseumWorld({ selectedPanel, onSelectPanel, onFocusPanel }) {
         />
       ))}
 
-      <ContactShadows position={[0, 0.02, 0]} opacity={0.38} scale={13} blur={2.8} far={4} frames={1} color="#000000" />
-      <ContactShadows position={[0, 0.02, -20]} opacity={0.38} scale={13} blur={2.8} far={4} frames={1} color="#000000" />
-      <ContactShadows position={[0, 0.02, -40]} opacity={0.38} scale={13} blur={2.8} far={4} frames={1} color="#000000" />
+      {/* Contact shadows for each area */}
+      <ContactShadows position={[0, 0.02, 0]} opacity={0.35} scale={22} blur={2.8} far={4} frames={1} color="#000000" />
+      <ContactShadows position={[ROOM_LEFT_POS[0], 0.02, ROOM_LEFT_POS[2]]} opacity={0.3} scale={14} blur={2.8} far={4} frames={1} color="#000000" />
+      <ContactShadows position={[ROOM_CENTER_POS[0], 0.02, ROOM_CENTER_POS[2]]} opacity={0.3} scale={14} blur={2.8} far={4} frames={1} color="#000000" />
+      <ContactShadows position={[ROOM_RIGHT_POS[0], 0.02, ROOM_RIGHT_POS[2]]} opacity={0.3} scale={14} blur={2.8} far={4} frames={1} color="#000000" />
       <Environment preset="warehouse" />
     </>
   );
@@ -83,7 +111,7 @@ function MuseumWorld({ selectedPanel, onSelectPanel, onFocusPanel }) {
 export function MuseumScene({ selectedPanel, onSelectPanel, onFocusPanel }) {
   return (
     <Canvas
-      camera={{ position: [0, 2.65, 5.8], rotation: [0, 0, 0], fov: 55 }}
+      camera={{ position: [0, 2.65, 5], rotation: [0, 0, 0], fov: 55 }}
       dpr={[1, 1.5]}
       shadows={false}
       performance={{ min: 0.5 }}

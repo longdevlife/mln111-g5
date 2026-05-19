@@ -1,10 +1,39 @@
+/**
+ * Museum Data — Sảnh trung tâm + 3 phòng nhánh (Trái / Giữa / Phải)
+ *
+ * Layout (top-down, z- is "forward/north"):
+ *
+ *                    ┌──────────────┐
+ *                    │  PHÒNG GIỮA  │  z = -14 to -24
+ *                    │  (center)    │
+ *                    └──────┬───────┘
+ *                           │
+ *   ┌────────────┐   ┌──────┴───────┐   ┌────────────┐
+ *   │ PHÒNG TRÁI │───│    SẢNH      │───│ PHÒNG PHẢI │
+ *   │ x = -16    │   │  (lobby)     │   │  x = +16   │
+ *   └────────────┘   └──────────────┘   └────────────┘
+ *                     Camera starts here
+ */
+
+// Room dimensions
+export const LOBBY_SIZE = { w: 20, d: 14, h: 6 };
+export const ROOM_SIZE = { w: 12, d: 10, h: 6 };
+export const HALLWAY_W = 4; // corridor width connecting rooms
+
+// Room center positions
+export const LOBBY_POS = [0, 0, 0];
+export const ROOM_LEFT_POS = [-16, 0, 2];
+export const ROOM_CENTER_POS = [0, 0, -19];
+export const ROOM_RIGHT_POS = [16, 0, 2];
+
 export const museumRooms = [
   {
     id: "constitutional-legal",
     title: "Nhà nước hợp hiến, hợp pháp",
     shortTitle: "Hợp hiến, hợp pháp",
     accent: "#C5272D",
-    position: [0, 0, 0],
+    position: ROOM_LEFT_POS,
+    direction: "left",
     walls: [
       {
         id: "room1-left",
@@ -13,8 +42,9 @@ export const museumRooms = [
         title: "Cơ sở lý thuyết",
         heading: "Vận hành theo pháp luật",
         guideText: "Hồ Chí Minh sớm nhận thức vai trò của Hiến pháp; yêu cầu bình đẳng pháp lý, xóa bỏ tòa án áp bức, thay sắc lệnh bằng đạo luật; Nhà nước phải tổ chức và vận hành theo pháp luật.",
-        position: [-7.85, 3, 0],
-        rotation: [0, Math.PI / 2, 0]
+        // back wall of left room (facing +z)
+        position: [-16, 3, -2.9],
+        rotation: [0, 0, 0]
       },
       {
         id: "room1-center",
@@ -23,8 +53,9 @@ export const museumRooms = [
         title: "Liên hệ thực tiễn",
         heading: "Tính Hợp Hiến & Uy Tín",
         guideText: "Tổng tuyển cử, Quốc hội, tính hợp hiến của bộ máy nhà nước; Bầu cử Quốc hội khóa XVI có 864 người ứng cử, xác nhận 500 đại biểu. Việt Nam tái đắc cử Hội đồng Nhân quyền LHQ.",
-        position: [0, 3, -7.85],
-        rotation: [0, 0, 0]
+        // left wall of left room (facing +x)
+        position: [-21.9, 3, 2],
+        rotation: [0, Math.PI / 2, 0]
       },
       {
         id: "room1-right",
@@ -33,7 +64,8 @@ export const museumRooms = [
         title: "Giá trị vận dụng",
         heading: "Nền tảng chính danh",
         guideText: "Quyền lực nhà nước chỉ chính danh khi xuất phát từ nhân dân; tạo nền tảng ổn định chính trị và tư cách pháp lý để hội nhập quốc tế (CPTPP, EVFTA, FDI).",
-        position: [7.85, 3, 0],
+        // right wall of left room (facing -x)
+        position: [-10.1, 3, 2],
         rotation: [0, -Math.PI / 2, 0]
       }
     ]
@@ -43,7 +75,8 @@ export const museumRooms = [
     title: "Nhà nước thượng tôn pháp luật",
     shortTitle: "Thượng tôn pháp luật",
     accent: "#C5A028",
-    position: [0, 0, -20],
+    position: ROOM_CENTER_POS,
+    direction: "center",
     walls: [
       {
         id: "room2-left",
@@ -52,7 +85,8 @@ export const museumRooms = [
         title: "Cơ sở lý thuyết",
         heading: "Quản lý bằng pháp luật",
         guideText: "Quản lý bằng pháp luật là ưu tiên hàng đầu; Hồ Chí Minh lãnh đạo soạn thảo Hiến pháp, ký ban hành luật/sắc lệnh; luật phải được thi hành nghiêm.",
-        position: [-7.85, 3, -20],
+        // left wall of center room (facing +x)
+        position: [-5.9, 3, -19],
         rotation: [0, Math.PI / 2, 0]
       },
       {
@@ -61,8 +95,9 @@ export const museumRooms = [
         wall: "center",
         title: "Liên hệ thực tiễn",
         heading: "Đại án Vạn Thịnh Phát",
-        guideText: "Đại án Vạn Thịnh Phát, xử lý nồng độ cồn (Nghị định 168), tinh thần “không có vùng cấm, không có ngoại lệ”.",
-        position: [0, 3, -27.85],
+        guideText: "Đại án Vạn Thịnh Phát, xử lý nồng độ cồn (Nghị định 168), tinh thần 'không có vùng cấm, không có ngoại lệ'.",
+        // back wall of center room (facing +z)
+        position: [0, 3, -23.9],
         rotation: [0, 0, 0]
       },
       {
@@ -72,7 +107,8 @@ export const museumRooms = [
         title: "Giá trị vận dụng",
         heading: "Công bằng, bình đẳng",
         guideText: "Bảo đảm công bằng, bình đẳng trước pháp luật; kiểm soát quyền lực; phòng chống tham nhũng; củng cố niềm tin của nhân dân.",
-        position: [7.85, 3, -20],
+        // right wall of center room (facing -x)
+        position: [5.9, 3, -19],
         rotation: [0, -Math.PI / 2, 0]
       }
     ]
@@ -82,7 +118,8 @@ export const museumRooms = [
     title: "Pháp quyền nhân nghĩa",
     shortTitle: "Pháp quyền nhân nghĩa",
     accent: "#6F8F4E",
-    position: [0, 0, -40],
+    position: ROOM_RIGHT_POS,
+    direction: "right",
     walls: [
       {
         id: "room3-left",
@@ -91,7 +128,8 @@ export const museumRooms = [
         title: "Cơ sở lý thuyết",
         heading: "Pháp luật vì con người",
         guideText: "Pháp luật không chỉ để cai trị mà phải vì con người; tiếp cận quyền con người toàn diện; nghiêm minh nhưng nhân văn.",
-        position: [-7.85, 3, -40],
+        // left wall of right room (facing +x)
+        position: [10.1, 3, 2],
         rotation: [0, Math.PI / 2, 0]
       },
       {
@@ -101,7 +139,8 @@ export const museumRooms = [
         title: "Liên hệ thực tiễn",
         heading: "Chính sách hỗ trợ",
         guideText: "Chính sách hỗ trợ COVID-19 (Quyết định 23/2021/QĐ-TTg), vaccine miễn phí, ưu tiên nhóm nguy cơ cao, các chính sách vì dân.",
-        position: [0, 3, -47.85],
+        // back wall of right room (facing -z)
+        position: [16, 3, -2.9],
         rotation: [0, 0, 0]
       },
       {
@@ -111,7 +150,8 @@ export const museumRooms = [
         title: "Giá trị vận dụng",
         heading: "Quyền con người",
         guideText: "Bảo đảm quyền con người và công bằng xã hội; pháp luật là công cụ phục vụ và phát triển con người toàn diện.",
-        position: [7.85, 3, -40],
+        // right wall of right room (facing -x)
+        position: [21.9, 3, 2],
         rotation: [0, -Math.PI / 2, 0]
       }
     ]
@@ -123,3 +163,24 @@ export const museumPanels = museumRooms.flatMap((room) =>
 );
 
 export const defaultPanel = museumPanels.find((panel) => panel.id === "room1-center");
+
+/**
+ * Collision zones — array of AABB boxes {minX, maxX, minZ, maxZ}
+ * Player can move freely inside these zones.
+ */
+export const WALKABLE_ZONES = [
+  // Lobby (20 wide × 14 deep, centered at 0,0)
+  { minX: -10, maxX: 10, minZ: -7, maxZ: 7 },
+  // Hallway to left room
+  { minX: -10, maxX: -10, minZ: 0, maxZ: 4 }, // handled by lobby overlap
+  // Left room (12 wide × 10 deep, centered at -16, 2)
+  { minX: -22, maxX: -10, minZ: -3, maxZ: 7 },
+  // Hallway to center room
+  { minX: -2, maxX: 2, minZ: -14, maxZ: -7 },
+  // Center room (12 wide × 10 deep, centered at 0, -19)
+  { minX: -6, maxX: 6, minZ: -24, maxZ: -14 },
+  // Hallway to right room
+  { minX: 10, maxX: 10, minZ: 0, maxZ: 4 }, // handled by lobby overlap
+  // Right room (12 wide × 10 deep, centered at 16, 2)
+  { minX: 10, maxX: 22, minZ: -3, maxZ: 7 },
+];

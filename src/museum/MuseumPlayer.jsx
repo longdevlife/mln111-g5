@@ -1,13 +1,16 @@
 import { useFrame, useThree } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
+import { WALKABLE_ZONES } from "./museumData";
 
-const ROOM_LIMIT = {
-  minX: -7,
-  maxX: 7,
-  minZ: -48,
-  maxZ: 6.5,
-};
+/**
+ * Check if a point (x, z) is inside any walkable zone.
+ */
+function isInsideWalkableArea(x, z) {
+  return WALKABLE_ZONES.some(
+    (zone) => x >= zone.minX && x <= zone.maxX && z >= zone.minZ && z <= zone.maxZ
+  );
+}
 
 export function MuseumPlayer() {
   const { camera } = useThree();
@@ -52,12 +55,24 @@ export function MuseumPlayer() {
     const forward = new THREE.Vector3(Math.sin(angle), 0, Math.cos(angle));
     const right = new THREE.Vector3(Math.cos(angle), 0, -Math.sin(angle));
 
-    camera.position.addScaledVector(forward, velocity.current.z * delta);
-    camera.position.addScaledVector(right, velocity.current.x * delta);
+    // Calculate intended new position
+    const newPos = camera.position.clone();
+    newPos.addScaledVector(forward, velocity.current.z * delta);
+    newPos.addScaledVector(right, velocity.current.x * delta);
 
-    camera.position.x = THREE.MathUtils.clamp(camera.position.x, ROOM_LIMIT.minX, ROOM_LIMIT.maxX);
+    // Collision: only move if new position is inside a walkable zone
+    // Try X and Z independently for wall-sliding
+    const tryX = newPos.x;
+    const tryZ = newPos.z;
+
+    if (isInsideWalkableArea(tryX, camera.position.z)) {
+      camera.position.x = tryX;
+    }
+    if (isInsideWalkableArea(camera.position.x, tryZ)) {
+      camera.position.z = tryZ;
+    }
+
     camera.position.y = 2.65;
-    camera.position.z = THREE.MathUtils.clamp(camera.position.z, ROOM_LIMIT.minZ, ROOM_LIMIT.maxZ);
   });
 
   return null;
