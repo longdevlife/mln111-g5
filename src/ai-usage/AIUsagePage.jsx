@@ -18,11 +18,11 @@ const TOOLS = [
     )
   },
   {
-    name: 'Tencent 3D',
-    purpose: 'Tạo file 3D thô (base mesh) cho các vật thể trong môi trường.',
-    human: 'Giảm dung lượng lưới (optimize mesh), gắn texture và cấu hình hiệu ứng ánh sáng trên web.',
+    name: 'ChatGPT',
+    purpose: 'Hỗ trợ phác thảo nội dung kịch bản, gợi ý dàn ý phân tích lý thuyết và lên ý tưởng cho các phòng triển lãm.',
+    human: 'Đối chiếu thông tin trực tiếp với Giáo trình Tư tưởng Hồ Chí Minh chính thống, biên tập lại toàn bộ lập luận theo văn phong học thuật và trực tiếp xây dựng kịch bản chi tiết.',
     icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
     )
   },
   {
@@ -37,20 +37,20 @@ const TOOLS = [
 
 export const AIUsagePage = () => {
   return (
-    <div className="w-full min-h-screen bg-[#0d0705] text-[#ede6d6] pt-32 pb-24 px-6 md:px-12 relative overflow-y-auto flex justify-center">
+    <div className="w-full min-h-screen bg-[#EDE8E1] text-[#3D3529] pt-32 pb-24 px-6 md:px-12 relative overflow-y-auto flex justify-center">
       
       {/* Background Ornaments */}
-      <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-[#1a120d] to-transparent opacity-50 pointer-events-none"></div>
+      <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-[#E5E0D8] to-transparent opacity-40 pointer-events-none"></div>
 
       <div className="max-w-[1000px] w-full relative z-10">
         
         {/* Header */}
         <div className="text-center mb-20 animate-in fade-in slide-in-from-top-4">
-          <span className="section-label text-[#c9922a] mb-4 tracking-[0.2em] block uppercase font-['Inter'] text-xs font-semibold">Phụ Lục Đặc Biệt</span>
+          <span className="section-label text-[#C5A028] mb-4 tracking-[0.2em] block uppercase font-['Inter'] text-xs font-semibold">Phụ Lục Đặc Biệt</span>
           <h1 className="font-['Playfair_Display'] text-4xl md:text-5xl font-medium tracking-wide mb-6">Báo Cáo Ứng Dụng AI</h1>
-          <div className="w-24 h-[1px] bg-[#c9922a] mx-auto opacity-40"></div>
-          <p className="mt-6 text-[#a39481] font-['Inter'] font-light max-w-2xl mx-auto leading-relaxed">
-            Minh bạch. Liêm chính học thuật. Trách nhiệm tuyệt đối. Báo cáo này định rõ ranh giới giữa sự hỗ trợ của Trí tuệ Nhân tạo và dấu ấn tri thức của con người trong toàn bộ vòng đời phát triển dự án.
+          <div className="w-24 h-[1px] bg-[#C5A028] mx-auto opacity-40"></div>
+          <p className="mt-6 text-[#7A6040] font-['Inter'] font-light max-w-2xl mx-auto leading-relaxed">
+            Sự minh bạch làm nên giá trị học thuật, tính liêm chính định hình trách nhiệm. Phụ lục này là lời cam kết nghiêm túc của chúng em, vạch rõ ranh giới giữa năng lực hỗ trợ của Trí tuệ Nhân tạo và dấu ấn tri thức sáng tạo độc lập của con người trong suốt hành trình kiến tạo dự án.
           </p>
         </div>
 
@@ -58,57 +58,51 @@ export const AIUsagePage = () => {
         <div className="grid grid-cols-1 gap-12">
           
           {/* Part 1: Cam Kết Liêm Chính */}
-          <section className="bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.05)] rounded-[20px] p-8 md:p-12 hover:bg-[rgba(255,255,255,0.03)] transition-colors">
-            <div className="flex items-center gap-4 mb-2">
-              <span className="text-[#c9922a] block">
+          <section className="bg-white/50 border border-[#3D3529]/5 rounded-[20px] p-8 md:p-12 hover:bg-white/80 transition-colors duration-300">
+            <div className="flex items-center gap-4 mb-6">
+              <span className="text-[#C5A028] block">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
               </span>
-              <h2 className="font-['Playfair_Display'] text-2xl tracking-wider" style={{ fontVariantNumeric: "lining-nums" }}>1. Cam Kết Liêm Chính & Trách Nhiệm</h2>
+              <h2 className="font-['Playfair_Display'] text-2xl tracking-wider text-[#3D3529]" style={{ fontVariantNumeric: "lining-nums" }}>1. Cam Kết Liêm Chính & Trách Nhiệm</h2>
             </div>
-            <div className="mb-8 pl-11">
-              <span className="text-[#a39481] text-xs font-['Inter'] italic tracking-wide">(Đáp ứng mục 4.2 & 4.4)</span>
-            </div>
-            <div className="space-y-6 font-['Inter'] font-light text-[#b8a996] leading-relaxed">
+            <div className="space-y-6 font-['Inter'] font-light text-[#7A6040] leading-relaxed">
               <div className="flex flex-col gap-2">
-                <h3 className="text-[#ede6d6] font-medium tracking-widest text-[11px] uppercase opacity-80">Cam kết cốt lõi</h3>
-                <p>Nhóm khẳng định AI chỉ đóng vai trò là trợ lý hỗ trợ xử lý dữ liệu thô. <strong className="text-[#c9922a] font-normal">Không để AI làm thay hoàn toàn.</strong> Sinh viên là người trực tiếp xây dựng logic, thiết kế kiến trúc và quyết định nội dung của sản phẩm cuối cùng.</p>
+                <h3 className="text-[#3D3529] font-medium tracking-widest text-[11px] uppercase opacity-80">Cam kết cốt lõi</h3>
+                <p>Chúng em khẳng định AI chỉ đóng vai trò là trợ lý hỗ trợ xử lý dữ liệu thô. <strong className="text-[#C5A028] font-normal">Không để AI làm thay hoàn toàn.</strong> Nhóm chúng em trực tiếp xây dựng logic, thiết kế kiến trúc và quyết định nội dung của sản phẩm cuối cùng.</p>
               </div>
-              <div className="w-full h-[1px] bg-[rgba(255,255,255,0.05)] my-2"></div>
+              <div className="w-full h-[1px] bg-[#3D3529]/10 my-2"></div>
               <div className="flex flex-col gap-2">
-                <h3 className="text-[#ede6d6] font-medium tracking-widest text-[11px] uppercase opacity-80">Kiểm chứng thông tin</h3>
-                <p>Mọi nội dung do AI sinh ra (đặc biệt là tóm tắt lý luận chính trị) đều được đối chiếu trực tiếp với <strong className="text-[#ede6d6] font-normal">Giáo trình LLCT chính thống</strong> của trường. Nhóm chịu trách nhiệm 100% về độ chính xác của thông tin.</p>
+                <h3 className="text-[#3D3529] font-medium tracking-widest text-[11px] uppercase opacity-80">Kiểm chứng thông tin</h3>
+                <p>Mọi nội dung do AI sinh ra (đặc biệt là phần tóm tắt và phân tích môn Tư tưởng Hồ Chí Minh) đều được đối chiếu trực tiếp với <strong className="text-[#3D3529] font-semibold">Giáo trình Tư tưởng Hồ Chí Minh chính thống</strong>. Chúng em hoàn toàn chịu trách nhiệm 100% về tính chính xác của thông tin.</p>
               </div>
-              <div className="w-full h-[1px] bg-[rgba(255,255,255,0.05)] my-2"></div>
+              <div className="w-full h-[1px] bg-[#3D3529]/10 my-2"></div>
               <div className="flex flex-col gap-2">
-                <h3 className="text-[#ede6d6] font-medium tracking-widest text-[11px] uppercase opacity-80">Phân định rõ ràng</h3>
-                <p>AI tạo ra tài nguyên thô (model 3D, text, ảnh). Sinh viên chịu trách nhiệm chỉnh sửa (optimize mesh 3D, cắt gọt nội dung, fix bug code) để tích hợp vào website.</p>
+                <h3 className="text-[#3D3529] font-medium tracking-widest text-[11px] uppercase opacity-80">Phân định rõ ràng</h3>
+                <p>AI hỗ trợ gợi ý tài nguyên thô (dàn ý văn bản, gợi ý code, ảnh nền). Chúng em chịu trách nhiệm nghiên cứu sâu, biên tập nội dung khoa học, tối ưu mã nguồn và thiết kế giao diện để tích hợp vào website.</p>
               </div>
             </div>
           </section>
 
           {/* Part 2: Ứng dụng Sáng tạo */}
-          <section className="bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.05)] rounded-[20px] p-8 md:p-12 hover:bg-[rgba(255,255,255,0.03)] transition-colors">
-            <div className="flex items-center gap-4 mb-2">
-              <span className="text-[#c9922a] block">
+          <section className="bg-white/50 border border-[#3D3529]/5 rounded-[20px] p-8 md:p-12 hover:bg-white/80 transition-colors duration-300">
+            <div className="flex items-center gap-4 mb-8">
+              <span className="text-[#C5A028] block">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
               </span>
-              <h2 className="font-['Playfair_Display'] text-2xl tracking-wider" style={{ fontVariantNumeric: "lining-nums" }}>2. Ứng Dụng Sáng Tạo</h2>
+              <h2 className="font-['Playfair_Display'] text-2xl tracking-wider text-[#3D3529]" style={{ fontVariantNumeric: "lining-nums" }}>2. Ứng Dụng Sáng Tạo</h2>
             </div>
-            <div className="mb-8 pl-11">
-              <span className="text-[#a39481] text-xs font-['Inter'] italic tracking-wide">(Đáp ứng mục 4.3)</span>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 font-['Inter'] font-light text-[#b8a996] leading-relaxed">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 font-['Inter'] font-light text-[#7A6040] leading-relaxed">
               <div>
-                <h3 className="text-[#ede6d6] font-medium tracking-widest text-[11px] uppercase opacity-80 mb-3 border-b border-[rgba(255,255,255,0.1)] pb-2 block">Tóm tắt & Kịch bản</h3>
-                <p className="text-sm">Dùng AI rút gọn giáo trình đồ sộ thành key-points. Nhóm dựa vào dàn ý đó để <strong>tự viết kịch bản tương tác</strong> và biên soạn bộ câu hỏi trắc nghiệm (quiz).</p>
+                <h3 className="text-[#3D3529] font-medium tracking-widest text-[11px] uppercase opacity-80 mb-3 border-b border-[#3D3529]/10 pb-2 block">Nghiên cứu & Kịch bản</h3>
+                <p className="text-sm">Sử dụng NotebookLM và ChatGPT để hỗ trợ tóm tắt slide giáo trình và gợi ý cấu trúc phân tích. Chúng em dựa vào đó để <strong>đối chiếu giáo trình chính gốc</strong>, tự viết kịch bản chi tiết và xây dựng bộ câu hỏi quiz trắc nghiệm.</p>
               </div>
               <div>
-                <h3 className="text-[#ede6d6] font-medium tracking-widest text-[11px] uppercase opacity-80 mb-3 border-b border-[rgba(255,255,255,0.1)] pb-2 block">Tài nguyên 3D gốc</h3>
-                <p className="text-sm">Tự sinh model 3D thô bằng AI (không copy trên mạng). Sau đó, sinh viên tự tay thêm texture, chỉnh sửa ánh sáng để đưa vào môi trường web (Three.js).</p>
+                <h3 className="text-[#3D3529] font-medium tracking-widest text-[11px] uppercase opacity-80 mb-3 border-b border-[#3D3529]/10 pb-2 block">Mỹ thuật & Texture</h3>
+                <p className="text-sm">Dùng Gemini hỗ trợ phác thảo texture thô (vân gỗ, bề mặt kim loại). Chúng em tự tay cắt ghép nền bằng Photoshop, tinh chỉnh màu sắc để đảm bảo tính mỹ thuật cổ điển, đồng bộ hoàn hảo với UI tổng thể.</p>
               </div>
               <div>
-                <h3 className="text-[#ede6d6] font-medium tracking-widest text-[11px] uppercase opacity-80 mb-3 border-b border-[rgba(255,255,255,0.1)] pb-2 block">Pair-Programming</h3>
-                <p className="text-sm">AI gợi ý các đoạn code lặp lại (boilerplate). Nhóm nắm giữ phần thiết kế kiến trúc, xử lý luồng dữ liệu (state management) và sửa lỗi logic.</p>
+                <h3 className="text-[#3D3529] font-medium tracking-widest text-[11px] uppercase opacity-80 mb-3 border-b border-[#3D3529]/10 pb-2 block">Lập trình & Kiến trúc</h3>
+                <p className="text-sm">Sử dụng Antigravity để tối ưu hóa thời gian viết code lặp lại (boilerplate). Chúng em hoàn toàn làm chủ thiết kế kiến trúc 3D, kiểm soát luồng dữ liệu React-Jotai và trực tiếp lập trình sửa các lỗi tương tác phức tạp.</p>
               </div>
             </div>
           </section>
@@ -116,33 +110,32 @@ export const AIUsagePage = () => {
           {/* Part 3: Tool Breakdown */}
           <section className="pt-8">
             <div className="flex flex-col items-center gap-1 mb-10 text-center">
-              <h2 className="font-['Playfair_Display'] text-3xl tracking-wider" style={{ fontVariantNumeric: "lining-nums" }}>3. Bảng Phân Định Công Cụ AI</h2>
-              <span className="text-[#a39481] text-xs font-['Inter'] italic tracking-wide mt-2">(Đáp ứng mục 4.1)</span>
+              <h2 className="font-['Playfair_Display'] text-3xl tracking-wider text-[#3D3529]" style={{ fontVariantNumeric: "lining-nums" }}>3. Bảng Phân Định Công Cụ AI</h2>
             </div>
 
             <div className="space-y-6">
               {TOOLS.map((tool, idx) => (
-                <div key={idx} className="bg-[rgba(255,255,255,0.015)] border border-[rgba(255,255,255,0.04)] rounded-[16px] p-6 transition-all duration-300">
+                <div key={idx} className="bg-white/40 border border-[#3D3529]/5 rounded-[16px] p-6 transition-all duration-300">
                   <div className="flex flex-col md:flex-row gap-6">
                     {/* Icon & Name */}
-                    <div className="md:w-1/4 flex flex-col items-center md:items-start text-center md:text-left md:border-r border-[rgba(255,255,255,0.05)] pr-4">
-                      <div className="text-[#c9922a] bg-[rgba(201,146,42,0.1)] p-3 rounded-full mb-3 inline-block border border-[rgba(201,146,42,0.2)]">
+                    <div className="md:w-1/4 flex flex-col items-center md:items-start text-center md:text-left md:border-r border-[#3D3529]/10 pr-4">
+                      <div className="text-[#C5A028] bg-[#C5A028]/10 p-3 rounded-full mb-3 inline-block border border-[#C5A028]/20">
                         {tool.icon}
                       </div>
-                      <h3 className="font-['Playfair_Display'] text-xl text-[#ede6d6] tracking-wide">{tool.name}</h3>
+                      <h3 className="font-['Playfair_Display'] text-xl text-[#3D3529] tracking-wide">{tool.name}</h3>
                     </div>
                     {/* Details */}
                     <div className="md:w-3/4 flex flex-col sm:flex-row gap-6 font-['Inter'] font-light">
-                      <div className="sm:w-1/2 bg-[rgba(0,0,0,0.2)] rounded-[12px] p-5 border border-[rgba(255,255,255,0.02)]">
-                        <span className="text-[#7a6040] text-[10px] uppercase tracking-widest font-medium block mb-3">Vai trò của AI (Input thô)</span>
-                        <p className="text-[#a39481] text-sm leading-relaxed">{tool.purpose}</p>
+                      <div className="sm:w-1/2 bg-white/60 rounded-[12px] p-5 border border-[#3D3529]/5">
+                        <span className="text-[#7A6040]/70 text-[10px] uppercase tracking-widest font-semibold block mb-3">Vai trò của AI (Input thô)</span>
+                        <p className="text-[#7A6040] text-sm leading-relaxed">{tool.purpose}</p>
                       </div>
-                      <div className="sm:w-1/2 bg-[rgba(201,146,42,0.05)] rounded-[12px] p-5 border border-[rgba(201,146,42,0.1)]">
-                        <span className="text-[#c9922a] text-[10px] uppercase tracking-widest font-medium block mb-3 flex items-center gap-2">
+                      <div className="sm:w-1/2 bg-[#C5A028]/5 rounded-[12px] p-5 border border-[#C5A028]/10">
+                        <span className="text-[#C5A028] text-[10px] uppercase tracking-widest font-semibold block mb-3 flex items-center gap-2">
                           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                          Sinh viên xử lý (Hoàn thiện)
+                          Chúng em xử lý (Hoàn thiện)
                         </span>
-                        <p className="text-[#ede6d6] text-sm leading-relaxed">{tool.human}</p>
+                        <p className="text-[#3D3529] text-sm leading-relaxed">{tool.human}</p>
                       </div>
                     </div>
                   </div>
@@ -152,58 +145,58 @@ export const AIUsagePage = () => {
           </section>
 
           {/* Part 4: Minh chứng Prompt */}
-          <section className="bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.05)] rounded-[20px] p-8 md:p-12 hover:bg-[rgba(255,255,255,0.03)] transition-colors mt-8">
+          <section className="bg-white/50 border border-[#3D3529]/5 rounded-[20px] p-8 md:p-12 hover:bg-white/80 transition-colors duration-300 mt-8">
             <div className="flex items-center gap-4 mb-8">
-              <span className="text-[#c9922a] block">
+              <span className="text-[#C5A028] block">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
               </span>
-              <h2 className="font-['Playfair_Display'] text-2xl tracking-wider" style={{ fontVariantNumeric: "lining-nums" }}>4. Minh Chứng Sử Dụng Prompt</h2>
+              <h2 className="font-['Playfair_Display'] text-2xl tracking-wider text-[#3D3529]" style={{ fontVariantNumeric: "lining-nums" }}>4. Minh Chứng Sử Dụng Prompt</h2>
             </div>
 
             <div className="space-y-12 font-['Inter']">
               {/* Prompt 1 */}
               <div>
-                <h3 className="text-[#ede6d6] font-medium text-lg tracking-wide mb-4 font-['Playfair_Display']">II. Cơ sở lý thuyết</h3>
-                <div className="bg-[rgba(0,0,0,0.3)] border border-[rgba(255,255,255,0.05)] rounded-lg p-4 mb-6">
-                  <span className="text-[#c9922a] text-xs font-semibold uppercase tracking-wider block mb-2">Prompt:</span>
-                  <p className="text-[#b8a996] text-sm leading-relaxed italic">
-                    "Hãy từ giáo trình MLN111.pdf đưa ra nội dung phân tích cho phần Cơ sở lý thuyết: Trình bày quan niệm của chủ nghĩa duy vật lịch sử về Nhà nước như một sản phẩm của những điều kiện kinh tế – xã hội nhất định, gắn với sự xuất hiện của giai cấp và mâu thuẫn giai cấp, đồng thời làm rõ xu hướng tiêu vong của Nhà nước trong những điều kiện lịch sử cụ thể."
+                <h3 className="text-[#3D3529] font-medium text-lg tracking-wide mb-4 font-['Playfair_Display']">I. Cơ sở lý thuyết</h3>
+                <div className="bg-white/80 border border-[#3D3529]/10 rounded-lg p-4 mb-6">
+                  <span className="text-[#C5A028] text-xs font-semibold uppercase tracking-wider block mb-2">Prompt:</span>
+                  <p className="text-[#7A6040] text-[15px] leading-relaxed italic font-['EB_Garamond']">
+                    "Hãy từ giáo trình Tư tưởng Hồ Chí Minh 2021 đưa ra nội dung phân tích cho phần Cơ sở lý thuyết của Nhà nước pháp quyền trong tư tưởng Hồ Chí Minh, làm rõ quan điểm về Nhà nước hợp hiến, hợp pháp; Nhà nước thượng tôn pháp luật; và pháp quyền nhân nghĩa trong quản lý xã hội."
                   </p>
                 </div>
-                <div className="rounded-xl overflow-hidden border border-[rgba(255,255,255,0.1)] shadow-xl shadow-black/50">
-                  <img src="/images/prompt1.jpg" alt="Đoạn chat cơ sở lý thuyết" className="w-full object-cover" />
+                <div className="rounded-xl overflow-hidden border border-[#3D3529]/10 shadow-md">
+                  <img src="/images/cosolythuyet.jpg" alt="Đoạn chat cơ sở lý thuyết" className="w-full object-cover" />
                 </div>
               </div>
 
-              <div className="w-full h-[1px] bg-[rgba(255,255,255,0.05)]"></div>
+              <div className="w-full h-[1px] bg-[#3D3529]/10"></div>
 
               {/* Prompt 2 */}
               <div>
-                <h3 className="text-[#ede6d6] font-medium text-lg tracking-wide mb-4 font-['Playfair_Display']">III. Cơ sở vận dụng</h3>
-                <div className="bg-[rgba(0,0,0,0.3)] border border-[rgba(255,255,255,0.05)] rounded-lg p-4 mb-6">
-                  <span className="text-[#c9922a] text-xs font-semibold uppercase tracking-wider block mb-2">Prompt:</span>
-                  <p className="text-[#b8a996] text-sm leading-relaxed italic">
-                    "Nhập vai chuyên gia Triết học, hãy phân tích chủ đề 'Xã hội không Nhà nước: Utopia hay hiện thực?' tập trung cụ thể vào Cơ sở vận dụng tại mục III.1 Giáo trình MLN 2019 qua việc đối chiếu: Chính phủ số như một hạ tầng dịch vụ, các mô hình tự quản cộng đồng làm tiền đề hiện thực, và các rủi ro an ninh phi truyền thống làm giới hạn khiến Nhà nước chưa thể biến mất; hãy trình bày thành một tin nhắn liền mạch với ngôn ngữ so sánh gần gũi cho lớp đa ngành, có cài mã trích dẫn [ID] và tổng hợp danh mục Reference cuối bài."
+                <h3 className="text-[#3D3529] font-medium text-lg tracking-wide mb-4 font-['Playfair_Display']">II. Liên hệ thực tiễn</h3>
+                <div className="bg-white/80 border border-[#3D3529]/10 rounded-lg p-4 mb-6">
+                  <span className="text-[#C5A028] text-xs font-semibold uppercase tracking-wider block mb-2">Prompt:</span>
+                  <p className="text-[#7A6040] text-[15px] leading-relaxed italic font-['EB_Garamond']">
+                    "Hãy từ giáo trình Tư tưởng Hồ Chí Minh 2021 đưa ra nội dung phân tích cho phần liên hệ thực tiễn của Nhà nước pháp quyền, làm rõ việc vận dụng tư tưởng Hồ Chí Minh về Nhà nước hợp hiến, hợp pháp; Nhà nước thượng tôn pháp luật; và pháp quyền nhân nghĩa trong hoạt động quản lý nhà nước và đời sống xã hội Việt Nam hiện nay."
                   </p>
                 </div>
-                <div className="rounded-xl overflow-hidden border border-[rgba(255,255,255,0.1)] shadow-xl shadow-black/50">
-                  <img src="/images/prompt2.png" alt="Đoạn chat cơ sở vận dụng" className="w-full object-cover" />
+                <div className="rounded-xl overflow-hidden border border-[#3D3529]/10 shadow-md">
+                  <img src="/images/lienhethuctien.jpg" alt="Đoạn chat liên hệ thực tiễn" className="w-full object-cover" />
                 </div>
               </div>
 
-              <div className="w-full h-[1px] bg-[rgba(255,255,255,0.05)]"></div>
+              <div className="w-full h-[1px] bg-[#3D3529]/10"></div>
 
               {/* Prompt 3 */}
               <div>
-                <h3 className="text-[#ede6d6] font-medium text-lg tracking-wide mb-4 font-['Playfair_Display']">IV. Giải pháp/ Bài học</h3>
-                <div className="bg-[rgba(0,0,0,0.3)] border border-[rgba(255,255,255,0.05)] rounded-lg p-4 mb-6">
-                  <span className="text-[#c9922a] text-xs font-semibold uppercase tracking-wider block mb-2">Prompt:</span>
-                  <p className="text-[#b8a996] text-sm leading-relaxed italic">
-                    "Role: Chuyên gia Duy vật lịch sử & Khoa học chính trị. Task: Viết mục 'Giải pháp & Bài học thực tiễn' tiểu luận: 'Sự tiêu vong Nhà nước: Lý luận & Thực tiễn'.Cấu trúc (5 điểm a-e): Lý luận cốt lõi (Chương 3 Triết học MLN) vs. Bài học thực tiễn (Xã hội hiện đại). Key themes: Tính lịch sử Nhà nước; Dịch chuyển cưỡng chế -&gt; phục vụ; Tự quản cộng đồng; Đạo đức & Công dân toàn cầu. Format: Văn phong học thuật. Trích dẫn [X] trong bài. References: Giáo trình Bộ GD&ĐT, Lênin, và nguồn quốc tế (World Bank/UNESCO/Putnam/Rosenau). Language: Tiếng Việt."
+                <h3 className="text-[#3D3529] font-medium text-lg tracking-wide mb-4 font-['Playfair_Display']">III. Giá trị vận dụng ngày nay</h3>
+                <div className="bg-white/80 border border-[#3D3529]/10 rounded-lg p-4 mb-6">
+                  <span className="text-[#C5A028] text-xs font-semibold uppercase tracking-wider block mb-2">Prompt:</span>
+                  <p className="text-[#7A6040] text-[15px] leading-relaxed italic font-['EB_Garamond']">
+                    "Hãy từ giáo trình Tư tưởng Hồ Chí Minh 2021 đưa ra nội dung phân tích cho phần giá trị vận dụng hiện nay của Nhà nước pháp quyền, làm rõ ý nghĩa của Nhà nước hợp hiến, hợp pháp; Nhà nước thượng tôn pháp luật; và pháp quyền nhân nghĩa trong xây dựng Nhà nước pháp quyền xã hội chủ nghĩa Việt Nam hiện nay."
                   </p>
                 </div>
-                <div className="rounded-xl overflow-hidden border border-[rgba(255,255,255,0.1)] shadow-xl shadow-black/50">
-                  <img src="/images/prompt3.png" alt="Đoạn chat giải pháp bài học" className="w-full object-cover" />
+                <div className="rounded-xl overflow-hidden border border-[#3D3529]/10 shadow-md">
+                  <img src="/images/giatrivandung.jpg" alt="Đoạn chat giá trị vận dụng ngày nay" className="w-full object-cover" />
                 </div>
               </div>
 
