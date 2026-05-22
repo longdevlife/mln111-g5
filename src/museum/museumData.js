@@ -76,7 +76,8 @@ const rawRooms = [
         position: [-16, 3, -4.9],
         rotation: [0, 0, 0],
         images: [
-          "/museum/nhanuochophienhopphap/tường phải.png"
+          "/museum/nhanuochophienhopphap/tường phải 1.png",
+          "/museum/nhanuochophienhopphap/tường phải 2.png"
         ]
       }
     ]
@@ -115,7 +116,8 @@ const rawRooms = [
         position: [0, 3, -23.9],
         rotation: [0, 0, 0],
         images: [
-          "/museum/nhanuocthuongtonphapluat/tường giữa.png"
+          "/museum/nhanuocthuongtonphapluat/tường giữa 1.png",
+          "/museum/nhanuocthuongtonphapluat/tường giữa 2.png"
         ]
       },
       {
@@ -129,7 +131,8 @@ const rawRooms = [
         position: [5.9, 3, -19],
         rotation: [0, -Math.PI / 2, 0],
         images: [
-          "/museum/nhanuocthuongtonphapluat/tường phải.png"
+          "/museum/nhanuocthuongtonphapluat/tường phải 1.png",
+          "/museum/nhanuocthuongtonphapluat/tường phải 2.png"
         ]
       }
     ]
@@ -153,7 +156,9 @@ const rawRooms = [
         position: [16, 3, -4.9],
         rotation: [0, 0, 0],
         images: [
-          "/museum/phapquyennhannghia/tường trái.png"
+          "/museum/phapquyennhannghia/tường trái 1.png",
+          "/museum/phapquyennhannghia/tường trái 2.png",
+          "/museum/phapquyennhannghia/tường trái 3.png"
         ]
       },
       {
@@ -167,7 +172,8 @@ const rawRooms = [
         position: [21.9, 3, 0],
         rotation: [0, -Math.PI / 2, 0],
         images: [
-          "/museum/phapquyennhannghia/tường giữa.png"
+          "/museum/phapquyennhannghia/tường giữa 1.png",
+          "/museum/phapquyennhannghia/tường giữa 2.png"
         ]
       },
       {
@@ -181,7 +187,8 @@ const rawRooms = [
         position: [16, 3, 4.9],
         rotation: [0, Math.PI, 0],
         images: [
-          "/museum/phapquyennhannghia/tường phải.png"
+          "/museum/phapquyennhannghia/tường phải 1.png",
+          "/museum/phapquyennhannghia/tường phải 2.png"
         ]
       }
     ]
@@ -208,9 +215,9 @@ export const museumRooms = rawRooms.map(room => {
       const offset = startOffset + i * spacing;
 
       if (isFacingX) {
-        newPos[2] += offset; 
+        newPos[2] -= offset * Math.sin(wall.rotation[1]); 
       } else {
-        newPos[0] += offset; 
+        newPos[0] += offset * Math.cos(wall.rotation[1]); 
       }
 
       expandedWalls.push({
