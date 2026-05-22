@@ -25,6 +25,9 @@ export function MuseumPlayer() {
     camera.rotation.order = "YXZ";
 
     const handleKeyDown = (event) => {
+      if (["KeyW", "KeyA", "KeyS", "KeyD", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(event.code)) {
+        event.preventDefault();
+      }
       keys.current[event.code] = true;
     };
     const handleKeyUp = (event) => {

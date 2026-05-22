@@ -1,6 +1,6 @@
 import { ContactShadows, Sparkles } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { useRef } from "react";
+import { Suspense, useRef } from "react";
 import * as THREE from "three";
 
 import { MuseumArtwork } from "./MuseumArtwork";
@@ -43,7 +43,7 @@ function CameraDirectionTracker({ onFocusPanel }) {
   return null;
 }
 
-function MuseumWorld({ selectedPanel, focusedPanel, onSelectPanel, onFocusPanel }) {
+function MuseumWorld({ focusedPanel, onFocusPanel }) {
   return (
     <>
       <color attach="background" args={["#090604"]} />
@@ -55,28 +55,28 @@ function MuseumWorld({ selectedPanel, focusedPanel, onSelectPanel, onFocusPanel 
       <pointLight position={[0, 5.2, 5.2]} intensity={0.4} color="#f4d49a" distance={12} />
       
       {/* ── Lobby Lights ── */}
-      <spotLight position={[0, 5.8, 0]} angle={0.85} penumbra={0.8} intensity={3.5} color="#fef0d8" castShadow />
+      <spotLight position={[0, 5.8, 0]} angle={0.85} penumbra={0.8} intensity={3.5} color="#fef0d8" castShadow={false} />
       
       {/* ── Left Room Lights (Red accent) ── */}
       <spotLight 
         position={[ROOM_LEFT_POS[0], 5.8, ROOM_LEFT_POS[2]]} 
-        angle={0.85} penumbra={0.8} intensity={3.5} color="#ffede0" castShadow 
+        angle={0.85} penumbra={0.8} intensity={3.5} color="#ffede0" castShadow={false}
       />
 
       {/* ── Center Room Lights (Gold accent) ── */}
       <spotLight 
         position={[ROOM_CENTER_POS[0], 5.8, ROOM_CENTER_POS[2]]} 
-        angle={0.85} penumbra={0.8} intensity={3.5} color="#fef0d8" castShadow 
+        angle={0.85} penumbra={0.8} intensity={3.5} color="#fef0d8" castShadow={false}
       />
 
       {/* ── Right Room Lights (Green accent) ── */}
       <spotLight 
         position={[ROOM_RIGHT_POS[0], 5.8, ROOM_RIGHT_POS[2]]} 
-        angle={0.85} penumbra={0.8} intensity={3.5} color="#eef7e0" castShadow 
+        angle={0.85} penumbra={0.8} intensity={3.5} color="#eef7e0" castShadow={false}
       />
 
       {/* Sparkles in lobby area */}
-      <Sparkles count={200} scale={[22, 8, 22]} position={[0, 3, 0]} size={3} speed={0.25} opacity={0.12} color="#f4d49a" />
+      <Sparkles count={35} scale={[22, 8, 22]} position={[0, 3, 0]} size={2.4} speed={0.16} opacity={0.08} color="#f4d49a" />
 
       <MuseumPlayer />
       <CameraDirectionTracker onFocusPanel={onFocusPanel} />
@@ -86,9 +86,7 @@ function MuseumWorld({ selectedPanel, focusedPanel, onSelectPanel, onFocusPanel 
         <MuseumArtwork
           key={panel.id}
           panel={panel}
-          selected={selectedPanel?.id === panel.id}
           focused={focusedPanel?.id === panel.id}
-          onSelect={onSelectPanel}
         />
       ))}
 
@@ -101,20 +99,21 @@ function MuseumWorld({ selectedPanel, focusedPanel, onSelectPanel, onFocusPanel 
   );
 }
 
-export function MuseumScene({ selectedPanel, focusedPanel, onSelectPanel, onFocusPanel }) {
+export function MuseumScene({ focusedPanel, onFocusPanel }) {
   return (
     <Canvas
       camera={{ position: [0, 2.65, 5], rotation: [0, 0, 0], fov: 55 }}
       dpr={[1, 1.5]}
       shadows={false}
       performance={{ min: 0.5 }}
+      gl={{ antialias: false, powerPreference: "high-performance" }}
     >
-      <MuseumWorld
-        selectedPanel={selectedPanel}
-        focusedPanel={focusedPanel}
-        onSelectPanel={onSelectPanel}
-        onFocusPanel={onFocusPanel}
-      />
+      <Suspense fallback={null}>
+        <MuseumWorld
+          focusedPanel={focusedPanel}
+          onFocusPanel={onFocusPanel}
+        />
+      </Suspense>
     </Canvas>
   );
 }

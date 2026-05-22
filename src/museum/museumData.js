@@ -41,13 +41,12 @@ const rawRooms = [
         wall: "left",
         title: "Cơ sở lý thuyết",
         heading: "Vận hành theo pháp luật",
-        guideText: "Hồ Chí Minh sớm nhận thức vai trò của Hiến pháp; yêu cầu bình đẳng pháp lý, xóa bỏ tòa án áp bức, thay sắc lệnh bằng đạo luật; Nhà nước phải tổ chức và vận hành theo pháp luật.",
         // visitor-left wall when entering from the lobby (south wall, facing -z)
         position: [-16, 3, 4.9],
         rotation: [0, Math.PI, 0],
         images: [
-          "/museum/nhanuochophienhopphap/tường trái 1.png",
-          "/museum/nhanuochophienhopphap/tường trái 2.png"
+          "/museum/nhanuochophienhopphap/tuong_trai_1.png",
+          "/museum/nhanuochophienhopphap/tuong_trai_2.png"
         ]
       },
       {
@@ -56,13 +55,12 @@ const rawRooms = [
         wall: "center",
         title: "Liên hệ thực tiễn",
         heading: "Tính Hợp Hiến & Uy Tín",
-        guideText: "Tổng tuyển cử, Quốc hội, tính hợp hiến của bộ máy nhà nước; Bầu cử Quốc hội khóa XVI có 864 người ứng cử, xác nhận 500 đại biểu. Việt Nam tái đắc cử Hội đồng Nhân quyền LHQ.",
         // back wall of left room (west wall, facing +x)
         position: [-21.9, 3, 0],
         rotation: [0, Math.PI / 2, 0],
         images: [
-          "/museum/nhanuochophienhopphap/tường giữa 1.png",
-          "/museum/nhanuochophienhopphap/tường giữa 2.png"
+          "/museum/nhanuochophienhopphap/tuong_giua_1.png",
+          "/museum/nhanuochophienhopphap/tuong_giua_2.png"
         ]
       },
       {
@@ -71,13 +69,12 @@ const rawRooms = [
         wall: "right",
         title: "Giá trị vận dụng",
         heading: "Nền tảng chính danh",
-        guideText: "Quyền lực nhà nước chỉ chính danh khi xuất phát từ nhân dân; tạo nền tảng ổn định chính trị và tư cách pháp lý để hội nhập quốc tế (CPTPP, EVFTA, FDI).",
         // visitor-right wall when entering from the lobby (north wall, facing +z)
         position: [-16, 3, -4.9],
         rotation: [0, 0, 0],
         images: [
-          "/museum/nhanuochophienhopphap/tường phải 1.png",
-          "/museum/nhanuochophienhopphap/tường phải 2.png"
+          "/museum/nhanuochophienhopphap/tuong_phai_1.png",
+          "/museum/nhanuochophienhopphap/tuong_phai_2.png"
         ]
       }
     ]
@@ -96,13 +93,12 @@ const rawRooms = [
         wall: "left",
         title: "Cơ sở lý thuyết",
         heading: "Quản lý bằng pháp luật",
-        guideText: "Quản lý bằng pháp luật là ưu tiên hàng đầu; Hồ Chí Minh lãnh đạo soạn thảo Hiến pháp, ký ban hành luật/sắc lệnh; luật phải được thi hành nghiêm.",
         // left wall of center room (facing +x)
         position: [-5.9, 3, -19],
         rotation: [0, Math.PI / 2, 0],
         images: [
-          "/museum/nhanuocthuongtonphapluat/tường trái 1.png",
-          "/museum/nhanuocthuongtonphapluat/tường trái 2.png"
+          "/museum/nhanuocthuongtonphapluat/tuong_trai_1.png",
+          "/museum/nhanuocthuongtonphapluat/tuong_trai_2.png"
         ]
       },
       {
@@ -111,13 +107,12 @@ const rawRooms = [
         wall: "center",
         title: "Liên hệ thực tiễn",
         heading: "Đại án Vạn Thịnh Phát",
-        guideText: "Đại án Vạn Thịnh Phát, xử lý nồng độ cồn (Nghị định 168), tinh thần 'không có vùng cấm, không có ngoại lệ'.",
         // back wall of center room (facing +z)
         position: [0, 3, -23.9],
         rotation: [0, 0, 0],
         images: [
-          "/museum/nhanuocthuongtonphapluat/tường giữa 1.png",
-          "/museum/nhanuocthuongtonphapluat/tường giữa 2.png"
+          "/museum/nhanuocthuongtonphapluat/tuong_giua_1.png",
+          "/museum/nhanuocthuongtonphapluat/tuong_giua_2.png"
         ]
       },
       {
@@ -126,13 +121,12 @@ const rawRooms = [
         wall: "right",
         title: "Giá trị vận dụng",
         heading: "Công bằng, bình đẳng",
-        guideText: "Bảo đảm công bằng, bình đẳng trước pháp luật; kiểm soát quyền lực; phòng chống tham nhũng; củng cố niềm tin của nhân dân.",
         // right wall of center room (facing -x)
         position: [5.9, 3, -19],
         rotation: [0, -Math.PI / 2, 0],
         images: [
-          "/museum/nhanuocthuongtonphapluat/tường phải 1.png",
-          "/museum/nhanuocthuongtonphapluat/tường phải 2.png"
+          "/museum/nhanuocthuongtonphapluat/tuong_phai_1.png",
+          "/museum/nhanuocthuongtonphapluat/tuong_phai_2.png"
         ]
       }
     ]
@@ -151,14 +145,13 @@ const rawRooms = [
         wall: "left",
         title: "Cơ sở lý thuyết",
         heading: "Pháp luật vì con người",
-        guideText: "Pháp luật không chỉ để cai trị mà phải vì con người; tiếp cận quyền con người toàn diện; nghiêm minh nhưng nhân văn.",
         // visitor-left wall when entering from the lobby (north wall, facing +z)
         position: [16, 3, -4.9],
         rotation: [0, 0, 0],
         images: [
-          "/museum/phapquyennhannghia/tường trái 1.png",
-          "/museum/phapquyennhannghia/tường trái 2.png",
-          "/museum/phapquyennhannghia/tường trái 3.png"
+          "/museum/phapquyennhannghia/tuong_trai_1.png",
+          "/museum/phapquyennhannghia/tuong_trai_2.png",
+          "/museum/phapquyennhannghia/tuong_trai_3.png"
         ]
       },
       {
@@ -167,13 +160,12 @@ const rawRooms = [
         wall: "center",
         title: "Liên hệ thực tiễn",
         heading: "Đặc xá & Khoan hồng",
-        guideText: "Đặc xá Quốc khánh 2/9/2025 xét duyệt hơn 10.000 hồ sơ rất nhân văn, chính xác; phiên tòa phúc thẩm 'Chuyến bay giải cứu' (2023) giảm nhẹ hình phạt cho các bị cáo thành khẩn khắc phục hậu quả, thể hiện rõ tính nghiêm minh kết hợp nhân đạo.",
         // back wall of right room (east wall, facing -x)
         position: [21.9, 3, 0],
         rotation: [0, -Math.PI / 2, 0],
         images: [
-          "/museum/phapquyennhannghia/tường giữa 1.png",
-          "/museum/phapquyennhannghia/tường giữa 2.png"
+          "/museum/phapquyennhannghia/tuong_giua_1.png",
+          "/museum/phapquyennhannghia/tuong_giua_2.png"
         ]
       },
       {
@@ -182,13 +174,12 @@ const rawRooms = [
         wall: "right",
         title: "Giá trị vận dụng",
         heading: "Kết hợp nghiêm minh & nhân đạo",
-        guideText: "Đảm bảo niềm tin vào công lý và hạn chế tư tưởng cực đoan chỉ chú trọng trừng phạt; khuyến khích người vi phạm cải tạo, hoàn lương để xây dựng xã hội ổn định, tôn trọng quyền con người.",
         // visitor-right wall when entering from the lobby (south wall, facing -z)
         position: [16, 3, 4.9],
         rotation: [0, Math.PI, 0],
         images: [
-          "/museum/phapquyennhannghia/tường phải 1.png",
-          "/museum/phapquyennhannghia/tường phải 2.png"
+          "/museum/phapquyennhannghia/tuong_phai_1.png",
+          "/museum/phapquyennhannghia/tuong_phai_2.png"
         ]
       }
     ]

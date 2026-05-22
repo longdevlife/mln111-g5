@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
-import { BookPage } from "./book/BookPage";
-import { TheoryPage } from "./game/TheoryPage";
-import { AIUsagePage } from "./ai-usage/AIUsagePage";
-import { MuseumPage } from "./museum/MuseumPage";
+import { Suspense, lazy, useEffect, useState } from "react";
 import Navbar from "./game/sections/Navbar";
+
+const BookPage = lazy(() => import("./book/BookPage").then((module) => ({ default: module.BookPage })));
+const TheoryPage = lazy(() => import("./game/TheoryPage").then((module) => ({ default: module.TheoryPage })));
+const AIUsagePage = lazy(() => import("./ai-usage/AIUsagePage").then((module) => ({ default: module.AIUsagePage })));
+const MuseumPage = lazy(() => import("./museum/MuseumPage").then((module) => ({ default: module.MuseumPage })));
 
 const TABS = [
   { id: "intro", label: "Mở Đầu" },
@@ -44,10 +45,29 @@ function App() {
       <Navbar activeTab={activeTab} onTabChange={handleTabChange} />
       {/* Tab Content */}
       <div style={{ width: "100%", minHeight: "100vh" }}>
-        {activeTab === "intro" && <TheoryPage />}
-        {activeTab === "book" && <BookPage skipIntro={hasVisitedBook} onIntroFinish={() => setHasVisitedBook(true)} />}
-        {activeTab === "museum" && <MuseumPage />}
-        {activeTab === "ai" && <AIUsagePage />}
+        <Suspense
+          fallback={
+            <div
+              style={{
+                minHeight: "100vh",
+                display: "grid",
+                placeItems: "center",
+                background: "#090604",
+                color: "#fff8ed",
+                fontFamily: "'Outfit', sans-serif",
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+              }}
+            >
+              Đang tải
+            </div>
+          }
+        >
+          {activeTab === "intro" && <TheoryPage />}
+          {activeTab === "book" && <BookPage skipIntro={hasVisitedBook} onIntroFinish={() => setHasVisitedBook(true)} />}
+          {activeTab === "museum" && <MuseumPage />}
+          {activeTab === "ai" && <AIUsagePage />}
+        </Suspense>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { MuseumScene } from "./MuseumScene";
-import { museumRooms, defaultPanel } from "./museumData";
+import { defaultPanel, museumRooms } from "./museumData";
 
 const LOBBY_VIEW = {
   id: "lobby",
@@ -11,33 +11,12 @@ const LOBBY_VIEW = {
 };
 
 export function MuseumPage() {
-  const [selectedPanel, setSelectedPanel] = useState(null);
   const [focusedPanel, setFocusedPanel] = useState(defaultPanel);
-  const displayPanel = selectedPanel || focusedPanel;
-
-  const focusedRoom = displayPanel
-    ? museumRooms.find(r => r.id === displayPanel.roomId) || null
+  const focusedRoom = focusedPanel
+    ? museumRooms.find((room) => room.id === focusedPanel.roomId) || null
     : null;
   const activeView = focusedRoom || LOBBY_VIEW;
   const indicators = [LOBBY_VIEW, ...museumRooms];
-
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.code === "Escape") {
-        setSelectedPanel(null);
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
-
-  const handleSelectPanel = (panel) => {
-    setSelectedPanel(panel);
-    if (panel) {
-      setFocusedPanel(panel);
-    }
-  };
 
   return (
     <main
@@ -51,12 +30,7 @@ export function MuseumPage() {
         background: "#090604",
       }}
     >
-      <MuseumScene
-        selectedPanel={selectedPanel}
-        focusedPanel={focusedPanel}
-        onSelectPanel={handleSelectPanel}
-        onFocusPanel={setFocusedPanel}
-      />
+      <MuseumScene focusedPanel={focusedPanel} onFocusPanel={setFocusedPanel} />
 
       <div
         style={{
@@ -88,7 +62,7 @@ export function MuseumPage() {
             letterSpacing: "0.22em",
             textTransform: "uppercase",
             transition: "color 0.3s ease",
-            fontWeight: "bold"
+            fontWeight: "bold",
           }}
         >
           {focusedRoom ? `Phòng: ${focusedRoom.title}` : "Sảnh trung tâm"}
@@ -102,7 +76,7 @@ export function MuseumPage() {
             transition: "all 0.3s ease",
           }}
         >
-          {displayPanel?.title || "Bảo tàng Nhà nước pháp quyền"}
+          {focusedPanel?.title || "Bảo tàng Nhà nước pháp quyền"}
         </h1>
         <p
           style={{
@@ -112,88 +86,9 @@ export function MuseumPage() {
             transition: "opacity 0.3s ease",
           }}
         >
-          {displayPanel?.heading || "Bước vào một phòng và hướng camera về từng bức tường nội dung."}
+          {focusedPanel?.heading || "Bước vào một phòng và hướng camera về từng bức tường nội dung."}
         </p>
       </section>
-
-      {selectedPanel && (
-        <aside
-          style={{
-            position: "absolute",
-            right: "clamp(18px, 4vw, 56px)",
-            bottom: "clamp(86px, 12vh, 116px)",
-            zIndex: 18,
-            width: "min(360px, calc(100vw - 36px))",
-            border: `1px solid ${selectedPanel.roomAccent}55`,
-            borderRadius: 14,
-            background: "linear-gradient(145deg, rgba(16, 10, 6, 0.9), rgba(42, 28, 18, 0.78))",
-            boxShadow: "0 24px 70px rgba(0,0,0,0.46)",
-            color: "#fff8ed",
-            padding: "18px 20px",
-            pointerEvents: "auto",
-            backdropFilter: "blur(16px)",
-          }}
-        >
-          <button
-            type="button"
-            onClick={() => setSelectedPanel(null)}
-            aria-label="Bỏ ghim tranh"
-            style={{
-              position: "absolute",
-              right: 12,
-              top: 10,
-              width: 32,
-              height: 32,
-              border: "1px solid rgba(255,255,255,0.12)",
-              borderRadius: "50%",
-              background: "rgba(255,255,255,0.04)",
-              color: "rgba(255,248,237,0.76)",
-              cursor: "pointer",
-              fontSize: 20,
-              lineHeight: "28px",
-            }}
-          >
-            ×
-          </button>
-          <div
-            style={{
-              color: selectedPanel.roomAccent,
-              fontSize: 10,
-              fontWeight: 700,
-              letterSpacing: "0.18em",
-              textTransform: "uppercase",
-            }}
-          >
-            Đang ghim tranh
-          </div>
-          <h2
-            style={{
-              margin: "8px 34px 8px 0",
-              fontFamily: "'Playfair Display', serif",
-              fontSize: 26,
-              lineHeight: 1.12,
-            }}
-          >
-            {selectedPanel.title}
-          </h2>
-          <p style={{ margin: 0, color: "rgba(255,248,237,0.72)", lineHeight: 1.65, fontSize: 14 }}>
-            {selectedPanel.heading}
-          </p>
-          <div
-            style={{
-              marginTop: 14,
-              paddingTop: 12,
-              borderTop: "1px solid rgba(255,255,255,0.1)",
-              color: "rgba(255,248,237,0.54)",
-              fontSize: 11,
-              letterSpacing: "0.08em",
-              textTransform: "uppercase",
-            }}
-          >
-            {selectedPanel.roomTitle}
-          </div>
-        </aside>
-      )}
 
       <div
         style={{

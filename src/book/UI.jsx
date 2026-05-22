@@ -1,5 +1,5 @@
 import { atom, useAtom } from "jotai";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 // ── State atoms ──
 export const pageAtom = atom(0);
@@ -82,8 +82,14 @@ const ChevronRight = () => (
 export const UI = () => {
   const [page, setPage] = useAtom(pageAtom);
   const [viewMode, setViewMode] = useAtom(viewModeAtom);
+  const hasPlayedInitialPage = useRef(false);
 
   useEffect(() => {
+    if (!hasPlayedInitialPage.current || page === 0) {
+      hasPlayedInitialPage.current = true;
+      return;
+    }
+
     const audio = new Audio("/audios/page-flip-01a.mp3");
     audio.play().catch(() => {});
   }, [page]);

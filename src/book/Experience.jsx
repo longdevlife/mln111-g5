@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import { Environment, Float, OrbitControls, ContactShadows } from "@react-three/drei";
+import { Float, OrbitControls, ContactShadows } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import { useAtom } from "jotai";
 import { Vector3 } from "three";
@@ -59,8 +59,9 @@ export const Experience = () => {
         maxDistance={10}
       />
 
-      {/* Ambient environment */}
-      <Environment preset="apartment" />
+      {/* Local ambient light only, so the book works offline during demo. */}
+      <ambientLight intensity={0.75} />
+      <hemisphereLight args={["#fff5df", "#2a1d14", 0.8]} />
 
       {/* Key Light */}
       <directionalLight
