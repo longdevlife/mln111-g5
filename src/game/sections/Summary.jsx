@@ -158,15 +158,14 @@ export default function Summary() {
                 >
                   3. Pháp quyền nhân nghĩa
                 </h3>
-                <p>
-                  Trong đại dịch COVID-19, Nhà nước triển khai gói hỗ trợ theo
-                  Quyết định 23/2021/QĐ-TTg cho người lao động mất việc, hộ kinh
-                  doanh và doanh nghiệp khó khăn, bao gồm hỗ trợ tiền mặt, giảm
-                  đóng bảo hiểm và hỗ trợ phục hồi sản xuất. (Báo Điện tử Chính
-                  phủ, 2022). Đồng thời, Nghị quyết 168/NQ-CP xác định vaccine
-                  COVID-19 là miễn phí cho toàn dân, ưu tiên nhóm nguy cơ cao —
-                  thể hiện rõ quan điểm lấy con người làm trung tâm. (Báo Điện
-                  tử Chính phủ, 2021)
+                <p className="mb-4">
+                  Một ví dụ tiêu biểu thể hiện tinh thần “pháp quyền nhân nghĩa” hiện nay là chính sách đặc xá, giảm án và khoan hồng đối với người phạm tội biết ăn năn hối cải của Nhà nước Việt Nam. Đặc xá được xác định là “sự khoan hồng đặc biệt của Nhà nước” dành cho các phạm nhân cải tạo tốt, chấp hành nghiêm pháp luật và có ý chí hoàn lương. Trong dịp Quốc khánh 2/9/2025, hơn 10.000 hồ sơ đặc xá đã được xem xét, nhưng việc xét duyệt phải bảo đảm “rất nhân văn nhưng cũng phải rất chính xác”, thể hiện sự kết hợp giữa tính nghiêm minh của pháp luật và lòng nhân đạo của Nhà nước. (Báo Điện tử Chính phủ, 2025)
+                </p>
+                <p className="mb-4">
+                  Bên cạnh đó, vụ án “Chuyến bay giải cứu” cũng là minh chứng rõ nét cho tinh thần pháp quyền nhân nghĩa. Trong phiên tòa phúc thẩm cuối năm 2023, nhiều bị cáo được xem xét giảm nhẹ hình phạt do thành khẩn khai báo, ăn năn hối cải và tích cực khắc phục hậu quả. Đặc biệt, bị cáo Hoàng Văn Hưng được giảm án từ tù chung thân xuống 20 năm tù sau khi thừa nhận hành vi phạm tội và nộp lại toàn bộ số tiền chiếm đoạt. Theo báo Hà Nội mới, tòa án đánh giá các bị cáo có nhiều tình tiết giảm nhẹ nên đã xem xét giảm án phù hợp. (Báo Hà Nội Mới, 2023)
+                </p>
+                <p className="italic text-[#7A6040]/80">
+                  Những ví dụ trên cho thấy Nhà nước Việt Nam luôn thượng tôn pháp luật, xử lý đúng người, đúng tội, nhưng không cứng nhắc hay chỉ thiên về trừng phạt. Pháp luật vừa nghiêm minh để bảo vệ công bằng xã hội, vừa nhân văn khi tạo điều kiện cho người phạm tội sửa sai, cải tạo và tái hòa nhập cộng đồng. Đây chính là biểu hiện sinh động của tư tưởng “pháp quyền nhân nghĩa” của Hồ Chí Minh.
                 </p>
               </div>
             </div>
@@ -213,12 +212,11 @@ export default function Summary() {
                 <h3 className="text-xl text-[#3D3529] mb-3 font-semibold">
                   3. Pháp quyền nhân nghĩa
                 </h3>
+                <p className="text-base text-[#7A6040] mb-3">
+                  Tư tưởng “pháp quyền nhân nghĩa” của Hồ Chí Minh vẫn có giá trị sâu sắc trong quá trình xây dựng Nhà nước pháp quyền xã hội chủ nghĩa hiện nay. Việc kết hợp giữa tính nghiêm minh của pháp luật và tính nhân đạo, khoan dung giúp nâng cao niềm tin của nhân dân vào công lý và sự công bằng của Nhà nước. Đồng thời, điều đó còn góp phần hạn chế tư tưởng cực đoan chỉ chú trọng trừng phạt mà bỏ quên mục tiêu giáo dục con người.
+                </p>
                 <p className="text-base text-[#7A6040]">
-                  Tư tưởng này bảo đảm quyền con người và công bằng xã hội trong
-                  mọi hoàn cảnh; tăng cường sự gắn bó giữa nhà nước và nhân dân
-                  thông qua các chính sách vì dân; đồng thời thể hiện bản chất
-                  nhân văn của chế độ — pháp luật không chỉ để quản lý mà để
-                  phục vụ và phát triển con người toàn diện.
+                  Bên cạnh đó, chính sách khoan hồng, giảm án hay đặc xá còn khuyến khích người vi phạm tích cực cải tạo, có động lực hoàn lương và trở thành công dân có ích cho xã hội. Điều này không chỉ thể hiện tính nhân văn của chế độ Việt Nam mà còn góp phần xây dựng một xã hội kỷ cương, ổn định nhưng vẫn giàu tình người và tôn trọng quyền con người.
                 </p>
               </div>
             </div>

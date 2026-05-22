@@ -102,7 +102,7 @@ export function MuseumPage() {
             transition: "all 0.3s ease",
           }}
         >
-          {displayPanel?.title || "Triển lãm Nhà nước pháp quyền"}
+          {displayPanel?.title || "Bảo tàng Nhà nước pháp quyền"}
         </h1>
         <p
           style={{

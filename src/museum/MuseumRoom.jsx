@@ -350,7 +350,7 @@ function LobbyCenterpiece({ accent }) {
             textTransform: "uppercase",
           }}
         >
-          Sơ đồ triển lãm
+          Sơ đồ bảo tàng
         </div>
       </Html>
     </group>

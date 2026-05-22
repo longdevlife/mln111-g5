@@ -119,27 +119,25 @@ export default function CoSoLyThuyet() {
                 className="text-3xl font-bold text-[#EDE8E1] mb-3"
                 style={{ fontFamily: f1 }}
               >
-                Lấy Con Người Làm Trung Tâm
+                Đặc Xá & Khoan Hồng Nhân Đạo
               </h3>
               <span
                 className="text-[#C5A028] text-sm font-medium mb-6 block italic"
                 style={{ fontFamily: f1 }}
               >
-                Đại dịch COVID-19
+                Chính sách Đặc xá 2025 & Chuyến bay giải cứu
               </span>
               <p
                 className="text-[#EDE8E1]/70 text-base leading-relaxed font-light mb-8"
                 style={{ fontFamily: f2 }}
               >
-                Quyết định 23/2021/QĐ-TTg hỗ trợ lao động mất việc, kinh doanh
-                khó khăn. Nghị quyết 168/NQ-CP xác định vaccine COVID-19 miễn
-                phí cho toàn dân, ưu tiên nhóm nguy cơ cao.
+                Thể hiện tinh thần nhân văn sâu sắc qua đợt đặc xá Quốc khánh 2/9/2025 với hơn 10.000 hồ sơ được xem xét nghiêm ngặt. Đồng thời, vụ án phúc thẩm “Chuyến bay giải cứu” (2023) giảm án cho các bị cáo thành khẩn khắc phục hậu quả là minh chứng sinh động cho pháp luật nghiêm minh nhưng đầy tính cảm hóa.
               </p>
               <div className="flex flex-wrap gap-2">
                 {[
-                  "QĐ 23/2021/QĐ-TTg",
-                  "Vaccine miễn phí",
-                  "Hỗ trợ tiền mặt",
+                  "Đặc xá 2/9/2025",
+                  "Khoan hồng nhân đạo",
+                  "Khắc phục hậu quả",
                 ].map((tag) => (
                   <span
                     key={tag}

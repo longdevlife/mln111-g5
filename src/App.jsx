@@ -8,7 +8,7 @@ import Navbar from "./game/sections/Navbar";
 const TABS = [
   { id: "intro", label: "Mở Đầu" },
   { id: "book", label: "Tạp chí" },
-  { id: "exhibition", label: "Triển Lãm 3D" },
+  { id: "museum", label: "Bảo tàng" },
   { id: "ai", label: "AI Usage" },
 ];
 
@@ -46,7 +46,7 @@ function App() {
       <div style={{ width: "100%", minHeight: "100vh" }}>
         {activeTab === "intro" && <TheoryPage />}
         {activeTab === "book" && <BookPage skipIntro={hasVisitedBook} onIntroFinish={() => setHasVisitedBook(true)} />}
-        {activeTab === "exhibition" && <MuseumPage />}
+        {activeTab === "museum" && <MuseumPage />}
         {activeTab === "ai" && <AIUsagePage />}
       </div>
     </div>

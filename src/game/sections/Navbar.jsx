@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 const NAV_LINKS = [
   { href: '#hero', label: 'Tổng Quan' },
   { href: '#book', label: 'Tạp chí' },
-  { href: '#exhibition', label: 'Triển Lãm 3D' },
+  { href: '#museum', label: 'Bảo tàng' },
   { href: '#ai', label: 'AI Usage' },
 ];
 
@@ -15,8 +15,8 @@ export default function Navbar({ activeTab, onTabChange }) {
       setActive('#book');
       return;
     }
-    if (activeTab === 'exhibition') {
-      setActive('#exhibition');
+    if (activeTab === 'museum') {
+      setActive('#museum');
       return;
     }
     if (activeTab === 'ai') {
@@ -39,10 +39,10 @@ export default function Navbar({ activeTab, onTabChange }) {
       return;
     }
 
-    // Switch to Exhibition Tab
-    if (id === 'exhibition') {
-      if (activeTab !== 'exhibition' && onTabChange) {
-        onTabChange('exhibition');
+    // Switch to Museum Tab
+    if (id === 'museum') {
+      if (activeTab !== 'museum' && onTabChange) {
+        onTabChange('museum');
       }
       return;
     }
@@ -56,7 +56,7 @@ export default function Navbar({ activeTab, onTabChange }) {
     }
 
     // Handing clicks to Intro Tab sections while currently on another Tab
-    if (activeTab !== 'intro' && id !== 'book' && id !== 'exhibition' && id !== 'ai') {
+    if (activeTab !== 'intro' && id !== 'book' && id !== 'museum' && id !== 'ai') {
       if (onTabChange) {
         onTabChange('intro');
       }

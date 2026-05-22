@@ -166,8 +166,8 @@ const rawRooms = [
         type: "practice",
         wall: "center",
         title: "Liên hệ thực tiễn",
-        heading: "Chính sách hỗ trợ",
-        guideText: "Chính sách hỗ trợ COVID-19 (Quyết định 23/2021/QĐ-TTg), vaccine miễn phí, ưu tiên nhóm nguy cơ cao, các chính sách vì dân.",
+        heading: "Đặc xá & Khoan hồng",
+        guideText: "Đặc xá Quốc khánh 2/9/2025 xét duyệt hơn 10.000 hồ sơ rất nhân văn, chính xác; phiên tòa phúc thẩm 'Chuyến bay giải cứu' (2023) giảm nhẹ hình phạt cho các bị cáo thành khẩn khắc phục hậu quả, thể hiện rõ tính nghiêm minh kết hợp nhân đạo.",
         // back wall of right room (east wall, facing -x)
         position: [21.9, 3, 0],
         rotation: [0, -Math.PI / 2, 0],
@@ -181,8 +181,8 @@ const rawRooms = [
         type: "application",
         wall: "right",
         title: "Giá trị vận dụng",
-        heading: "Quyền con người",
-        guideText: "Bảo đảm quyền con người và công bằng xã hội; pháp luật là công cụ phục vụ và phát triển con người toàn diện.",
+        heading: "Kết hợp nghiêm minh & nhân đạo",
+        guideText: "Đảm bảo niềm tin vào công lý và hạn chế tư tưởng cực đoan chỉ chú trọng trừng phạt; khuyến khích người vi phạm cải tạo, hoàn lương để xây dựng xã hội ổn định, tôn trọng quyền con người.",
         // visitor-right wall when entering from the lobby (south wall, facing -z)
         position: [16, 3, 4.9],
         rotation: [0, Math.PI, 0],

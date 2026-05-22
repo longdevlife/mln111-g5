@@ -1,261 +1,61 @@
-# AGENT_SYNC.md — Handoff cho Codex
+# 🤖 AGENT_SYNC.MD — Đồng bộ hóa trạng thái cho các AI Agents (Codex, Gemini, v.v.)
 
-> **Cập nhật:** 2026-05-19 23:10 (GMT+7)
-> **Tác giả cập nhật gần nhất:** Antigravity/Claude
-> **Mục đích:** Ghi trạng thái hiện tại của module Museum để agent sau không dựa vào context cũ.
-
----
-
-## Trạng thái hiện tại
-
-Museum hiện là **first-person 3D gallery** cho tab `#exhibition`.
-
-Nguyên tắc sản phẩm mới nhất:
-
-- **Không dùng hướng dẫn viên.**
-- **Không dùng avatar/nhân vật thuyết minh.**
-- Trải nghiệm tự dẫn bằng không gian, tranh, plaque, room labels và card ghim tranh.
-- Giữ phạm vi sửa trong `src/museum/` và asset texture liên quan.
+> **Cập nhật lần cuối:** 2026-05-22
+> **Mục đích:** Ghi lại chi tiết tất cả các thay đổi lớn gần đây để các AI agent khác tiếp quản dự án có thể nắm bắt trạng thái tức thì và duy trì tính nhất quán.
 
 ---
 
-## Cấu trúc file Museum hiện tại
+## 1. CÁC THAY ĐỔI VỀ PHÂN HỆ "BẢO TÀNG 3D" (MUSEUM)
 
-```
-src/museum/
-├── museumData.js        # Room definitions, panel positions, phân bổ PNG texture thực tế theo thư mục, collision zones
-├── MuseumPage.jsx       # Page wrapper, HUD, selected/focused panel state, pinned artwork card
-├── MuseumScene.jsx      # R3F Canvas + ambient lighting mạnh + camera focus tracker
-├── MuseumRoom.jsx       # Architecture: sáng sủa hơn, lobby, rooms, hallway, trims, chandelier, benches, centerpiece
-├── MuseumArtwork.jsx    # Artwork frame, texture canvas chuẩn độ sâu, focus/selected plaque (luôn hiện mờ hoặc sáng)
-└── MuseumPlayer.jsx     # WASD / arrow movement with AABB collision
-```
+### 🔄 Đổi tên Phân hệ và Đồng bộ ID Routing
+* **Yêu cầu:** Người dùng muốn đổi tên phân hệ **"Triển Lãm 3D"** thành **"Bảo tàng"**.
+* **Các thay đổi đã thực hiện:**
+  * **Router chính (`src/App.jsx`):**
+    * Đổi nhãn tab từ `"Triển Lãm 3D"` thành `"Bảo tàng"`.
+    * Đồng bộ hóa `id` tab từ `exhibition` thành `museum`.
+    * Cập nhật component render: `{activeTab === "museum" && <MuseumPage />}`.
+  * **Menu Điều Hướng (`src/game/sections/Navbar.jsx`):**
+    * Cập nhật URL trong menu từ `#exhibition` thành `#museum`, nhãn tương ứng thành `'Bảo tàng'`.
+    * Thay đổi toàn bộ logic kiểm tra và đồng bộ trạng thái `activeTab` từ `exhibition` sang `museum`.
+  * **Giao diện Bảo tàng (`src/museum/MuseumPage.jsx` & `src/museum/MuseumRoom.jsx`):**
+    * Tiêu đề sảnh mặc định đổi thành `"Bảo tàng Nhà nước pháp quyền"` thay vì `"Triển lãm Nhà nước pháp quyền"`.
+    * Biển chỉ dẫn 3D tại sảnh chính đổi thành `"Sơ đồ bảo tàng"` thay vì `"Sơ đồ triển lãm"`.
 
-Đã xóa:
-
-- `src/museum/MuseumGuide.jsx`
-- `src/museum/MuseumCarousel.jsx`
-- `public/textures/guide-avatar.png`
-- HUD hướng dẫn di chuyển (WASD/Arrows) ở góc dưới bên trái màn hình.
-
-Không thêm lại các file/asset trên nếu không có yêu cầu mới rõ ràng.
-
----
-
-## Asset textures
-
-Museum panels hiện lấy ảnh trực tiếp từ thư mục `public/museum/`:
-
-```
-public/museum/nhanuochophienhopphap/ (5 ảnh)
-public/museum/nhanuocthuongtonphapluat/ (4 ảnh)
-public/museum/phapquyennhannghia/ (3 ảnh)
-```
-
-Lưu ý: Các ảnh đã được phân bổ đích danh cho từng bức tường, không còn dùng cơ chế lặp vòng `trang1.png -> trang16.png` nữa.
-
-Textures kiến trúc:
-
-```
-damask-pattern.png
-marble-floor.png
-```
+### 🛠️ Sửa lỗi crash trắng màn hình trong phân hệ 3D
+* **Vấn đề:** Khi truy cập tab Bảo tàng (trước đó là Triển Lãm 3D), màn hình bị crash trắng hoàn toàn.
+* **Nguyên nhân:** Thiếu hai tệp texture nền quan trọng là `damask-pattern.png` và `marble-floor.png` trong thư mục `public/textures/`. Canvas 3D của React Three Fiber (R3F) không thể tải texture nên ném lỗi runtime làm sập Canvas.
+* **Khắc phục:** Đã khôi phục thành công 2 file ảnh này từ phân vùng backup của hệ thống và sao chép an toàn vào [public/textures/](file:///d:/Ky8-FPT/mln111-g5/public/textures/). Lỗi crash đã được giải quyết triệt để.
 
 ---
 
-## Layout 3D
+## 2. CÁC THAY ĐỔI VỀ NỘI DUNG VÀ TÀI NGUYÊN (MEDIA)
 
-```
-                     ┌──────────────┐
-                     │  PHÒNG GIỮA  │  center: (0, 0, -19)
-                     │ Thượng tôn   │  size: 12w × 10d × 6h
-                     │ pháp luật    │  accent: #C5A028
-                     └──────┬───────┘
-                            │ hallway (4w, axis=z)
-   ┌────────────┐    ┌──────┴───────┐    ┌────────────┐
-   │ PHÒNG TRÁI │────│    SẢNH      │────│ PHÒNG PHẢI │
-   │ (-16,0,0)  │    │   (0,0,0)    │    │ (16,0,0)   │
-   │ Hợp hiến   │    │ centerpiece  │    │ Nhân nghĩa │
-   │ #C5272D    │    │ camera start │    │ #6F8F4E    │
-   └────────────┘    └──────────────┘    └────────────┘
-```
+### 📖 Đồng bộ ảnh Tạp chí (Sách 3D - `src/book/`)
+* **Nội dung:** Người dùng đã cập nhật 22 trang ảnh mới cho Tạp chí.
+* **Các thay đổi đã thực hiện:**
+  * Đồng bộ toàn bộ 22 ảnh Tạp chí mới (`trang 1.png` đến `trang 20.png`, `bìa đầu.png`, `bìa cuối.png`) trong thư mục [public/textures/](file:///d:/Ky8-FPT/mln111-g5/public/textures/).
+  * Cấu hình và lập bản đồ lật trang mượt mà cho 11 trang đôi của Tạp chí trong [UI.jsx](file:///d:/Ky8-FPT/mln111-g5/src/book/UI.jsx).
 
-Camera start: `[0, 2.65, 5]`
-
-Player height lock: `y = 2.65`
+### 🖋️ Cập nhật Nội dung Thuyết minh mới
+* **Lý thuyết & Thực tiễn (Tab Mở Đầu):**
+  * Cập nhật nội dung thuyết minh mới về chính sách nhân đạo của Đảng và Nhà nước, cụ thể là sự kiện **Đặc xá Quốc khánh 2/9/2025** (xem xét hơn 10.000 hồ sơ) và vụ án **"Chuyến bay giải cứu"** (giảm nhẹ hình phạt cho các bị cáo khắc phục hậu quả).
+  * Các file đã cập nhật: [CoSoLyThuyet.jsx](file:///d:/Ky8-FPT/mln111-g5/src/game/sections/CoSoLyThuyet.jsx) và [Summary.jsx](file:///d:/Ky8-FPT/mln111-g5/src/game/sections/Summary.jsx).
+* **Nội dung ghim tranh trong Bảo tàng:**
+  * Đồng bộ tương ứng các đoạn thuyết minh mới này vào phần `guideText` của `room3-center` (Đặc xá & Khoan hồng) và `room3-right` (Giá trị vận dụng) của Phòng 3 (Pháp quyền nhân nghĩa) trong tệp cấu hình dữ liệu 3D [museumData.js](file:///d:/Ky8-FPT/mln111-g5/src/museum/museumData.js).
 
 ---
 
-## Data flow
-
-Trong `museumData.js`:
-
-1. `rawRooms`: 3 phòng, mỗi phòng có định nghĩa mảng `images` trực tiếp cho từng tường.
-2. Tự động tính toán vị trí: dựa trên số lượng ảnh của mỗi tường (1 hoặc 2 ảnh), tự động chia khoảng cách (spacing) và dàn đều căn giữa tường.
-3. Texture mapping: lấy đúng đường dẫn ảnh PNG tương ứng từ thư mục.
-4. Title format mới: `"<title> - Tư liệu I/II/III"` (nếu tường có nhiều tranh).
-5. `museumPanels`: flat array cho `MuseumScene` render tổng cộng **12 `MuseumArtwork`**.
-
-Mỗi panel có dạng chính:
-
-```js
-{
-  id,
-  title,
-  heading,
-  guideText,       // legacy content data, hiện không dùng làm guide
-  sequenceLabel,
-  position,
-  rotation,
-  imageSrc,        // /museum/[room]/[tên ảnh].png
-  roomAccent,
-  roomTitle,
-  roomId
-}
-```
+## 3. KẾT QUẢ KIỂM THỬ VÀ TRẠNG THÁI HIỆN TẠI
+* **Trạng thái Build:** Chạy lệnh `npm run build` thành công 100% không lỗi. Tất cả các assets (bao gồm hình ảnh tiếng Việt có dấu) được Vite đóng gói hoàn hảo.
+* **Độ ổn định:** Phân hệ Bảo tàng 3D hoạt động mượt mà, ghim tranh hoạt động tốt, không còn lỗi sập Canvas.
+* **Routing:** Hash routing hoạt động chính xác với các đường dẫn:
+  * `#intro` (Mở Đầu)
+  * `#book` (Tạp chí)
+  * `#museum` (Bảo tàng)
+  * `#ai` (AI Usage)
 
 ---
 
-## MuseumArtwork.jsx
-
-Tranh hiện có:
-
-- Khung vàng cổ điển bằng nhiều lớp `boxGeometry`.
-- Canvas texture được kéo nhô lên `z=0.042` để không bị lấp sau viền vàng.
-- Đèn rọi (pointLight) đã được giảm cường độ tối đa để tránh bị đốm đỏ/vàng lóa mắt.
-- Canvas không còn phát sáng emissive.
-- Plaque tên tranh.
-- `selected` làm plaque viền theo accent.
-- Click tranh gọi `onSelect(panel)` để ghim tranh.
-
-Đã bỏ:
-
-- `near` state thừa.
-- `useFrame` proximity logic trong artwork.
-- Nút `Xem nội dung`.
-- Vật thể lưới (mesh) giả làm đèn rọi tranh.
-
----
-
-## MuseumPage.jsx
-
-State:
-
-```jsx
-const [selectedPanel, setSelectedPanel] = useState(null);
-const [focusedPanel, setFocusedPanel] = useState(defaultPanel);
-const displayPanel = selectedPanel || focusedPanel;
-```
-
-HUD:
-
-- Top-left: phòng hiện tại, title và heading của panel đang focus/ghim.
-- Bottom-center: indicator cho Lobby + 3 rooms.
-- Khi click tranh: hiện card `Đang ghim tranh` ở góc phải dưới.
-- `Escape`: bỏ ghim tranh.
-
-Đã bỏ:
-- Render `MuseumGuide`.
-- Thanh hướng dẫn các nút bấm `W/A/S/D`, `Mũi tên nhìn quanh`, `Click ghim tranh`, `Esc bỏ ghim` để giao diện gọn gàng hơn.
-
----
-
-## MuseumRoom.jsx
-
-Components chính:
-
-| Component | Chức năng |
-|-----------|-----------|
-| `useMuseumTextures()` | Load damask + marble textures, RepeatWrapping |
-| `Room` | Render phòng/sảnh với floor, ceiling (màu sáng hơn), walls/openings, trims, chandelier |
-| `CeilingTrim` | Viền trần gỗ + brass |
-| `MuseumBench` | Ghế băng ở các phòng phụ |
-| `LobbyCenterpiece` | Centerpiece procedural trong sảnh, không dùng GLB |
-| `MuseumChandelier` | Đèn chùm geometry local |
-| `WallWithOpening` | Tường có cổng, casing, label |
-| `Hallway` | Hành lang nối sảnh với phòng giữa |
-
-Vật liệu (Materials) đã được giảm độ nhám (roughness) và tăng độ sáng để không gian lộng lẫy và phản xạ ánh sáng tốt hơn.
-
----
-
-## MuseumScene.jsx
-
-Không còn `Environment preset="warehouse"`.
-Scene hiện dùng lighting local được tăng cường mạnh mẽ:
-
-- `ambientLight` cường độ 0.9
-- `hemisphereLight` cường độ 0.9 (màu trời xanh nhạt, đất vàng ấm)
-- `directionalLight`
-- lobby/room `spotLight` (tông màu trắng kem/ấm tinh tế thay vì vàng khè)
-- Sương mù (fog) được đẩy ra xa hơn để không gian mở rộng.
-
-Render order hiện tại:
-
-```
-background/fog → local lights → Sparkles →
-MuseumPlayer → CameraDirectionTracker → MuseumRoom →
-12× MuseumArtwork → ContactShadows
-```
-
-`CameraDirectionTracker`:
-
-- Mỗi frame tính hướng camera.
-- Chọn panel gần nhất trong 12 units và dot product > 0.8.
-- Gọi `onFocusPanel(closestPanel)`.
-
----
-
-## Verification mới nhất
-
-Kết quả:
-
-- Museum panels tải ảnh chuẩn từ folder `public/museum/`.
-- Ánh sáng ngập tràn, sáng sủa, kiến trúc hiện rõ hoa văn Damask.
-- Ảnh trong tranh không còn bị lấp đằng sau khung vàng.
-- Các vết sáng đỏ/chói trên khung đã bị xóa bỏ.
-- Không còn HUD rườm rà dưới đáy màn hình.
-
----
-
-## Lưu ý còn lại
-
-1. PNG `trang*.png` ở gốc public/textures vẫn còn dùng ở module Book `src/book/`.
-2. `guideText` vẫn còn trong `museumData.js` như legacy data. Không dùng nó để hiện hướng dẫn viên.
-
----
-
-## Lịch sử thay đổi gần nhất
-
-### Session 5 — 2026-05-19 tối (Antigravity/Claude)
-
-- Map ảnh trực tiếp từ thư mục `public/museum/[tên_phòng]/` thay vì dùng ảnh dummy.
-- Tự động chia lại khoảng cách tranh dựa trên số lượng ảnh thực tế của từng tường. Tổng 12 bức.
-- Xóa UI HUD hướng dẫn W/A/S/D cho gọn gàng.
-- Sửa lỗi z-index làm tranh bị chìm vào trong khung.
-- Tăng sáng cực mạnh cho toàn bộ phòng, giảm độ nhám, dời đèn làm chói tranh.
-
-### Session 4 — 2026-05-19 18:00 (Codex)
-
-- Xóa hẳn `MuseumGuide.jsx`, `MuseumCarousel.jsx`, `guide-avatar.png`.
-- Không dùng hướng dẫn viên/thuyết minh viên.
-- Bỏ `Environment preset="warehouse"` để tránh remote HDR.
-
-### Session 3 — 2026-05-19 17:00 (Antigravity/Claude)
-
-- Thiết kế lại khung tranh vàng cổ điển.
-- Xóa nút `Xem nội dung`.
-- Bỏ render `MuseumGuide` khỏi `MuseumPage`.
-- Dời plaque xuống dưới khung tranh.
-
-### Session 2 — 2026-05-19 (Antigravity/Claude + Codex)
-
-- Nhân mỗi tường thành tranh.
-- Tích hợp texture.
-- Thêm bench, chandelier, trims, hallway/collision polish.
-
-### Session 1 — 2026-05-19 (Antigravity/Claude)
-
-- Refactor layout thành sảnh + 3 phòng nhánh.
-- Viết lại data/room/scene/player museum.
-- Thêm damask/marble textures.
+> 💡 **Ghi chú dành cho AI Agent tiếp theo:**
+> - Khi thực hiện các lệnh shell trên môi trường Windows này, vui lòng sử dụng cấu trúc pipe (ví dụ: `Get-Content <file> | cmd //c` hoặc `echo "<lệnh>" | cmd //c`) để tránh việc `cmd //c` bị treo do sai lệch xử lý đối số của PowerShell.
+> - Tuyệt đối tuân thủ rule phản hồi bằng tiếng Việt và không dùng alert().
