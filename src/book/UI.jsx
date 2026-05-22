@@ -6,40 +6,46 @@ export const pageAtom = atom(0);
 export const viewModeAtom = atom("showcase"); // "showcase" | "reading"
 
 export const pages = [
-  { front: "!!!bìa đầu", back: "trang1" },
-  { front: "trang2", back: "trang3" },
-  { front: "trang4", back: "trang5" },
-  { front: "trang6", back: "trang7" },
-  { front: "trang8", back: "trang9" },
-  { front: "trang10", back: "trang11" },
-  { front: "trang12", back: "!!!trang13" },
-  { front: "trang14", back: "trang15" },
-  { front: "!!!trang16", back: "!!!bìa cuối" },
+  { front: "bìa đầu", back: "trang 1" },
+  { front: "trang 2", back: "trang 3" },
+  { front: "trang 4", back: "trang 5" },
+  { front: "trang 6", back: "trang 7" },
+  { front: "trang 8", back: "trang 9" },
+  { front: "trang 10", back: "trang 11" },
+  { front: "trang 12", back: "trang 13" },
+  { front: "trang 14", back: "trang 15" },
+  { front: "trang 16", back: "trang 17" },
+  { front: "trang 18", back: "trang 19" },
+  { front: "trang 20", back: "bìa cuối" },
 ];
 
 const pageLabels = [
   "Bìa",
   "Trang 2",
-  "Trang 3",
   "Trang 4",
-  "Trang 5",
   "Trang 6",
-  "Trang 7",
   "Trang 8",
-  "Trang 9",
+  "Trang 10",
+  "Trang 12",
+  "Trang 14",
+  "Trang 16",
+  "Trang 18",
+  "Trang 20",
   "Bìa sau",
 ];
 
 const pageTitles = [
   null,
   "Trang 2",
-  "Trang 3",
   "Trang 4",
-  "Trang 5",
   "Trang 6",
-  "Trang 7",
   "Trang 8",
-  "Trang 9",
+  "Trang 10",
+  "Trang 12",
+  "Trang 14",
+  "Trang 16",
+  "Trang 18",
+  "Trang 20",
   null,
 ];
 
