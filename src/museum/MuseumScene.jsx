@@ -7,6 +7,7 @@ import { MuseumArtwork } from "./MuseumArtwork";
 import { MuseumPlayer } from "./MuseumPlayer";
 import { MuseumRoom } from "./MuseumRoom";
 import { museumPanels, ROOM_LEFT_POS, ROOM_CENTER_POS, ROOM_RIGHT_POS } from "./museumData";
+import { MuseumVisitors } from "./MuseumVisitors";
 
 function CameraDirectionTracker({ onFocusPanel }) {
   const { camera } = useThree();
@@ -43,7 +44,7 @@ function CameraDirectionTracker({ onFocusPanel }) {
   return null;
 }
 
-function MuseumWorld({ focusedPanel, onFocusPanel }) {
+function MuseumWorld({ focusedPanel, onFocusPanel, onSelectPanel, controlsEnabled }) {
   return (
     <>
       <color attach="background" args={["#090604"]} />
@@ -78,15 +79,17 @@ function MuseumWorld({ focusedPanel, onFocusPanel }) {
       {/* Sparkles in lobby area */}
       <Sparkles count={35} scale={[22, 8, 22]} position={[0, 3, 0]} size={2.4} speed={0.16} opacity={0.08} color="#f4d49a" />
 
-      <MuseumPlayer />
+      <MuseumPlayer enabled={controlsEnabled} />
       <CameraDirectionTracker onFocusPanel={onFocusPanel} />
       <MuseumRoom />
+      <MuseumVisitors />
 
       {museumPanels.map((panel) => (
         <MuseumArtwork
           key={panel.id}
           panel={panel}
           focused={focusedPanel?.id === panel.id}
+          onSelect={onSelectPanel}
         />
       ))}
 
@@ -99,7 +102,7 @@ function MuseumWorld({ focusedPanel, onFocusPanel }) {
   );
 }
 
-export function MuseumScene({ focusedPanel, onFocusPanel }) {
+export function MuseumScene({ focusedPanel, onFocusPanel, onSelectPanel, controlsEnabled = true }) {
   return (
     <Canvas
       camera={{ position: [0, 2.65, 5], rotation: [0, 0, 0], fov: 55 }}
@@ -112,6 +115,8 @@ export function MuseumScene({ focusedPanel, onFocusPanel }) {
         <MuseumWorld
           focusedPanel={focusedPanel}
           onFocusPanel={onFocusPanel}
+          onSelectPanel={onSelectPanel}
+          controlsEnabled={controlsEnabled}
         />
       </Suspense>
     </Canvas>

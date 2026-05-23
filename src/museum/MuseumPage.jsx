@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
 import { MuseumScene } from "./MuseumScene";
+import { ArtworkPopup } from "./ArtworkPopup";
 import { defaultPanel, museumRooms } from "./museumData";
 
 const LOBBY_VIEW = {
@@ -12,11 +13,20 @@ const LOBBY_VIEW = {
 
 export function MuseumPage() {
   const [focusedPanel, setFocusedPanel] = useState(defaultPanel);
+  const [selectedPanel, setSelectedPanel] = useState(null);
   const focusedRoom = focusedPanel
     ? museumRooms.find((room) => room.id === focusedPanel.roomId) || null
     : null;
   const activeView = focusedRoom || LOBBY_VIEW;
   const indicators = [LOBBY_VIEW, ...museumRooms];
+
+  const handleSelectPanel = useCallback((panel) => {
+    setSelectedPanel(panel);
+  }, []);
+
+  const handleClosePopup = useCallback(() => {
+    setSelectedPanel(null);
+  }, []);
 
   return (
     <main
@@ -30,7 +40,12 @@ export function MuseumPage() {
         background: "#090604",
       }}
     >
-      <MuseumScene focusedPanel={focusedPanel} onFocusPanel={setFocusedPanel} />
+      <MuseumScene
+        focusedPanel={focusedPanel}
+        onFocusPanel={setFocusedPanel}
+        onSelectPanel={handleSelectPanel}
+        controlsEnabled={!selectedPanel}
+      />
 
       <div
         style={{
@@ -115,6 +130,9 @@ export function MuseumPage() {
           />
         ))}
       </div>
+
+      {/* Artwork Popup Overlay */}
+      <ArtworkPopup panel={selectedPanel} onClose={handleClosePopup} />
     </main>
   );
 }

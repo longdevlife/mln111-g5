@@ -1,4 +1,4 @@
-import { Html, useTexture } from "@react-three/drei";
+import { Html, useTexture, useGLTF } from "@react-three/drei";
 import { useMemo } from "react";
 import * as THREE from "three";
 import {
@@ -281,7 +281,32 @@ function MuseumBench({ position, rotation = [0, 0, 0] }) {
   );
 }
 
+function StanchionPost({ position }) {
+  return (
+    <group position={position}>
+      {/* Base */}
+      <mesh position={[0, 0.02, 0]} castShadow receiveShadow>
+        <cylinderGeometry args={[0.13, 0.15, 0.04, 24]} />
+        <meshStandardMaterial color="#c59a3a" roughness={0.2} metalness={0.8} />
+      </mesh>
+      {/* Column */}
+      <mesh position={[0, 0.47, 0]} castShadow receiveShadow>
+        <cylinderGeometry args={[0.025, 0.025, 0.86, 16]} />
+        <meshStandardMaterial color="#c59a3a" roughness={0.2} metalness={0.8} />
+      </mesh>
+      {/* Top Sphere */}
+      <mesh position={[0, 0.92, 0]} castShadow receiveShadow>
+        <sphereGeometry args={[0.045, 16, 16]} />
+        <meshStandardMaterial color="#b88a32" roughness={0.15} metalness={0.85} />
+      </mesh>
+    </group>
+  );
+}
+
 function LobbyCenterpiece({ accent }) {
+  const { scene } = useGLTF("/models/president_ho_chi_minh_statue.glb");
+  const statueScene = useMemo(() => scene.clone(), [scene]);
+
   return (
     <group position={[0, 0, 0]}>
       {/* Brass wayfinding inlay on the floor */}
@@ -298,59 +323,88 @@ function LobbyCenterpiece({ accent }) {
         <meshStandardMaterial color={DOOR_BRASS_COLOR} roughness={0.34} metalness={0.5} />
       </mesh>
 
-      {/* Pedestal */}
-      <mesh position={[0, 0.4, 0]}>
-        <cylinderGeometry args={[1.05, 1.28, 0.8, 48]} />
-        <meshStandardMaterial color={DOOR_WOOD_COLOR} roughness={0.62} metalness={0.1} />
-      </mesh>
-      <mesh position={[0, 0.85, 0]}>
-        <cylinderGeometry args={[1.12, 1.12, 0.12, 48]} />
-        <meshStandardMaterial color={DOOR_BRASS_COLOR} roughness={0.3} metalness={0.5} />
-      </mesh>
-      <mesh position={[0, 0.2, 0]}>
-        <cylinderGeometry args={[1.34, 1.46, 0.12, 48]} />
-        <meshStandardMaterial color="#1b120d" roughness={0.5} metalness={0.12} />
-      </mesh>
+      {/* Tượng Chủ tịch Hồ Chí Minh uy nghiêm - nâng nhẹ để bệ không thụt xuống sàn */}
+      <primitive
+        object={statueScene}
+        position={[0.22, 1.8, 0.95]}
+        scale={[4.2, 4.2, 4.2]}
+        rotation={[0, 0, 0]}
+      />
 
-      {/* Abstract rule-of-law globe: local geometry, no external GLB */}
-      <mesh position={[0, 1.72, 0]}>
-        <sphereGeometry args={[0.68, 32, 24]} />
-        <meshStandardMaterial color="#263540" roughness={0.46} metalness={0.08} transparent opacity={0.72} />
+      {/* 4 Cột chắn đồng hoàng gia mở rộng thành hình chữ nhật khổng lồ (5.6m x 6.0m) bao quanh tượng vô cùng rộng rãi */}
+      <StanchionPost position={[-2.8, 0, 2.6]} />
+      <StanchionPost position={[2.8, 0, 2.6]} />
+      <StanchionPost position={[-2.8, 0, -3.4]} />
+      <StanchionPost position={[2.8, 0, -3.4]} />
+
+      {/* Dây nhung ruy băng màu đỏ thẫm kết nối 4 cột, rộng rãi và hoàn toàn không chạm vào tượng */}
+      {/* Cột 1 (Trước-Trái) -> Cột 2 (Trước-Phải) */}
+      <mesh position={[0, 0.72, 2.6]} rotation={[0, 0, Math.PI / 2]} castShadow receiveShadow>
+        <cylinderGeometry args={[0.02, 0.02, 5.6, 16]} />
+        <meshStandardMaterial color="#901111" roughness={0.8} />
       </mesh>
-      <mesh position={[0, 1.72, 0]} rotation={[Math.PI / 2, 0, 0]}>
-        <torusGeometry args={[0.72, 0.018, 12, 72]} />
-        <meshStandardMaterial color={DOOR_BRASS_COLOR} roughness={0.28} metalness={0.65} />
+      {/* Cột 3 (Sau-Trái) -> Cột 4 (Sau-Phải) */}
+      <mesh position={[0, 0.72, -3.4]} rotation={[0, 0, Math.PI / 2]} castShadow receiveShadow>
+        <cylinderGeometry args={[0.02, 0.02, 5.6, 16]} />
+        <meshStandardMaterial color="#901111" roughness={0.8} />
       </mesh>
-      <mesh position={[0, 1.72, 0]} rotation={[0, Math.PI / 2, 0]}>
-        <torusGeometry args={[0.72, 0.016, 12, 72]} />
-        <meshStandardMaterial color={TRIM_BRASS_COLOR} roughness={0.28} metalness={0.62} />
+      {/* Cột 1 (Trước-Trái) -> Cột 3 (Sau-Trái) */}
+      <mesh position={[-2.8, 0.72, -0.4]} rotation={[Math.PI / 2, 0, 0]} castShadow receiveShadow>
+        <cylinderGeometry args={[0.02, 0.02, 6.0, 16]} />
+        <meshStandardMaterial color="#901111" roughness={0.8} />
       </mesh>
-      <mesh position={[0, 1.72, 0]} rotation={[0.72, 0, 0.42]}>
-        <torusGeometry args={[0.86, 0.015, 12, 72]} />
-        <meshStandardMaterial color="#e4bd67" roughness={0.24} metalness={0.72} />
+      {/* Cột 2 (Trước-Phải) -> Cột 4 (Sau-Phải) */}
+      <mesh position={[2.8, 0.72, -0.4]} rotation={[Math.PI / 2, 0, 0]} castShadow receiveShadow>
+        <cylinderGeometry args={[0.02, 0.02, 6.0, 16]} />
+        <meshStandardMaterial color="#901111" roughness={0.8} />
       </mesh>
 
       <pointLight position={[0, 2.6, 0]} intensity={0.46} color={accent} distance={5} />
 
-      <Html position={[0, 1.08, 1.08]} transform center scale={0.28} occlude>
+      {/* Giá đỡ bảng tên bằng đồng nghiêng sang trọng đặt phía trước ngoài hàng rào ruy băng mới */}
+      <group position={[0, 0, 2.78]}>
+        {/* Chân đế giá đỡ */}
+        <mesh position={[0, 0.015, 0]} castShadow receiveShadow>
+          <cylinderGeometry args={[0.07, 0.09, 0.03, 16]} />
+          <meshStandardMaterial color="#c59a3a" roughness={0.25} metalness={0.75} />
+        </mesh>
+        {/* Cột giá đỡ nghiêng nhẹ ra trước */}
+        <mesh position={[0, 0.25, 0.02]} rotation={[0.15, 0, 0]} castShadow receiveShadow>
+          <cylinderGeometry args={[0.015, 0.015, 0.5, 16]} />
+          <meshStandardMaterial color="#c59a3a" roughness={0.25} metalness={0.75} />
+        </mesh>
+        {/* Khung đỡ bảng tên bằng đồng đặt nghiêng */}
+        <mesh position={[0, 0.5, 0.06]} rotation={[-0.4, 0, 0]} castShadow receiveShadow>
+          <boxGeometry args={[0.66, 0.32, 0.02]} />
+          <meshStandardMaterial color="#b88a32" roughness={0.2} metalness={0.8} />
+        </mesh>
+      </group>
+
+      {/* Bảng tên đồng vinh danh Bác trang trọng đặt nghiêng hướng lên, thêm occlude để ẩn khi bị khuất */}
+      <Html position={[0, 0.52, 2.84]} rotation={[-0.4, 0, 0]} transform center scale={0.22} occlude>
         <div
           style={{
-            minWidth: 240,
-            border: `1px solid ${accent}70`,
-            borderRadius: 3,
-            background: "linear-gradient(135deg, rgba(34,24,16,0.95), rgba(12,8,5,0.92))",
-            boxShadow: "0 10px 28px rgba(0,0,0,0.5)",
-            color: "#fff8ed",
-            fontFamily: "'Outfit', sans-serif",
-            fontSize: 12,
-            letterSpacing: "0.12em",
-            padding: "9px 13px",
+            minWidth: 260,
+            border: "2px solid #c5a028",
+            borderRadius: 4,
+            background: "linear-gradient(135deg, #2c1a0e, #1a100a)",
+            boxShadow: "0 8px 24px rgba(0,0,0,0.6)",
+            color: "#e4bd67",
+            fontFamily: "'Playfair Display', serif",
+            fontWeight: "bold",
+            fontSize: 13,
+            letterSpacing: "0.1em",
+            padding: "8px 16px",
             pointerEvents: "none",
             textAlign: "center",
             textTransform: "uppercase",
+            borderImage: "linear-gradient(to right, #c5a028, #f4df8a, #c5a028) 1",
           }}
         >
-          Sơ đồ bảo tàng
+          Chủ tịch Hồ Chí Minh <br />
+          <span style={{ fontSize: 10, fontFamily: "'Outfit', sans-serif", opacity: 0.85 }}>
+            (1890 - 1969)
+          </span>
         </div>
       </Html>
     </group>
@@ -472,7 +526,7 @@ function WallWithOpening({
       </mesh>
 
       {label && (
-        <Html position={[0, openH + 0.47, 0.4]} transform center scale={0.3}>
+        <Html position={[0, openH + 0.47, 0.4]} transform center scale={0.3} occlude>
           <div
             style={{
               minWidth: 220,

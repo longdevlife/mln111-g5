@@ -6,6 +6,7 @@ import { WALKABLE_ZONES } from "./museumData";
 const DEFAULT_CAMERA_HEIGHT = 2.65;
 const MIN_LOOK_PITCH = -0.5;
 const MAX_LOOK_PITCH = 0.58;
+const CONTROL_KEYS = ["KeyW", "KeyA", "KeyS", "KeyD", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"];
 
 /**
  * Check if a point (x, z) is inside any walkable zone.
@@ -16,17 +17,25 @@ function isInsideWalkableArea(x, z) {
   );
 }
 
-export function MuseumPlayer() {
+export function MuseumPlayer({ enabled = true }) {
   const { camera } = useThree();
   const keys = useRef({});
   const velocity = useRef(new THREE.Vector3());
 
   useEffect(() => {
+    if (!enabled) {
+      keys.current = {};
+      velocity.current.set(0, 0, 0);
+    }
+  }, [enabled]);
+
+  useEffect(() => {
     camera.rotation.order = "YXZ";
 
     const handleKeyDown = (event) => {
-      if (["KeyW", "KeyA", "KeyS", "KeyD", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(event.code)) {
+      if (CONTROL_KEYS.includes(event.code)) {
         event.preventDefault();
+        if (!enabled) return;
       }
       keys.current[event.code] = true;
     };
@@ -41,9 +50,14 @@ export function MuseumPlayer() {
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleKeyUp);
     };
-  }, []);
+  }, [camera, enabled]);
 
   useFrame((_, delta) => {
+    if (!enabled) {
+      velocity.current.set(0, 0, 0);
+      return;
+    }
+
     const speed = 4.2;
     const yawSpeed = 1.5;
     const pitchSpeed = 1.1;
