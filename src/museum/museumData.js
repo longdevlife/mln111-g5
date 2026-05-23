@@ -224,24 +224,9 @@ export const museumRooms = rawRooms.map(room => {
   return { ...room, walls: expandedWalls };
 });
 
-export const museumPanels = [
-  ...museumRooms.flatMap((room) =>
-    room.walls.map((wall) => ({ ...wall, roomAccent: room.accent, roomTitle: room.title, roomId: room.id }))
-  ),
-  {
-    id: "lobby-maivonhuquynh",
-    type: "lobby-artwork",
-    wall: "back-left",
-    title: "Mai Võ Như Quỳnh",
-    heading: "Thành viên Ban thiết kế & nội dung",
-    position: [-4.8, 2.3, -6.70], // Treo trên mặt trước tường sau bên trái vòm cửa (tránh chìm vào tường dày 0.5m)
-    rotation: [0, 0, 0], // Hướng mặt ra sảnh chính (Z dương)
-    imageSrc: "/museum/maivonhuquynh.jpg",
-    roomAccent: "#C5A028",
-    roomTitle: "Sảnh chính",
-    roomId: "lobby"
-  }
-];
+export const museumPanels = museumRooms.flatMap((room) =>
+  room.walls.map((wall) => ({ ...wall, roomAccent: room.accent, roomTitle: room.title, roomId: room.id }))
+);
 
 export const defaultPanel = null;
 

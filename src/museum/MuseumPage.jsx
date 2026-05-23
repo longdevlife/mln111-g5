@@ -101,7 +101,7 @@ export function MuseumPage() {
             transition: "opacity 0.3s ease",
           }}
         >
-          {focusedPanel?.heading || "Bước vào một phòng và hướng camera về từng bức tường nội dung."}
+          {focusedPanel?.heading}
         </p>
       </section>
 
@@ -124,7 +124,10 @@ export function MuseumPage() {
               width: room.id === activeView.id ? 24 : 8,
               height: 8,
               borderRadius: 4,
-              background: room.id === activeView.id ? room.accent : "rgba(255,255,255,0.2)",
+              background:
+                room.id === activeView.id
+                  ? room.accent
+                  : "rgba(255,255,255,0.2)",
               transition: "all 0.3s ease",
             }}
           />

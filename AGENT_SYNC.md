@@ -3,19 +3,6 @@
 > **Cập nhật lần cuối:** 2026-05-23
 > **Mục đích:** Ghi lại chi tiết tất cả các thay đổi lớn gần đây để các AI agent khác tiếp quản dự án có thể nắm bắt trạng thái tức thì và duy trì tính nhất quán.
 
-## 🖼️ TÍCH HỢP BỨC TRANH "MAI VÕ NHƯ QUỲNH" VÀO SẢNH CHÍNH - CẬP NHẬT 2026-05-23 12:33
-
-### 1. Dán và đóng khung bức ảnh nhóm:
-* **Tệp mã nguồn:** [museumData.js](file:///d:/Ky8-FPT/mln111-g5/src/museum/museumData.js)
-* **Thực hiện:**
-  - Tích hợp bức ảnh [maivonhuquynh.jpg](file:///d:/Ky8-FPT/mln111-g5/public/museum/maivonhuquynh.jpg) trực tiếp vào mảng `museumPanels` của sảnh chính.
-  - Vị trí treo: **`position: [-4.8, 2.3, -6.70]`** (treo trang trọng trên mặt trước bức tường gấm lớn bên trái vòm cửa sau, bù trừ chiều sâu 0.5m của tường sảnh để không bị chìm vào trong lòng tường).
-  - Góc xoay: **`rotation: [0, 0, 0]`** (hướng mặt tranh thẳng ra sảnh chính, đón người xem ngay khi bước vào).
-  - Tự động sở hữu **khung đồng cổ hoàng gia Baroque 6 lớp** tinh xảo và sang trọng, đồng bộ hoàn toàn với thiết kế mỹ thuật cao cấp của bảo tàng.
-
-### 2. Tương tác & Phóng to (Zoomable Popup):
-* **Tính năng đột phá:** Bức tranh hoàn toàn tương thích với hệ thống Raycasting. Khách tham quan có thể tiến lại gần để xem tên vinh danh trên bảng chữ động của sảnh: **Mai Võ Như Quỳnh (Thành viên Ban thiết kế & nội dung)** và click trực tiếp để mở **Popup phóng to Baroque HD**, hỗ trợ xoay, zoom 4x và kéo thả cực kỳ mượt mà.
-
 ---
 
 ## 🏛️ HOÀN THÀNH XUẤT SẮC HẠNG MỤC 4: TƯỢNG BÁC HỒ & RÀO CHẮN RUY BĂNG HOÀNG GIA - CẬP NHẬT 2026-05-23 12:24
